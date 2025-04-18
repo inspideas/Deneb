@@ -1,0 +1,139 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/simplebar.csv"
+  },
+  "height": 300,
+  "background": "#ffffff",
+  "width": {
+    "step": 50
+  },
+  "transform": [
+    {
+      "calculate": "datum['Progress%'] -datum['Progress%']+ 0.03",
+      "as": "Sell_Thru_Offset"
+    },
+    {
+      "calculate": "datum['Total%'] -datum['Total%']- 0.01",
+      "as": "BaseBottom_Offset"
+    },
+    {
+      "calculate": "datum['Total%'] + 0.01",
+      "as": "BaseTop_Offset"
+    }
+  ],
+  "layer": [
+    {
+      "description": "BaseBar",
+      "mark": {
+        "type": "bar",
+        "cornerRadius": 30,
+        "xOffset": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "Categories",
+          "type": "ordinal",
+          "sort": {
+            "field": "Categories",
+            "order": "ascending"
+          },
+          "axis": {
+            "labelAngle": 20,
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFont": "monsterrat"
+          }
+        },
+        "y": {
+          "field": "Total%",
+          "type": "quantitative",
+          "axis": {
+            "labelAngle": 0,
+            "title": "Categories"
+          }
+        },
+        "color": {
+          "value": "#f4f4f4"
+        }
+      }
+    },
+    {
+      "description": "InnerBar",
+      "mark": {
+        "type": "bar",
+        "cornerRadius": 20,
+        "size": 35,
+        "xOffset": 3,
+        "yOffset": 3,
+        "color": "#E6EAFA"
+      },
+      "encoding": {
+        "x": {
+          "field": "Categories",
+          "type": "ordinal",
+          "sort": {
+            "field": "Categories",
+            "order": "ascending"
+          },
+          "axis": {
+            "labelAngle": 0,
+            "title": "Categories"
+          }
+        },
+        "y": {
+          "field": "Sell_Thru_Offset",
+          "type": "quantitative",
+          "axis": null
+        },
+        "y2": {
+          "field": "Progress%"
+        },
+        "tooltip": [
+          {
+            "field": "Total Sold",
+            "type": "quantitative",
+            "title": "Sold Qty:"
+          },
+          {
+            "field": "Progress%",
+            "type": "quantitative",
+            "title": "ST: ",
+            "format": ""
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": 15,
+        "font": "monsterrat",
+        "fontSize": 8,
+        "fontWeight": "bold",
+        "color": "#777777",
+        "xOffset": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "Progress%",
+          "type": "quantitative"
+        },
+        "x": {
+          "field": "Categories"
+        },
+        "text": {
+          "field": "Progress%",
+          "type": "quantitative",
+          "format": ".0%"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

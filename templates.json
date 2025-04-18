@@ -1,0 +1,20 @@
+[
+{
+  "name": "Bar Chart Out of 100%",
+  "file": "templates/20250324-Bar0001/netlify.json",
+  "image": "images/20250324-Bar0001.png",
+  "category": "Bar Chart"
+},
+ {
+  "name": "Bar Chart Out of 100%- Multi Color",
+  "file": "templates/20250324-Bar0002/netlify.json",
+  "image": "images/20250324-Bar0002.png",
+  "category": "Bar Chart"
+},
+ {
+  "name": "Gradient Bar- 2 Years Comparison",
+  "file": "templates/20250414-GradLine0001/netlify.json",
+  "image": "images/20250414-GradLine0001.png",
+  "category": "Bar Chart"
+}
+]

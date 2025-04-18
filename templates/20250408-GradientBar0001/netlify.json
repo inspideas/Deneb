@@ -1,0 +1,184 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20with%20LY%25.csv"
+  },
+  "width": 350,
+  "height": {
+    "step": 50
+  },
+  "background": "transparent",
+  "transform": [
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "YearRank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "Year",
+          "order": "descending"
+        }
+      ],
+      "groupby": [
+        "Category"
+      ]
+    },
+    {
+      "filter": "datum.YearRank <= 2"
+    },
+    {
+      "calculate": "datum.YearRank == 1 ? 'TY' : 'LY'",
+      "as": "Type"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Total Sales",
+      "type": "quantitative",
+      "title": null,
+      "axis": {
+        "grid": false,
+        "ticks": false,
+        "domain": false,
+        "labels": false
+      }
+    },
+    "y": {
+      "field": "Category",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "grid": false,
+        "ticks": false,
+        "domain": false,
+        "labelPadding": 15,
+        "labelBaseline": "top"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Year"
+      },
+      {
+        "field": "Category"
+      },
+      {
+        "field": "Total Sales"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "description": "Previous Year Bar",
+      "mark": {
+        "type": "bar",
+        "opacity": 0.3,
+        "yOffset": 12,
+        "height": {
+          "band": 0.5
+        },
+        "cornerRadiusEnd": 7
+      },
+      "encoding": {
+        "x": {
+          "field": "Total Sales",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "Category",
+          "type": "ordinal"
+        },
+        "color": {
+          "value": "#B0B0B0"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.Type == 'LY'"
+        }
+      ]
+    },
+    {
+      "description": "Current Year Bar",
+      "mark": {
+        "type": "bar",
+        "opacity": 1,
+        "yOffset": 0,
+        "height": {
+          "band": 0.5
+        },
+        "cornerRadiusEnd": 7,
+        "fill": {
+          "x1": 0,
+          "y1": 1,
+          "x2": 1,
+          "y2": 0.3,
+          "gradient": "linear",
+          "stops": [
+            {
+              "offset": 0,
+              "color": "#D285F2"
+            },
+            {
+              "offset": 1,
+              "color": "#4E54BF"
+            }
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "Total Sales",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "Category",
+          "type": "ordinal"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.Type == 'TY'"
+        }
+      ]
+    },
+    {
+      "description": "vs LY% (text)",
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -5,
+        "color": "#F6F6F6",
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "Total Sales"
+        },
+        "text": {
+          "field": "% vs LY",
+          "type": "ordinal",
+          "format": ""
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.Type == 'TY'"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "grid": false,
+      "ticks": false,
+      "domain": true
+    }
+  }
+}
