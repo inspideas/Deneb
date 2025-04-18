@@ -1,0 +1,239 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "information": {
+      "uuid": "e6fe5503-a046-4d67-a9a5-247d0b59b38a",
+      "generated": "2025-04-09T02:13:25.436Z",
+      "previewImageBase64PNG": "data:image/png;base64,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",
+      "name": "Gradient Bar vs LY",
+      "description": "[No Description Provided]",
+      "author": "DataDes-inspidea"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.20.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Category",
+        "description": "Any classification and category",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__1__",
+        "name": "Year",
+        "description": "Period",
+        "kind": "column",
+        "type": "numeric"
+      },
+      {
+        "key": "__2__",
+        "name": "Total Sales",
+        "description": "Sales of total two yars at least",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__3__",
+        "name": "% vs LY",
+        "description": "Calculated measure vs LY in %",
+        "kind": "measure",
+        "type": "numeric"
+      }
+    ]
+  },
+  "data": {
+    "name": "dataset"
+  },
+  "width": 350,
+  "height": {
+    "step": 50
+  },
+  "background": "transparent",
+  "transform": [
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "YearRank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "__1__",
+          "order": "descending"
+        }
+      ],
+      "groupby": [
+        "__0__"
+      ]
+    },
+    {
+      "filter": "datum.YearRank <= 2"
+    },
+    {
+      "calculate": "datum.YearRank == 1 ? 'TY' : 'LY'",
+      "as": "Type"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "__2__",
+      "type": "quantitative",
+      "title": null,
+      "axis": {
+        "grid": false,
+        "ticks": false,
+        "domain": false,
+        "labels": false
+      }
+    },
+    "y": {
+      "field": "__0__",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "grid": false,
+        "ticks": false,
+        "domain": false,
+        "labelPadding": 15,
+        "labelBaseline": "top"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "__1__"
+      },
+      {
+        "field": "__0__"
+      },
+      {
+        "field": "__2__"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "description": "Previous Year Bar",
+      "mark": {
+        "type": "bar",
+        "opacity": 0.3,
+        "yOffset": 12,
+        "height": {
+          "band": 0.5
+        },
+        "cornerRadiusEnd": 7
+      },
+      "encoding": {
+        "x": {
+          "field": "__2__",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "__0__",
+          "type": "ordinal"
+        },
+        "color": {
+          "value": "#B0B0B0"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.Type == 'LY'"
+        }
+      ]
+    },
+    {
+      "description": "Current Year Bar",
+      "mark": {
+        "type": "bar",
+        "opacity": 1,
+        "yOffset": 0,
+        "height": {
+          "band": 0.5
+        },
+        "cornerRadiusEnd": 7,
+        "fill": {
+          "x1": 0,
+          "y1": 1,
+          "x2": 1,
+          "y2": 0.3,
+          "gradient": "linear",
+          "stops": [
+            {
+              "offset": 0,
+              "color": "#D285F2"
+            },
+            {
+              "offset": 1,
+              "color": "#4E54BF"
+            }
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "__2__",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "__0__",
+          "type": "ordinal"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.Type == 'TY'"
+        }
+      ]
+    },
+    {
+      "description": "vs LY% (text)",
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -5,
+        "color": "#F6F6F6",
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "__2__"
+        },
+        "text": {
+          "field": "__3__",
+          "type": "quantitative",
+          "format": ".0%"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.Type == 'TY'"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "grid": false,
+      "ticks": false,
+      "domain": true
+    }
+  }
+}

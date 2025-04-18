@@ -1,0 +1,194 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "information": {
+      "uuid": "f51212ac-cdbb-4175-92a3-7713ca09ffee",
+      "generated": "2025-04-09T00:47:15.404Z",
+      "previewImageBase64PNG": "data:image/png;base64,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",
+      "name": "Bar Chart with Shade (Blue)",
+      "description": "[No Description Provided]",
+      "author": "DataDes-inspidea"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.20.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Categories",
+        "description": "Any classification and Categories",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__1__",
+        "name": "Progress %",
+        "description": "calculated progress% out of 100%",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__2__",
+        "name": "Total%",
+        "description": "Should be 100% or 1 at all time",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__3__",
+        "name": "Total Sold",
+        "description": "Sales result and any calculated measure for your tooltip",
+        "kind": "measure",
+        "type": "numeric"
+      }
+    ]
+  },
+  "data": {
+    "name": "dataset"
+  },
+  "height": 300,
+  "background": "#ffffff",
+  "width": {
+    "step": 50
+  },
+  "transform": [
+    {
+      "calculate": "datum['__1__'] -datum['__1__']+ 0.03",
+      "as": "Sell_Thru_Offset"
+    },
+    {
+      "calculate": "datum['__2__'] -datum['__2__']- 0.01",
+      "as": "BaseBottom_Offset"
+    },
+    {
+      "calculate": "datum['__2__'] + 0.01",
+      "as": "BaseTop_Offset"
+    }
+  ],
+  "layer": [
+    {
+      "description": "BaseBar",
+      "mark": {
+        "type": "bar",
+        "cornerRadius": 30,
+        "xOffset": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "__0__",
+          "type": "ordinal",
+          "sort": {
+            "field": "__0__",
+            "order": "ascending"
+          },
+          "axis": {
+            "labelAngle": 20,
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFont": "monsterrat"
+          }
+        },
+        "y": {
+          "field": "__2__",
+          "type": "quantitative",
+          "axis": {
+            "labelAngle": 0,
+            "title": "__0__"
+          }
+        },
+        "color": {
+          "value": "#f4f4f4"
+        }
+      }
+    },
+    {
+      "description": "InnerBar",
+      "mark": {
+        "type": "bar",
+        "cornerRadius": 20,
+        "size": 35,
+        "xOffset": 3,
+        "yOffset": 3,
+        "color": "#E6EAFA"
+      },
+      "encoding": {
+        "x": {
+          "field": "__0__",
+          "type": "ordinal",
+          "sort": {
+            "field": "__0__",
+            "order": "ascending"
+          },
+          "axis": {
+            "labelAngle": 0,
+            "title": "__0__"
+          }
+        },
+        "y": {
+          "field": "Sell_Thru_Offset",
+          "type": "quantitative",
+          "axis": null
+        },
+        "y2": {
+          "field": "__1__"
+        },
+        "tooltip": [
+          {
+            "field": "__3__",
+            "type": "quantitative",
+            "title": "Sold Qty:"
+          },
+          {
+            "field": "__1__",
+            "type": "quantitative",
+            "title": "ST: ",
+            "format": ""
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": 15,
+        "font": "monsterrat",
+        "fontSize": 8,
+        "fontWeight": "bold",
+        "color": "#777777",
+        "xOffset": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "__1__",
+          "type": "quantitative"
+        },
+        "x": {
+          "field": "__0__"
+        },
+        "text": {
+          "field": "__1__",
+          "type": "quantitative",
+          "format": ".0%"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}
