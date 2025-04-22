@@ -1,0 +1,273 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "information": {
+      "uuid": "a9657abd-0ed6-493c-825c-81e6f171bb41",
+      "generated": "2025-04-07T20:31:26.822Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "Gradient Variance Bar Chart – TY vs LY by Category",
+      "description": "Compare this year's performance against last year with a clear visual. This variance bar chart highlights category-level gains or losses in sales, color-coded for quick insights. Gradient bars and value labels make trend spotting simple and stylish.",
+      "author": "DataDes-inspidea"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.20.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Year",
+        "description": "Term for label and your reference",
+        "kind": "column",
+        "type": "numeric"
+      },
+      {
+        "key": "__1__",
+        "name": "Category",
+        "description": "Category ",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__2__",
+        "name": "Variance vs LY",
+        "description": "Calculated variance",
+        "kind": "measure",
+        "type": "numeric"
+      }
+    ]
+  },
+  "data": {
+    "name": "dataset"
+  },
+  "width": 350,
+  "height": {
+    "step": 35
+  },
+  "background": "transparent",
+  "transform": [
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "YearRank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "__0__",
+          "order": "descending"
+        }
+      ],
+      "groupby": [
+        "__1__"
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "max",
+          "field": "Total Sales",
+          "as": "MaxSales_TY"
+        }
+      ]
+    },
+    {
+      "filter": "datum.YearRank == 1"
+    },
+    {
+      "calculate": "datum.YearRank == 1 ? 'TY' : 'LY'",
+      "as": "Type"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "__2__",
+      "type": "quantitative",
+      "title": null,
+      "axis": {
+        "grid": true,
+        "ticks": false,
+        "domain": false,
+        "labels": false,
+        "gridWidth": 1,
+        "gridColor": {
+          "condition": {
+            "test": "datum.value === 0",
+            "value": "#64646486"
+          },
+          "value": "#transparent"
+        }
+      }
+    },
+    "y": {
+      "field": "__1__",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "grid": false,
+        "ticks": false,
+        "domain": false,
+        "labelPadding": 0,
+        "labelBaseline": "top"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "__0__"
+      },
+      {
+        "field": "__1__"
+      },
+      {
+        "field": "__2__"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "opacity": 0.5,
+        "yOffset": 0,
+        "height": {
+          "band": 0.8
+        },
+        "cornerRadiusBottomLeft": 7,
+        "cornerRadiusTopLeft": 7,
+        "fill": {
+          "x1": 0,
+          "y1": 0.8,
+          "x2": 1,
+          "y2": 1,
+          "gradient": "linear",
+          "stops": [
+            {
+              "offset": 0,
+              "color": "#D285F2"
+            },
+            {
+              "offset": 1,
+              "color": "#4E54BF"
+            }
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "__2__",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "__1__",
+          "type": "ordinal"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.Type == 'TY' && datum['__2__'] < 0"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "opacity": 0.9,
+        "yOffset": 0,
+        "height": {
+          "band": 0.8
+        },
+        "cornerRadiusEnd": 7,
+        "fill": {
+          "x1": 0,
+          "y1": 0.8,
+          "x2": 1,
+          "y2": 1,
+          "gradient": "linear",
+          "stops": [
+            {
+              "offset": 0,
+              "color": "#4E54BF"
+            },
+            {
+              "offset": 1,
+              "color": "#1D1340"
+            }
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "__2__",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "__1__",
+          "type": "ordinal"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.Type == 'TY' && datum['__2__'] >= 0"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "font": "Helvetica",
+        "align": {
+          "expr": "datum['__2__']<0? 'left':'right'"
+        },
+        "dx": {
+          "expr": "datum['__2__']<0? 5:-5"
+        },
+        "color": {
+          "expr": "datum['__2__']<0? 'grey':'#D7D7D9'"
+        }, 
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "__2__",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "__1__",
+          "type": "ordinal"
+        },
+        "text": {
+          "field": "__2__",
+          "type": "quantitative",
+          "format": ".3s"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.Type == 'TY'"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "grid": false,
+      "ticks": false,
+      "domain": true
+    }
+  }
+}

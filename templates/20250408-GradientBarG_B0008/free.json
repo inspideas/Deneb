@@ -1,0 +1,208 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "information": {
+      "uuid": "85f411ca-5d46-4cb0-bcb9-db10e3ece61c",
+      "generated": "2025-04-08T00:23:05.153Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "Gradient Round Corner Bar Chart (Green and Blue)",
+      "description": "This gradient bar chart visualizes current year sales by category, sorted in descending order. It uses a linear gradient fill and rounded corners for a clean look. With minimal axis lines and labeled bars, it's designed for quick comparison and easy customization. ",
+      "author": "DataDes-inspidea"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.20.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Category",
+        "description": "Any Classification and Categories",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__1__",
+        "name": "Year",
+        "description": "Term for the tooltip and your ref",
+        "kind": "column",
+        "type": "numeric"
+      },
+      {
+        "key": "__2__",
+        "name": "Sales",
+        "description": "Calculated value/measures",
+        "kind": "measure",
+        "type": "numeric"
+      }
+    ]
+  },
+  "data": {
+    "name": "dataset"
+  },
+  "width": 350,
+  "height": {
+    "step": 40
+  },
+  "background": "transparent",
+  "transform": [
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "YearRank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "__1__",
+          "order": "descending"
+        }
+      ],
+      "groupby": [
+        "__0__"
+      ]
+    },
+    {
+      "filter": "datum.YearRank <= 1"
+    },
+    {
+      "calculate": "datum.YearRank == 1 ? 'TY' : 'LY'",
+      "as": "Type"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "__2__",
+      "type": "quantitative",
+      "title": null,
+      "axis": {
+        "grid": false,
+        "ticks": false,
+        "domain": false,
+        "labels": false
+      }
+    },
+    "y": {
+      "field": "__0__",
+      "type": "ordinal",
+      "sort": "-x",
+      "title": null,
+      "axis": {
+        "grid": false,
+        "ticks": false,
+        "domain": false,
+        "labelPadding": 15,
+        "labelBaseline": "middle",
+        "labelColor": "#50A7C2",
+        "labelFont": "helvetica",
+        "labelFontSize": 12
+      }
+    },
+    "tooltip": [
+      {
+        "field": "__1__"
+      },
+      {
+        "field": "__0__"
+      },
+      {
+        "field": "__2__"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "opacity": 1,
+        "yOffset": 0,
+        "height": {
+          "band": 0.5
+        },
+        "cornerRadius": 13,
+        "fill": {
+          "x1": 0,
+          "y1": 0.8,
+          "x2": 1,
+          "y2": 1,
+          "gradient": "linear",
+          "stops": [
+            {
+              "offset": 0,
+              "color": "#B7F8DB"
+            },
+            {
+              "offset": 1,
+              "color": "#50A7C2"
+            }
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "__2__",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "__0__",
+          "type": "ordinal"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.Type == 'TY'"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "color": "#50A7C2",
+        "font": "helvetica",
+        "fontSize": 12
+      },
+      "encoding": {
+        "x": {
+          "field": "__2__"
+        },
+        "y": {
+          "field": "__0__"
+        },
+        "text": {
+          "field": "__2__",
+          "type": "quantitative",
+          "format": ".2s" 
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.Type == 'TY'"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "grid": false,
+      "ticks": false,
+      "domain": true
+    }
+  }
+}

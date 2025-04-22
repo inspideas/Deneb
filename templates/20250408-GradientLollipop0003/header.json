@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "information": {
+      "uuid": "c9d1b8b8-8cbb-4475-8e7d-e132d91f2dbc",
+      "generated": "2025-04-08T00:40:26.381Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "Lollipop Bar Chart",
+      "description": "This gradient lollipop chart displays sales by category, using a horizontal bar topped with a circular endpoint for clear visual emphasis. Gradient colors add aesthetic depth, and value labels alongside tooltips ensure instant readability. ",
+      "author": "DataDes-inspidea"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.20.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Year",
+        "description": "Term for your tooltip and ref",
+        "kind": "column",
+        "type": "numeric"
+      },
+      {
+        "key": "__1__",
+        "name": "Category",
+        "description": "Any classification and categories",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__2__",
+        "name": "Sales",
+        "description": "Calculated Value/Measure",
+        "kind": "measure",
+        "type": "numeric"
+      }
+    ]
+  }

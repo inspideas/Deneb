@@ -1,0 +1,266 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "information": {
+      "uuid": "d94f2cbb-0aed-43d0-ba8b-0579679e5ccb",
+      "generated": "2025-04-14T04:54:00.056Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "Gradient Line Chart- Transparent Smooth Line ",
+      "description": "[No Description Provided]",
+      "author": "DataDes-inspidea"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.20.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Year",
+        "description": "Year to find the latest sales and label",
+        "kind": "column",
+        "type": "numeric"
+      },
+      {
+        "key": "__1__",
+        "name": "Month",
+        "description": "Any periodical series",
+        "kind": "column",
+        "type": "numeric"
+      },
+      {
+        "key": "__2__",
+        "name": "Total Sales",
+        "description": "Calculated total sales or other calculated measures",
+        "kind": "measure",
+        "type": "numeric"
+      }
+    ]
+  },
+  "data": {
+    "name": "dataset"
+  },
+  "width": 350,
+  "background": "transparent",
+  "transform": [
+    {
+      "window": [
+        {
+          "op": "dense_rank",
+          "field": "__0__",
+          "as": "YearRankGlobal"
+        }
+      ],
+      "sort": [
+        {
+          "field": "__0__",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "max",
+          "field": "__1__",
+          "as": "LastMonthRank"
+        }
+      ],
+      "groupby": [
+        "__0__"
+      ],
+      "sort": [
+        {
+          "field": "LastMonthRank",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "filter": "datum.YearRankGlobal <= 2"
+    },
+    {
+      "calculate": "datum.YearRankGlobal == 1 ? 'TY' : 'LY'",
+      "as": "Type"
+    },
+    {
+      "calculate": "['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(datum['__1__']) - 1]",
+      "as": "Month_Label"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "__2__",
+      "type": "quantitative",
+      "title": null,
+      "axis": {
+        "grid": false,
+        "ticks": true,
+        "domain": false,
+        "labels": true,
+        "tickCount": 3,
+        "format": "s",
+        "tickColor": "#021859",
+        "labelColor": "#021859",
+        "labelFont": "helvetica"
+      }
+    },
+    "x": {
+      "field": "Month_Label",
+      "sort": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ],
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "grid": false,
+        "ticks": false,
+        "domain": false,
+        "labelPadding": 0,
+        "labelBaseline": "top",
+        "labelColor": "#021859",
+        "labelFont": "helvetica",
+        "labelAngle": 0
+      }
+    },
+    "tooltip": [
+      {
+        "field": "__0__"
+      },
+      {
+        "field": "__1__"
+      },
+      {
+        "field": "__2__"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "cardinal",
+        "line": {
+          "color": "#FFFFFF",
+          "interpolate": "cardinal"
+        },
+        "color": {
+          "x1": 1,
+          "y1": 1,
+          "x2": 0.8,
+          "y2": 0,
+          "gradient": "linear",
+          "stops": [
+            {
+              "offset": 0.5,
+              "color": "#FFFFFF00"
+            },
+            {
+              "offset": 0.8,
+              "color": "#FFFFFF80"
+            },
+            {
+              "offset": 1,
+              "color": "#FFFFFF90"
+            }
+          ]
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.Type == 'TY'"
+        }
+      ]
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Type=='TY'&& datum.LastMonthRank==datum['__1__']"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "width": 30,
+        "height": 18,
+        "yOffset": -15,
+        "xOffset": 10,
+        "fill": "#f6f6f6",
+        "stroke": "#012859",
+        "strokeWidth": 0,
+        "cornerRadius": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "Month_Label",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "__2__",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Type=='TY'&& datum.LastMonthRank==datum['__1__']"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontWeight": "bold",
+        "fontStyle": "helvetica",
+        "dx": -3,
+        "dy": -15,
+        "color": "#012859"
+      },
+      "encoding": {
+        "x": {
+          "field": "Month_Label",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "__2__",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "__0__",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "grid": false,
+      "ticks": false,
+      "domain": true
+    }
+  }
+}

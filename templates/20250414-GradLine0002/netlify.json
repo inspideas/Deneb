@@ -1,0 +1,190 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv"
+    },
+    "width": 350,
+    "background": "transparent",
+    "transform": [
+      {
+        "window": [
+          {
+            "op": "dense_rank",
+            "field": "Year",
+            "as": "YearRankGlobal"
+          }
+        ],
+        "sort": [
+          {
+            "field": "Year",
+            "order": "descending"
+          }
+        ]
+      },
+      {
+        "window": [
+          {
+            "op": "max",
+            "field": "Month",
+            "as": "LastMonthRank"
+          }
+        ],
+        "groupby": [
+          "Year"
+        ],
+        "sort": [
+          {
+            "field": "LastMonthRank",
+            "order": "descending"
+          }
+        ]
+      },
+      {
+        "filter": "datum.YearRankGlobal <= 2"
+      },
+      {
+        "calculate": "datum.YearRankGlobal == 1 ? 'TY' : 'LY'",
+        "as": "Type"
+      },
+      {
+        "calculate": "['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(datum['Month']) - 1]",
+        "as": "Month_Label"
+      }
+    ],
+    "encoding": {
+      "y": {
+        "field": "Total Sales",
+        "type": "quantitative",
+        "title": null,
+        "axis": {
+          "grid": false,
+          "ticks": true,
+          "domain": false,
+          "labels": true,
+          "tickCount": 3,
+          "format": "s",
+          "tickColor": "#021859",
+          "labelColor": "#021859"
+        }
+      },
+      "x": {
+        "field": "Month_Label",
+        "sort": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
+        "type": "ordinal",
+        "title": null,
+        "axis": {
+          "grid": false,
+          "ticks": false,
+          "domain": false,
+          "labelPadding": 0,
+          "labelBaseline": "top",
+          "labelColor": "#021859",
+          "labelAngle": 0
+        }
+      },
+      "tooltip": [
+        {
+          "field": "Year"
+        },
+        {
+          "field": "Month"
+        },
+        {
+          "field": "Total Sales"
+        }
+      ]
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "area",
+          "interpolate": "cardinal",
+          "line": {
+            "color": "#8DCFEA",
+            "interpolate": "cardinal"
+          },
+          "color": {
+            "x1": 1,
+            "y1": 1,
+            "x2": 1,
+            "y2": 0,
+            "gradient": "linear",
+            "stops": [
+              {
+                "offset": 0.3,
+                "color": "#F6f6f6"
+              },
+              {
+                "offset": 0.6,
+                "color": "#D2E0EC"
+              },
+              {
+                "offset": 0.8,
+                "color": "#A8D3E8"
+              },
+              {
+                "offset": 1,
+                "color": "#8DCFEA"
+              }
+            ]
+          }
+        },
+        "transform": [
+          {
+            "filter": "datum.Type == 'TY'"
+          }
+        ]
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.Type == 'TY'&&datum.LastMonthRank==datum['Month']"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "dx": 5,
+          "dy": -5,
+          "color": "#012859"
+        },
+        "encoding": {
+          "x": {
+            "field": "Month_Label",
+            "type": "ordinal"
+          },
+          "y": {
+            "field": "Total Sales",
+            "type": "quantitative"
+          },
+          "text": {
+            "field": "Year",
+            "type": "nominal"
+          }
+        }
+      }
+    ],
+    "config": {
+      "view": {
+        "stroke": null
+      },
+      "axis": {
+        "grid": false,
+        "ticks": false,
+        "domain": true
+      }
+    }
+  }

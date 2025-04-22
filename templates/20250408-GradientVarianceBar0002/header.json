@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "information": {
+      "uuid": "a9657abd-0ed6-493c-825c-81e6f171bb41",
+      "generated": "2025-04-07T20:31:26.822Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "Gradient Variance Bar Chart – TY vs LY by Category",
+      "description": "Compare this year's performance against last year with a clear visual. This variance bar chart highlights category-level gains or losses in sales, color-coded for quick insights. Gradient bars and value labels make trend spotting simple and stylish.",
+      "author": "DataDes-inspidea"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.20.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Year",
+        "description": "Term for label and your reference",
+        "kind": "column",
+        "type": "numeric"
+      },
+      {
+        "key": "__1__",
+        "name": "Category",
+        "description": "Category ",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__2__",
+        "name": "Variance vs LY",
+        "description": "Calculated variance",
+        "kind": "measure",
+        "type": "numeric"
+      }
+    ]
+  }

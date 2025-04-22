@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "information": {
+      "uuid": "afa02d73-572e-4e75-bd3a-f1febf5bef31",
+      "generated": "2025-04-09T05:52:37.314Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "GradientLollipop Sorted Chart",
+      "description": "[No Description Provided]",
+      "author": "DataDes-inspidea"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.20.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Category",
+        "description": "AnyCategories and Classifications",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__1__",
+        "name": "Year",
+        "description": "Period for your tooltip and ref",
+        "kind": "column",
+        "type": "numeric"
+      },
+      {
+        "key": "__2__",
+        "name": "Sales",
+        "description": "Calculated sales  or any measures total up",
+        "kind": "measure",
+        "type": "numeric"
+      }
+    ]
+  }
