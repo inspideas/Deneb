@@ -1,0 +1,246 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "information": {
+      "uuid": "2d578ab5-9889-4518-8ed0-4153f93452ea",
+      "generated": "2025-03-24T00:51:27.010Z",
+      "previewImageBase64PNG": "data:image/png;base64,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",
+      "name": "20250324-Bar0004",
+      "description": "Bar Chart with Shade ",
+      "author": "inspidea-datades"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.20.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Flavor",
+        "description": "Category",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__1__",
+        "name": "ST%",
+        "description": "Measurable %",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__2__",
+        "name": "Total%",
+        "description": "Should be 1 or 100%",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__3__",
+        "name": "Total Sold",
+        "description": "For Tooltip",
+        "kind": "measure",
+        "type": "numeric"
+      }
+    ]
+  },
+  "data": {
+    "name": "dataset"
+  },
+  "height": 300,
+  "background": "#F6F6F6",
+  "width": {
+    "step": 50
+  },
+  "transform": [
+    {
+      "calculate": "datum['__1__'] -datum['__1__']+ 0.03",
+      "as": "Sell_Thru_Offset"
+    },
+    {
+      "calculate": "datum['__2__'] -datum['__2__']- 0.01",
+      "as": "BaseBottom_Offset"
+    },
+    {
+      "calculate": "datum['__2__'] + 0.01",
+      "as": "BaseTop_Offset"
+    }
+  ],
+  "layer": [
+    {
+      "description": "BlarBase",
+      "mark": {
+        "type": "bar",
+        "cornerRadius": 20,
+        "size": 45,
+        "xOffset": 5,
+        "fill": {
+          "gradient": "linear",
+          "x1": 1,
+          "y1": 0,
+          "x2": 0,
+          "y2": 0,
+          "stops": [
+            {
+              "offset": 0,
+              "color": "#eeeeee"
+            },
+            {
+              "offset": 1,
+              "color": "#F6F6F6"
+            }
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "__0__",
+          "type": "ordinal",
+          "sort": {
+            "field": "__0__",
+            "order": "ascending"
+          },
+          "axis": {
+            "labelAngle": 20,
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFont": "monsterrat",
+            "labelPadding": -20
+          }
+        },
+        "y": {
+          "field": "BaseBottom_Offset",
+          "type": "quantitative",
+          "axis": null
+        },
+        "y2": {
+          "field": "BaseTop_Offset"
+        }
+      }
+    },
+    {
+      "description": "BaseBar",
+      "mark": {
+        "type": "bar",
+        "cornerRadius": 30,
+        "xOffset": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "__0__",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "__2__",
+          "type": "quantitative",
+          "axis": {
+            "labelAngle": 0,
+            "title": "__0__"
+          }
+        },
+        "color": {
+          "value": "#f4f4f4"
+        }
+      }
+    },
+    {
+      "description": "InnerBar",
+      "mark": {
+        "type": "bar",
+        "cornerRadius": 15,
+        "size": 30,
+        "xOffset": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "__0__",
+          "type": "ordinal",
+          "sort": {
+            "field": "__0__",
+            "order": "ascending"
+          },
+          "axis": {
+            "labelAngle": 0,
+            "title": "__0__"
+          }
+        },
+        "y": {
+          "field": "Sell_Thru_Offset",
+          "type": "quantitative",
+          "axis": null
+        },
+        "y2": {
+          "field": "__1__"
+        },
+        "tooltip": [
+          {
+            "field": "__3__",
+            "type": "quantitative",
+            "title": "Sold Qty:"
+          },
+          {
+            "field": "__1__",
+            "type": "quantitative",
+            "title": "ST: ",
+            "format": ".0%"
+          }
+        ],
+        "color": {
+          "field": "__0__",
+          "type": "nominal",
+          "scale": {
+            "range": [
+              "#E6EAFA",
+              "#E1FAF3",
+              "#FAE1D9",
+              "#FAF2D9"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": 15,
+        "font": "monsterrat",
+        "fontSize": 8,
+        "fontWeight": "bold",
+        "color": "#777777",
+        "xOffset": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "__1__",
+          "type": "quantitative"
+        },
+        "x": {
+          "field": "__0__"
+        },
+        "text": {
+          "field": "__1__",
+          "type": "quantitative",
+          "format": ".0%"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}
