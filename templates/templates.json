@@ -5,7 +5,7 @@
   "image": "images/20250324-Bar0001.png",
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
-  "subscription": "NO"
+  "subscription": "No"
 
 },
  {
@@ -14,7 +14,7 @@
   "image": "images/20250324-Bar0002.png",
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
-  "subscription": "YES"
+  "subscription": "Yes"
 },
  {
   "name": "Gradient Bar- 2 Years Comparison",
@@ -22,7 +22,7 @@
   "image": "images/20250414-GradLine0001.png",
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
-  "subscription": "NO"
+  "subscription": "Yes"
 }
 
 ]
