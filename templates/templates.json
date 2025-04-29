@@ -3,18 +3,27 @@
   "name": "Bar Chart Out of 100%",
   "file": "20250324-Bar0001",
   "image": "images/20250324-Bar0001.png",
-  "category": "Bar Chart"
+  "category": "Bar Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "NO"
+
 },
  {
   "name": "Bar Chart Out of 100%- Multi Color",
   "file": "20250324-Bar0002",
   "image": "images/20250324-Bar0002.png",
-  "category": "Bar Chart"
+  "category": "Bar Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "YES"
 },
  {
   "name": "Gradient Bar- 2 Years Comparison",
   "file": "20250414-GradLine0001",
   "image": "images/20250414-GradLine0001.png",
-  "category": "Bar Chart"
+  "category": "Bar Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "NO"
 }
+
 ]
+
