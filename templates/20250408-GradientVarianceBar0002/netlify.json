@@ -48,10 +48,7 @@
         "field": "Variance vs LY",
         "type": "quantitative",
         "title": null,
-       "scale": {
-  "domainMid": 0,
-  "align": 0.5
-},
+      
         "axis": {
           "grid": true,
           "ticks": false,
@@ -93,11 +90,11 @@
     },
     "layer": [
       {
-        "description": "positive bar",
+        "description": "negative bar",
         "mark": {
           "type": "bar",
           "opacity": 0.5,
-          "yOffset": 0,
+          "yOffset": 50,
           "height": {
             "band": 0.8
           },
@@ -138,7 +135,7 @@
         ]
       },
       {
-        "description": "negative bar",
+        "description": "positive bar",
         "mark": {
           "type": "bar",
           "opacity": 0.9,

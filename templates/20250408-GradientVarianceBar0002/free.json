@@ -136,7 +136,7 @@
     ]
   },
   "layer": [
-    { "description": "positive bar",
+    { "description": "negative bar",
       "mark": {
         "type": "bar",
         "opacity": 0.5,
@@ -180,7 +180,7 @@
         }
       ]
     },
-    {"description": "negative bar",
+    {"description": "positive bar",
       "mark": {
         "type": "bar",
         "opacity": 0.9,
