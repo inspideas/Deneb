@@ -25,7 +25,7 @@
  "category": "Bar Chart",
  "timestamp": "2025-04-25",
  "subscription": "No",
- "caution":""
+ "caution":"Use total sales something like 'Total Sales= sum('Sales Data'[Sales]') without filtering years!"
 },
 {
  "name": "Gradient Bar Chart Two-Years Comparison",
