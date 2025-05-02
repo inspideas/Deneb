@@ -94,7 +94,8 @@
         "mark": {
           "type": "bar",
           "opacity": 0.5,
-          "yOffset": 50,
+          "yOffset": 0,
+          "xOffset":50,
           "height": {
             "band": 0.8
           },
