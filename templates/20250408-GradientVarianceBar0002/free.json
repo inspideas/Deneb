@@ -120,7 +120,8 @@
         "ticks": false,
         "domain": false,
         "labelPadding": 0,
-        "labelBaseline": "top"
+        "labelBaseline": "top",
+        "labelColor":"#646464"
       }
     },
     "tooltip": [
