@@ -48,6 +48,9 @@
         "field": "Variance vs LY",
         "type": "quantitative",
         "title": null,
+        "scale": {
+          "domainMid": 0
+        },
         "axis": {
           "grid": true,
           "ticks": false,
