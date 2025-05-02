@@ -14,16 +14,161 @@
   "image": "images/20250324-Bar0002.png",
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
-  "subscription": "Yes"
+  "subscription": "No"
 },
  {
-  "name": "Gradient Bar- 2 Years Comparison",
-  "file": "20250414-GradLine0001",
-  "image": "images/20250414-GradLine0001.png",
+  "name": "Bar Chart Out of 100%- Multi Color with Shade",
+  "file": "20250324-Bar0003",
+  "image": "images/20250324-Bar0003.png",
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
   "subscription": "Yes"
-}
+},
+{
+ "name": "Bar Chart Out of 100%- Multi Color with Shade Blue",
+ "file": "20250324-Bar0004",
+ "image": "images/20250324-Bar0004.png",
+ "category": "Bar Chart",
+ "timestamp": "2025-04-25",
+ "subscription": "Yes"
+},
+{
+ "name": "Gradient Bar Chart Two-Years Comparison",
+ "file": "20250408-GradientBar0001",
+ "image": "images/20250408-GradientBar0001.png",
+ "category": "Bar Chart",
+ "timestamp": "2025-04-25",
+ "subscription": "No"
+},
+{
+ "name": "Gradient Bar Chart Two-Years Comparison",
+ "file": "20250408-GradientVarianceBar0002",
+ "image": "images/20250408-GradientVarianceBar0002.png",
+ "category": "Bar Chart",
+ "timestamp": "2025-04-25",
+ "subscription": "No"
+},
+{
+ "name": "Gradient Variance Bar Chart",
+ "file": "20250408-GradientVarianceBar0002",
+ "image": "images/20250408-GradientVarianceBar0002.png",
+ "category": "Bar Chart",
+ "timestamp": "2025-04-25",
+ "subscription": "No"
+},
+{
+ "name": "Gradient Lollipop Chart",
+ "file": "20250408-GradientLollipop0003",
+ "image": "images/20250408-GradientLollipop0003.png",
+ "category": "Bar Chart",
+ "timestamp": "2025-04-25",
+ "subscription": "No"
+},
+{
+ "name": "Gradient Lollipop Chart-Sorted",
+ "file": "20250408-GradientLollipopSorted0010",
+ "image": "images/20250408-GradientLollipopSorted0010.png",
+ "category": "Bar Chart",
+ "timestamp": "2025-04-25",
+ "subscription": "Yes"
+},
+{
+ "name": "Gradient Bar Chart-Purple Base",
+ "file": "20250408-GradientBarP_B0004",
+ "image": "images/20250408-GradientBarP_B0004.png",
+ "category": "Bar Chart",
+ "timestamp": "2025-04-25",
+ "subscription": "No"
+},
+{
+  "name": "Gradient Bar Chart-Pink to LBlue Base",
+  "file": "20250408-GradientBarPK_LB0005",
+  "image": "images/20250408-GradientBarPK_LB0005.png",
+  "category": "Bar Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "No"
+ },
+ {
+  "name": "Gradient Bar Chart-Blue Base",
+  "file": "20250408-GradientBarB_LB0006",
+  "image": "images/20250408-GradientBarB_LB0006.png",
+  "category": "Bar Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "No"
+ },
+ {
+  "name": "Gradient Bar Chart-Grey Base",
+  "file": "20250408-GradientBarG_BK0007",
+  "image": "images/20250408-GradientBarG_BK0007.png",
+  "category": "Bar Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "No"
+ },
+ {
+  "name": "Gradient Bar Chart-Green Base",
+  "file": "20250408-GradientBarG_B0008",
+  "image": "images/20250408-GradientBarG_B0008.png",
+  "category": "Bar Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "No"
+ },
+ {
+  "name": "Gradient Bar Chart-Light Blue Base",
+  "file": "20250408-GradientBarW_B0009",
+  "image": "images/20250408-GradientBarW_B0009.png",
+  "category": "Bar Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "No"
+ },
+ {
+  "name": "Gradient Bullet Chart",
+  "file": "20250411-Bullet Chart0001",
+  "image": "images/20250411-Bullet Chart0001.png",
+  "category": "Bar Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "Yes"
+ },
+ {
+  "name": "Gradient Line Chart",
+  "file": "20250414-GradLine0001",
+  "image": "images/20250414-GradLine0001.png",
+  "category": "Line Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "No"
+ },
+ {
+  "name": "Gradient Line Chart-Smooth Line",
+  "file": "20250414-GradLine0002",
+  "image": "images/20250414-GradLine0002.png",
+  "category": "Line Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "No"
+ },
+ {
+  "name": "Gradient Line Chart-Smooth Line 2-Years Comparison",
+  "file": "20250414-GradLine0003",
+  "image": "images/20250414-GradLine0003.png",
+  "category": "Line Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "No"
+ },
+ {
+  "name": "Gradient Transparent Line Chart-Smooth Line",
+  "file": "20250414-GradLine0004",
+  "image": "images/20250414-GradLine0004.png",
+  "category": "Line Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "No"
+ },
+ {
+  "name": "Gradient Transparent Line Chart-Smooth Line 2-Years Comparison",
+  "file": "20250414-GradLine0005",
+  "image": "images/20250414-GradLine0005.png",
+  "category": "Line Chart",
+  "timestamp": "2025-04-25",
+  "subscription": "Yes"
+ }
+
 
 ]
 
