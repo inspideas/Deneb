@@ -6,7 +6,7 @@
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
-  "caution":"Careful"
+  "caution":""
 
 },
  {
@@ -25,7 +25,7 @@
  "category": "Bar Chart",
  "timestamp": "2025-04-25",
  "subscription": "No",
- "caution":"Use total sales something like 'Total Sales= sum('Sales Data'[Sales]') without filtering years!"
+ "caution":"Use sales calculated something like 'Total Sales= sum('Sales Data'[Sales]') without filtering years! Deneb calculates sales by year on its own."
 },
 {
  "name": "Gradient Bar Chart Two-Years Comparison",
