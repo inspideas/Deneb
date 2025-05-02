@@ -10,11 +10,11 @@
     },
     "transform": [
       {
-        "calculate": "datum['ST%'] - datum['ST%'] + 0.03",
+        "calculate": "datum['ST%'] -datum['ST%']+ 0.03",
         "as": "Sell_Thru_Offset"
       },
       {
-        "calculate": "datum['Total%'] - datum['Total%'] - 0.01",
+        "calculate": "datum['Total%'] -datum['Total%']- 0.01",
         "as": "BaseBottom_Offset"
       },
       {
@@ -24,7 +24,7 @@
     ],
     "layer": [
       {
-        "description": "BarBase Background",
+        "description": "BlarBase",
         "mark": {
           "type": "bar",
           "cornerRadius": 20,
@@ -76,7 +76,7 @@
         }
       },
       {
-        "description": "Base Bar 100%",
+        "description": "BaseBar",
         "mark": {
           "type": "bar",
           "cornerRadius": 30,
@@ -101,13 +101,12 @@
         }
       },
       {
-        "description": "Progress Inner Bar",
+        "description": "InnerBar",
         "mark": {
           "type": "bar",
           "cornerRadius": 15,
           "size": 30,
-          "xOffset": 3,
-          "tooltip": true
+          "xOffset": 3
         },
         "encoding": {
           "x": {
@@ -139,8 +138,8 @@
             {
               "field": "ST%",
               "type": "quantitative",
-              "title": "ST:",
-              "format": ".0%"
+              "title": "ST: ",
+              "format": ""
             }
           ],
           "color": {
