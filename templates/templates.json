@@ -16,22 +16,6 @@
   "timestamp": "2025-04-25",
   "subscription": "No"
 },
- {
-  "name": "Bar Chart Out of 100%- Multi Color with Shade",
-  "file": "20250324-Bar0003",
-  "image": "images/20250324-Bar0003.png",
-  "category": "Bar Chart",
-  "timestamp": "2025-04-25",
-  "subscription": "Yes"
-},
-{
- "name": "Bar Chart Out of 100%- Multi Color with Shade Blue",
- "file": "20250324-Bar0004",
- "image": "images/20250324-Bar0004.png",
- "category": "Bar Chart",
- "timestamp": "2025-04-25",
- "subscription": "Yes"
-},
 {
  "name": "Gradient Bar Chart Two-Years Comparison",
  "file": "20250408-GradientBar0001",
