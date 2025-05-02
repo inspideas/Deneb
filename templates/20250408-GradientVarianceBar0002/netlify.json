@@ -141,6 +141,7 @@
           "type": "bar",
           "opacity": 0.9,
           "yOffset": 0,
+          "xOffset":-500,
           "height": {
             "band": 0.8
           },
