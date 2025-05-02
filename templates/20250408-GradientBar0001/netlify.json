@@ -55,7 +55,8 @@
         "ticks": false,
         "domain": false,
         "labelPadding": 15,
-        "labelBaseline": "top"
+        "labelBaseline": "top",
+        "labelColor": "#4E54BF"
       }
     },
     "tooltip": [
@@ -160,8 +161,8 @@
         },
         "text": {
           "field": "% vs LY",
-          "type": "ordinal",
-          "format": ""
+          "type": "quantitative",
+          "format": ".0%"
         }
       },
       "transform": [
