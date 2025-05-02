@@ -157,7 +157,7 @@
           }
         }
       },
-      {
+      {"description": "Text on the Bar",
         "mark": {
           "type": "text",
           "dy": 15,
