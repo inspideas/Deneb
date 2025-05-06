@@ -76,6 +76,7 @@
     },
     "layer": [
       {
+        "description": "Bar-Last Year",
         "mark": {
           "type": "bar",
           "opacity": 0.3,
@@ -104,6 +105,7 @@
         ]
       },
       {
+        "description": "Bar-Current Year",
         "mark": {
           "type": "bar",
           "opacity": 1,
@@ -151,6 +153,7 @@
         ]
       },
       {
+        "description": "Mark-Plan",
         "mark": {
           "type": "tick",
           "tooltip": true,
@@ -190,6 +193,7 @@
             "as": "ToGoText"
           }
         ],
+        "description": "Text-To Go",
         "mark": {
           "type": "text",
           "align": "left",

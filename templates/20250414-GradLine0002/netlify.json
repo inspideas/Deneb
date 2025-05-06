@@ -109,6 +109,7 @@
     },
     "layer": [
       {
+        "description": "Current Year Sales",
         "mark": {
           "type": "area",
           "interpolate": "cardinal",
@@ -154,6 +155,7 @@
             "filter": "datum.Type == 'TY'&&datum.LastMonthRank==datum['Month']"
           }
         ],
+        "description": "Text",
         "mark": {
           "type": "text",
           "align": "left",

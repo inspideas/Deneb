@@ -109,6 +109,7 @@
     },
     "layer": [
       {
+        "description": "Current Year Sals",
         "mark": {
           "type": "area",
           "line": {
