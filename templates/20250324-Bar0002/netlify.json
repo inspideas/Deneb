@@ -99,7 +99,7 @@
             "field": "Progress%",
             "type": "quantitative",
             "title": "ST: ",
-            "format": ""
+            "format": ".0%"
           }
         ],
         "color": {
