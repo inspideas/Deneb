@@ -37,15 +37,6 @@
  "caution":""
 },
 {
- "name": "Gradient Variance Bar Chart",
- "file": "20250408-GradientVarianceBar0002",
- "image": "images/20250408-GradientVarianceBar0002.png",
- "category": "Bar Chart",
- "timestamp": "2025-04-25",
- "subscription": "No",
- "caution":""
-},
-{
  "name": "Gradient Lollipop Chart",
  "file": "20250408-GradientLollipop0003",
  "image": "images/20250408-GradientLollipop0003.png",
