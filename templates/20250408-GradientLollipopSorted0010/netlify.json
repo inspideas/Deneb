@@ -79,6 +79,7 @@
     },
     "layer": [
       {
+        "description": "Bar",
         "mark": {
           "type": "bar",
           "opacity": 1,
@@ -116,6 +117,7 @@
         }
       },
       {
+        "description": "Mark",
         "mark": {
           "type": "point",
           "size": 300,
@@ -125,6 +127,7 @@
         }
       },
       {
+        "description": "Text",
         "mark": {
           "type": "text",
           "align": "left",
