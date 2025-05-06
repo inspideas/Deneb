@@ -151,7 +151,7 @@
   "category": "Line Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
- "caution":""
+ "caution":"Adjust background color from General setting to see the chart! \n 2.Bring back opaity to zero in order to enjoy transparent gradients"
  },
  {
   "name": "Gradient Transparent Line Chart-Smooth Line 2-Years Comparison",
@@ -160,7 +160,7 @@
   "category": "Line Chart",
   "timestamp": "2025-04-25",
   "subscription": "Yes",
- "caution":""
+ "caution":"Adjust background color from General setting to see the chart! \n 2.Bring back opaity to zero in order to enjoy transparent gradients"
  }
 
 ]
