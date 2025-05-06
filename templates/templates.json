@@ -34,7 +34,7 @@
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
-  "caution":""
+  "caution":"Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI"
 },
 {
  "name": "Gradient Bar Chart Two-Years Comparison",
@@ -43,7 +43,7 @@
  "category": "Bar Chart",
  "timestamp": "2025-04-25",
  "subscription": "No",
- "caution":"Use sales calculated something like 'Total Sales= sum('Sales Data'[Sales]') without filtering years! Deneb calculates sales by year on its own."
+ "caution":"1.Use sales calculated something like 'Total Sales= sum('Sales Data'[Sales]') without filtering years! Deneb calculates sales by year on its own. \n2.Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI"
 },
 {
  "name": "Gradient Bar Chart Two-Years Comparison",
