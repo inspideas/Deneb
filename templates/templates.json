@@ -6,7 +6,7 @@
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
-  "caution":""
+  "caution":"Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI if neccessary"
 
 },
  {
@@ -16,25 +16,7 @@
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
-  "caution":""
-},
-{
-  "name": "Bar Chart Out of 100%- Multi Color",
-  "file": "20250324-Bar0003",
-  "image": "images/20250324-Bar0003.png",
-  "category": "Bar Chart",
-  "timestamp": "2025-04-25",
-  "subscription": "No",
-  "caution":""
-},
-{
-  "name": "Bar Chart Out of 100%- Multi Color",
-  "file": "20250324-Bar0004",
-  "image": "images/20250324-Bar0004.png",
-  "category": "Bar Chart",
-  "timestamp": "2025-04-25",
-  "subscription": "No",
-  "caution":"Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI"
+  "caution":"Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI if neccessary"
 },
 {
  "name": "Gradient Bar Chart Two-Years Comparison",
@@ -43,7 +25,7 @@
  "category": "Bar Chart",
  "timestamp": "2025-04-25",
  "subscription": "No",
- "caution":"1.Use sales calculated something like 'Total Sales= sum('Sales Data'[Sales]') without filtering years! Deneb calculates sales by year on its own. \n2.Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI"
+ "caution":"1.Use sales calculated something like 'Total Sales= sum('Sales Data'[Sales]') without filtering years! Deneb calculates sales by year on its own. \n2.Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI if neccessary"
 },
 {
  "name": "Gradient Bar Chart Two-Years Comparison",

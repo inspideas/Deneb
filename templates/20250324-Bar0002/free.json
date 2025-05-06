@@ -154,7 +154,7 @@
             "field": "__1__",
             "type": "quantitative",
             "title": "ST: ",
-            "format": ".0%"
+            "format": ""
           }
         ],
         "color": {
