@@ -122,7 +122,7 @@
     ]
   },
   "layer": [
-    {
+    { "description": "bar",
       "mark": {
         "type": "bar",
         "opacity": 1,
@@ -164,7 +164,7 @@
         }
       ]
     },
-    {
+    {"description": "mark",
       "mark": {
         "type": "point",
         "size": 300,
@@ -173,7 +173,7 @@
         "color": "#4E54BF" 
       }
     },
-    {
+    { "description": "text",
       "mark": {
         "type": "text",
         "align": "left",
