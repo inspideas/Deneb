@@ -6,8 +6,8 @@
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
-  "caution":"Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI if neccessary"
-
+  "caution":"Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI if neccessary",
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/simplebar.csv"
 },
  {
   "name": "Bar Chart Out of 100%- Multi Color",
@@ -16,7 +16,8 @@
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
-  "caution":"Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI if neccessary"
+  "caution":"Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI if neccessary",
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/simplebar.csv"
 },
 {
  "name": "Gradient Bar Chart Two-Years Comparison",
@@ -25,7 +26,8 @@
  "category": "Bar Chart",
  "timestamp": "2025-04-25",
  "subscription": "No",
- "caution":"1.Use sales calculated something like 'Total Sales= sum('Sales Data'[Sales]') without filtering years! Deneb calculates sales by year on its own. \n2.Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI if neccessary"
+ "caution":"1.Use sales calculated something like 'Total Sales= sum('Sales Data'[Sales]') without filtering years! Deneb calculates sales by year on its own. \n2.Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI if neccessary",
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20with%20LY%25.csv"
 },
 {
  "name": "Gradient Bar Chart Two-Years Comparison",
@@ -34,7 +36,8 @@
  "category": "Bar Chart",
  "timestamp": "2025-04-25",
  "subscription": "No",
- "caution":""
+ "caution":"",
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20vs%20LY%20(re).csv"
 },
 {
  "name": "Gradient Lollipop Chart",
@@ -43,7 +46,8 @@
  "category": "Bar Chart",
  "timestamp": "2025-04-25",
  "subscription": "No",
- "caution":""
+ "caution":"",
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
 },
 {
  "name": "Gradient Lollipop Chart-Sorted",
@@ -52,7 +56,8 @@
  "category": "Bar Chart",
  "timestamp": "2025-04-25",
  "subscription": "Yes",
- "caution":""
+ "caution":"",
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
 },
 {
  "name": "Gradient Bar Chart-Purple Base",
@@ -61,7 +66,8 @@
  "category": "Bar Chart",
  "timestamp": "2025-04-25",
  "subscription": "No",
- "caution":""
+ "caution":"",
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
 },
 {
   "name": "Gradient Bar Chart-Pink to LBlue Base",
@@ -70,7 +76,8 @@
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
- "caution":""
+ "caution":"",
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
  },
  {
   "name": "Gradient Bar Chart-Blue Base",
@@ -79,7 +86,8 @@
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
- "caution":""
+ "caution":"",
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
  },
  {
   "name": "Gradient Bar Chart-Grey Base",
@@ -88,7 +96,8 @@
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
- "caution":""
+ "caution":"",
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
  },
  {
   "name": "Gradient Bar Chart-Green Base",
@@ -97,7 +106,8 @@
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
- "caution":""
+ "caution":"",
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
  },
  {
   "name": "Gradient Bar Chart-Light Blue Base",
@@ -106,7 +116,8 @@
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
- "caution":""
+ "caution":"",
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
  },
  {
   "name": "Gradient Bullet Chart",
@@ -115,7 +126,8 @@
   "category": "Bar Chart",
   "timestamp": "2025-04-25",
   "subscription": "Yes",
- "caution":""
+ "caution":"",
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250411-Bullet%20Chart0001.csv"
  },
  {
   "name": "Gradient Line Chart",
@@ -124,7 +136,9 @@
   "category": "Line Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
- "caution":""
+ "caution":"",
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv"
+
  },
  {
   "name": "Gradient Line Chart-Smooth Line",
@@ -133,7 +147,8 @@
   "category": "Line Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
- "caution":""
+ "caution":"",
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv"
  },
  {
   "name": "Gradient Line Chart-Smooth Line 2-Years Comparison",
@@ -142,7 +157,8 @@
   "category": "Line Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
- "caution":""
+ "caution":"",
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv"
  },
  {
   "name": "Gradient Transparent Line Chart-Smooth Line",
@@ -151,7 +167,8 @@
   "category": "Line Chart",
   "timestamp": "2025-04-25",
   "subscription": "No",
- "caution":"Adjust background color from General setting to see the chart! \n 2.Bring back opaity to zero in order to enjoy transparent gradients"
+ "caution":"Adjust background color from General setting to see the chart! \n 2.Bring back opaity to zero in order to enjoy transparent gradients",
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv"
  },
  {
   "name": "Gradient Transparent Line Chart-Smooth Line 2-Years Comparison",
@@ -160,7 +177,8 @@
   "category": "Line Chart",
   "timestamp": "2025-04-25",
   "subscription": "Yes",
- "caution":"Adjust background color from General setting to see the chart! \n 2.Bring back opaity to zero in order to enjoy transparent gradients"
+ "caution":"Adjust background color from General setting to see the chart! \n 2.Bring back opaity to zero in order to enjoy transparent gradients",
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv"
  }
 
 ]
