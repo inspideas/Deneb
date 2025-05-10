@@ -1,0 +1,340 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "usermeta": {
+    "information": {
+      "uuid": "9149563c-0148-4dfc-8dca-486be71dcaed",
+      "generated": "2025-05-09T04:15:26.933Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "Rader Chart- 6 Elements",
+      "description": "[No Description Provided]",
+      "author": "datades-inspideas"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vega",
+      "providerVersion": "5.30.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{\n  \"autosize\": {\n    \"contains\": \"padding\",\n    \"type\": \"fit\"\n  }\n}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Name",
+        "description": "",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__1__",
+        "name": "Stats",
+        "description": "",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__2__",
+        "name": "Base",
+        "description": "",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__3__",
+        "name": "ColorRef",
+        "description": "",
+        "kind": "column",
+        "type": "text"
+      }
+    ]
+  },
+  "width": 400,
+  "height": 400,
+  "signals": [
+    {
+      "name": "radius",
+      "update": "min(width, height) / 2 - 40"
+    },
+    {
+      "name": "centerX",
+      "update": "width / 2"
+    },
+    {
+      "name": "centerY",
+      "update": "height / 2"
+    },
+    {
+      "name": "angleSlice",
+      "update": "2 * PI / 6"
+    }
+  ],
+  "data": [
+    {
+      "name": "dataset"
+    },
+    {
+      "name": "statIndex",
+      "source": "dataset",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "__1__"
+          ]
+        },
+        {
+          "type": "window",
+          "ops": [
+            "rank"
+          ],
+          "as": [
+            "order"
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "datum.order - 1",
+          "as": "index"
+        }
+      ]
+    },
+    {
+      "name": "indexed",
+      "source": "dataset",
+      "transform": [
+        {
+          "type": "lookup",
+          "from": "statIndex",
+          "key": "__1__",
+          "fields": [
+            "__1__"
+          ],
+          "values": [
+            "index"
+          ]
+        },
+        {
+          "type": "joinaggregate",
+          "groupby": [
+            "__1__"
+          ],
+          "fields": [
+            "__2__"
+          ],
+          "ops": [
+            "max"
+          ],
+          "as": [
+            "maxStat"
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "datum['__2__'] / datum.maxStat",
+          "as": "norm"
+        },
+        {
+          "type": "formula",
+          "expr": "centerX + (datum['__2__'] * 1) * cos(datum.index * angleSlice - PI/2)",
+          "as": "x"
+        },
+        {
+          "type": "formula",
+          "expr": "centerY + (datum['__2__'] * 1) * sin(datum.index * angleSlice - PI/2)",
+          "as": "y"
+        },
+        {
+          "type": "formula",
+          "expr": "datum['__3__']",
+          "as": "__3__"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "indexed",
+        "field": "__3__"
+      },
+      "range": [
+        "#FFD700",
+        "#00CED1",
+        "#9932CC",
+        "#FF4500",
+        "#2E8B57"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "pokemon",
+          "data": "indexed",
+          "groupby": "__0__"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "name": "Name-Line",
+          "from": {
+            "data": "pokemon"
+          },
+          "encode": {
+            "update": {
+              "interpolate": {
+                "value": "linear-closed"
+              },
+              "x": {
+                "signal": "datum.x"
+              },
+              "y": {
+                "signal": "datum.y"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "__3__"
+              },
+              "strokeWidth": {
+                "value": 1
+              },
+              "fill": {
+                "scale": "color",
+                "field": "__3__"
+              },
+              "fillOpacity": {
+                "value": 0.1
+              }
+            }
+          }
+        },
+        {
+          "type": "rule",
+          "name": "grid",
+          "from": {
+            "data": "statIndex"
+          },
+          "zindex": 0,
+          "encode": {
+            "enter": {
+              "x": {
+                "signal": "centerX"
+              },
+              "y": {
+                "signal": "centerY"
+              },
+              "x2": {
+                "signal": "centerX + radius * cos(datum.index * angleSlice - PI/2)"
+              },
+              "y2": {
+                "signal": "centerY + radius * sin(datum.index * angleSlice - PI/2)"
+              },
+              "stroke": {
+                "value": "#BFC5CA"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "name": "label",
+          "from": {
+            "data": "statIndex"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "signal": "centerX + (radius + 15) * cos(datum.index * angleSlice - PI/2)"
+              },
+              "y": {
+                "signal": "centerY + (radius + 15) * sin(datum.index * angleSlice - PI/2)"
+              },
+              "text": {
+                "field": "__1__"
+              },
+              "fill": {
+                "value": "#77787B"
+              },
+              "fontSize": {
+                "value": 9
+              },
+              "align": [
+                {
+                  "test": "cos(datum.index * angleSlice - PI/2) > 0.1",
+                  "value": "left"
+                },
+                {
+                  "test": "cos(datum.index * angleSlice - PI/2) < -0.1",
+                  "value": "right"
+                },
+                {
+                  "value": "center"
+                }
+              ],
+              "baseline": [
+                {
+                  "test": "sin(datum.index * angleSlice - PI/2) > 0.1",
+                  "value": "top"
+                },
+                {
+                  "test": "sin(datum.index * angleSlice - PI/2) < -0.1",
+                  "value": "bottom"
+                },
+                {
+                  "value": "middle"
+                }
+              ],
+              "fontWeight": {
+                "value": "bold"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "data": "indexed"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "field": "x"
+              },
+              "y": {
+                "field": "y"
+              },
+              "text": {
+                "field": "index"
+              },
+              "fill": {
+                "scale": "color",
+                "field": "__3__"
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "align": {
+                "value": "center"
+              },
+              "baseline": {
+                "value": "middle"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

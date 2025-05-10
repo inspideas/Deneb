@@ -7,7 +7,8 @@
   "timestamp": "2025-04-25",
   "subscription": "No",
   "caution":"Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI if neccessary",
-  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/simplebar.csv"
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/simplebar.csv",
+  "type": "vega-lite"
 },
  {
   "name": "Bar Chart Out of 100%- Multi Color",
@@ -17,7 +18,8 @@
   "timestamp": "2025-04-25",
   "subscription": "No",
   "caution":"Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI if neccessary",
-  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/simplebar.csv"
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/simplebar.csv",
+  "type": "vega-lite"
 },
 {
  "name": "Gradient Bar Chart Two-Years Comparison",
@@ -27,7 +29,8 @@
  "timestamp": "2025-04-25",
  "subscription": "No",
  "caution":"1.Use sales calculated something like 'Total Sales= sum('Sales Data'[Sales]') without filtering years! Deneb calculates sales by year on its own. \n2.Please be careful to change tooltip format. It is always safe to keep it as 'Auto' and change format on PowerBI if neccessary",
- "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20with%20LY%25.csv"
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20with%20LY%25.csv",
+  "type": "vega-lite"
 },
 {
  "name": "Gradient Bar Chart Two-Years Comparison",
@@ -37,7 +40,8 @@
  "timestamp": "2025-04-25",
  "subscription": "No",
  "caution":"",
- "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20vs%20LY%20(re).csv"
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20vs%20LY%20(re).csv",
+  "type": "vega-lite"
 },
 {
  "name": "Gradient Lollipop Chart",
@@ -47,7 +51,8 @@
  "timestamp": "2025-04-25",
  "subscription": "No",
  "caution":"",
-  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv",
+  "type": "vega-lite"
 },
 {
  "name": "Gradient Lollipop Chart-Sorted",
@@ -57,7 +62,8 @@
  "timestamp": "2025-04-25",
  "subscription": "Yes",
  "caution":"",
- "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv",
+  "type": "vega-lite"
 },
 {
  "name": "Gradient Bar Chart-Purple Base",
@@ -67,7 +73,8 @@
  "timestamp": "2025-04-25",
  "subscription": "No",
  "caution":"",
- "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv",
+  "type": "vega-lite"
 },
 {
   "name": "Gradient Bar Chart-Pink to LBlue Base",
@@ -77,7 +84,8 @@
   "timestamp": "2025-04-25",
   "subscription": "No",
  "caution":"",
- "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv",
+  "type": "vega-lite"
  },
  {
   "name": "Gradient Bar Chart-Blue Base",
@@ -87,7 +95,8 @@
   "timestamp": "2025-04-25",
   "subscription": "No",
  "caution":"",
- "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv",
+  "type": "vega-lite"
  },
  {
   "name": "Gradient Bar Chart-Grey Base",
@@ -97,7 +106,8 @@
   "timestamp": "2025-04-25",
   "subscription": "No",
  "caution":"",
- "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv",
+  "type": "vega-lite"
  },
  {
   "name": "Gradient Bar Chart-Green Base",
@@ -107,7 +117,8 @@
   "timestamp": "2025-04-25",
   "subscription": "No",
  "caution":"",
- "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv",
+  "type": "vega-lite"
  },
  {
   "name": "Gradient Bar Chart-Light Blue Base",
@@ -117,7 +128,8 @@
   "timestamp": "2025-04-25",
   "subscription": "No",
  "caution":"",
- "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv"
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250402deneb-Bar%20Chart%20sales%20Value.csv",
+  "type": "vega-lite"
  },
  {
   "name": "Gradient Bullet Chart",
@@ -127,7 +139,8 @@
   "timestamp": "2025-04-25",
   "subscription": "Yes",
  "caution":"",
- "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250411-Bullet%20Chart0001.csv"
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250411-Bullet%20Chart0001.csv",
+  "type": "vega-lite"
  },
  {
   "name": "Gradient Line Chart",
@@ -137,7 +150,8 @@
   "timestamp": "2025-04-25",
   "subscription": "No",
  "caution":"",
- "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv"
+ "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv",
+  "type": "vega-lite"
 
  },
  {
@@ -148,7 +162,8 @@
   "timestamp": "2025-04-25",
   "subscription": "No",
  "caution":"",
-  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv"
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv",
+  "type": "vega-lite"
  },
  {
   "name": "Gradient Line Chart-Smooth Line 2-Years Comparison",
@@ -158,7 +173,8 @@
   "timestamp": "2025-04-25",
   "subscription": "No",
  "caution":"",
-  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv"
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv",
+  "type": "vega-lite"
  },
  {
   "name": "Gradient Transparent Line Chart-Smooth Line",
@@ -168,7 +184,8 @@
   "timestamp": "2025-04-25",
   "subscription": "No",
  "caution":"Adjust background color from General setting to see the chart! \n 2.Bring back opaity to zero in order to enjoy transparent gradients",
-  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv"
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv",
+  "type": "vega-lite"
  },
  {
   "name": "Gradient Transparent Line Chart-Smooth Line 2-Years Comparison",
@@ -178,7 +195,19 @@
   "timestamp": "2025-04-25",
   "subscription": "Yes",
  "caution":"Adjust background color from General setting to see the chart! \n 2.Bring back opaity to zero in order to enjoy transparent gradients",
-  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv"
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250414-GradLine0001.csv",
+  "type": "vega-lite"
+ },
+ {
+  "name": "Rader Chart- 6 Elements",
+  "file": "20250510-RC0001",
+  "image": "images/20250510-RC0001.png",
+  "category": "Line Chart",
+  "timestamp": "2025-05-10",
+  "subscription": "No",
+ "caution":"",
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250509Pokemon.csv",
+  "type": "vega"
  }
 
 ]
