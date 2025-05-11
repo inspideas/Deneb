@@ -58,22 +58,13 @@
   "width": 400,
   "height": 400,
   "signals": [
-    {
-      "name": "radius",
-      "update": "min(width, height) / 2 - 40"
-    },
-    {
-      "name": "centerX",
-      "update": "width / 2"
-    },
-    {
-      "name": "centerY",
-      "update": "height / 2"
-    },
-    {
-      "name": "angleSlice",
-      "update": "2 * PI / 6"
-    }
+    { "name": "radius", "update": "min(width, height) / 2 - 40" },
+    { "name": "centerX", "update": "width / 2" },
+    { "name": "centerY", "update": "height / 2" },
+    { "name": "angleSlice", "update": "2 * PI / 6" },
+    { "name": "gridStrokeColor", "value": "#BFC5CA" },
+    { "name": "labelFillColor", "value": "#77787B"},
+    { "name": "labelFontSize", "value": 9 }
   ],
   "data": [
     {
