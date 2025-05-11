@@ -8,9 +8,9 @@
     { "name": "centerX", "update": "width / 2" },
     { "name": "centerY", "update": "height / 2" },
     { "name": "angleSlice", "update": "2 * PI / 6" },
-    { "name": "gridStrokeColor", "value": "#BFC5CA" },
-    { "name": "labelFillColor", "value": "#77787B"},
-    { "name": "labelFontSize", "value": 9 }
+    { "name": "gridStrokeColor", "value": "#BFC5CA", "bind": { "input": "color" } },
+    { "name": "labelFillColor", "value": "#77787B", "bind": { "input": "color" } },
+    { "name": "labelFontSize", "value": 9, "bind": { "input": "range", "min": 5, "max": 20, "step": 1 } }
   ],
 
   "data": [
