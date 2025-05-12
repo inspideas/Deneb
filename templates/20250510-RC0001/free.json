@@ -328,7 +328,7 @@
                 "field": "y"
               },
               "text": {
-                "field": "index"
+                "field": "__2__"
               },
               "fill": {
                 "scale": "color",

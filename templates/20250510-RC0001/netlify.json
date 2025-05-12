@@ -177,7 +177,7 @@
             "enter": {
               "x": { "field": "x" },
               "y": { "field": "y" },
-              "text": { "field": "index" },
+              "text": { "field": "Base" },
               "fill": { "scale": "color", "field": "ColorRef" },
               "fontSize": { "value": 12 },
               "align": { "value": "center" },
