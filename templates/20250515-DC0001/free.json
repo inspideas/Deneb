@@ -1,0 +1,336 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "usermeta": {
+    "information": {
+      "uuid": "f86da660-c31e-45a8-baf2-cc31d4536a4c",
+      "generated": "2025-05-14T20:34:39.243Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "Donut Chart",
+      "description": "[No Description Provided]",
+      "author": "DataDes-Inspidea"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vega",
+      "providerVersion": "5.30.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{\n  \"autosize\": {\n    \"contains\": \"padding\",\n    \"type\": \"fit\"\n  }\n}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Category",
+        "description": "",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__1__",
+        "name": "Total Sales Qty",
+        "description": "",
+        "kind": "measure",
+        "type": "numeric"
+      }
+    ]
+  },
+  "width": 200,
+  "height": 200,
+  "background": "#f6f6f6",
+  "signals": [
+    {
+      "name": "innerRadius",
+      "value": 60
+    },
+    {
+      "name": "cornerRadius",
+      "value": 0
+    },
+    {
+      "name": "separator",
+      "value": 0
+    },
+    {
+      "name": "SeparatorColor",
+      "value": "#f6f6f6"
+    },
+    {
+      "name": "labelOffsetRatio",
+      "value": 2
+    },
+    {
+      "name": "CenterTextColor",
+      "value": "#3f3f3f"
+    },
+    {
+      "name": "CenterTextSize",
+      "value": 9
+    },
+    {
+      "name": "labeltextcolor",
+      "value": "#f6f6f6"
+    },
+    {
+      "name": "labelFontSize",
+      "value": 9
+    },
+    {
+      "name": "topRatioThreshold",
+      "value": 0.8
+    },
+    {
+      "name": "labelField",
+      "value": "__0__"
+    },
+    {
+      "name": "startAngle",
+      "value": 0
+    },
+    {
+      "name": "endAngle",
+      "value": 6.283
+    },
+    {
+      "name": "padAngle",
+      "value": 0.01
+    },
+    {
+      "name": "OtherColor",
+      "value": "#cccccc"
+    }
+  ],
+  "data": [
+    {
+      "name": "dataset"
+    },
+    {
+      "name": "transformed",
+      "source": "dataset",
+      "transform": [
+        {
+          "type": "pie",
+          "field": "__1__",
+          "startAngle": {
+            "signal": "startAngle"
+          },
+          "endAngle": {
+            "signal": "endAngle"
+          },
+          "sort": true
+        },
+        {
+          "type": "collect",
+          "sort": {
+            "field": "__1__",
+            "order": "ascending"
+          }
+        },
+        {
+          "type": "window",
+          "ops": [
+            "sum"
+          ],
+          "fields": [
+            "__1__"
+          ],
+          "as": [
+            "totalSum"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "cumulativeRatio",
+          "expr": "datum['__1__']/ datum.totalSum"
+        },
+        {
+          "type": "window",
+          "ops": [
+            "rank"
+          ],
+          "sort": {
+            "field": "__1__",
+            "order": "descending"
+          },
+          "as": [
+            "rank"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "colorIndex",
+          "expr": "datum.cumulativeRatio <= topRatioThreshold ? datum.rank - 1 : -1"
+        },
+        {
+          "type": "formula",
+          "as": "midAngle",
+          "expr": "(((datum.endAngle-datum.startAngle)/2)+datum.startAngle)-PI/2"
+        },
+        {
+          "type": "formula",
+          "as": "xmid",
+          "expr": "(innerRadius + 20) * cos(datum.midAngle) + width / 2"
+        },
+        {
+          "type": "formula",
+          "as": "ymid",
+          "expr": "(innerRadius + 20) * sin(datum.midAngle) + height / 2"
+        }
+      ]
+    },
+    {
+      "name": "centerLabel",
+      "source": "transformed",
+      "transform": [
+        {
+          "type": "aggregate",
+          "fields": [
+            "__1__"
+          ],
+          "ops": [
+            "sum"
+          ],
+          "as": [
+            "total"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "highlightColor",
+      "type": "ordinal",
+      "domain": {
+        "data": "transformed",
+        "field": "colorIndex"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728",
+        "#9467bd",
+        "#8c564b"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "transformed"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "signal": "isValid(scale('highlightColor', datum.colorIndex)) ? scale('highlightColor', datum.colorIndex) : OtherColor"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          },
+          "tooltip": {
+            "signal": "{Category: datum['__0__'], Value: datum['__1__']}"
+          }
+        },
+        "update": {
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "signal": "padAngle"
+          },
+          "innerRadius": {
+            "signal": "innerRadius"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          },
+          "cornerRadius": {
+            "signal": "cornerRadius"
+          },
+          "stroke": {
+            "signal": "SeparatorColor"
+          },
+          "strokeWidth": {
+            "signal": "separator"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "centerLabel"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          },
+          "text": {
+            "field": "total"
+          },
+          "fontSize": {
+            "signal": "CenterTextSize"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fill": {
+            "signal": "CenterTextColor"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "transformed"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "field": "xmid"
+          },
+          "y": {
+            "field": "ymid"
+          },
+          "text": {
+            "signal": "labelField === 'Both' ? datum['__0__'] + ': ' + datum['__1__'] : datum[labelField]"
+          },
+          "fill": {
+            "signal": "labeltextcolor"
+          },
+          "fontSize": {
+            "signal": "labelFontSize"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          }
+        }
+      }
+    }
+  ]
+}
