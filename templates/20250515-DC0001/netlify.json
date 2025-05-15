@@ -15,10 +15,8 @@
     {"name": "labeltextcolor", "value": "#f6f6f6", "bind": {"input": "color"}},
     {"name": "labelFontSize", "value": 9, "bind": {"input": "range", "min": 5, "max": 20, "step": 1}},
     {"name": "topRatioThreshold", "value": 0.95, "bind": {"input": "range", "min": 0.3, "max": 1, "step": 0.01}},
-    {"name": "labelFieldDisplay","value": "Category","bind": {"input": "select","options": ["Category","Total Sales Qty","Both"]}},
-    {"name": "labelFieldMap","value": {"Category": "Category","Total Sales Qty": "Total Sales Qty","Both": "datum[Category]+':'+datum['Total Sales Qty']"}},
-    {"name": "labelFieldName","update": "labelFieldMap[labelFieldDisplay]"},
-    {"name": "startAngle", "value": 6.283},
+    {"name": "labelField","value": "Category","bind": {"input": "select","options": ["Category", "Total Sales Qty","Both"]}},
+   {"name": "startAngle", "value": 6.283},
     {"name": "endAngle", "value": 0},
     {"name": "padAngle", "value": 0.01},
     {"name": "OtherColor", "value": "#cccccc", "bind": {"input": "color"}}
@@ -89,7 +87,6 @@
           "as": "isOther",
           "expr": "datum.cumulativeRatio >= topRatioThreshold<=1"
         }
-
       ]
     },
     {
@@ -167,7 +164,9 @@
     "enter": {
       "x": { "field": "xmid" },
       "y": { "field": "ymid" },
-      "text": { "signal": "datum.labelFieldName"},
+      "text": {
+        "signal": "datum.labelField === 2 ? datum['Category'] + ': ' + datum['Total Sales Qty'] : (datum.labelField === 0 ? datum['Category'] : datum['Total Sales Qty'])"
+      },
       "fill": { "signal": "labeltextcolor" },
       "fontSize": { "signal": "labelFontSize" },
       "align": { "value": "center" },
