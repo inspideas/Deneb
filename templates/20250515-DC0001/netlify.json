@@ -87,11 +87,11 @@
           "as": "isOther",
           "expr": "datum.cumulativeRatio >= topRatioThreshold<=1"
         },
-        {
-          "type": "formula",
-          "as": "labelText",
-          "expr": "labelField === 2 ? (datum.isOther ? 'Other: ' + datum['Total Sales Qty'] : datum['Category'] + ': ' + datum['Total Sales Qty']) : (labelField === 0 ? datum['Category'] : datum['Total Sales Qty'])"
-        }
+      {
+        "type": "formula",
+        "as": "labelText",
+        "expr": "signal('labelField') === 2 ? (datum.isOther ? 'Other: ' + datum['Total Sales Qty'] : datum['Category'] + ': ' + datum['Total Sales Qty']) : (signal('labelField') === 0 ? datum['Category'] : datum['Total Sales Qty'])"
+      }
 
       ]
     },
