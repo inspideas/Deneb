@@ -165,7 +165,7 @@
       "x": { "field": "xmid" },
       "y": { "field": "ymid" },
       "text": {
-        "signal": "datum.labelField === 2 ? datum['Category'] + ': ' + datum['Total Sales Qty'] : (datum.labelField === 0 ? datum['Category'] : datum['Total Sales Qty'])"
+       "signal": "labelField.value == 0 ? datum['Category'] : (labelField.value == 1 ? datum['Total Sales Qty'] : datum['Category'] + ': ' + datum['Total Sales Qty'])"
       },
       "fill": { "signal": "labeltextcolor" },
       "fontSize": { "signal": "labelFontSize" },
