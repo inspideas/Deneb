@@ -86,7 +86,13 @@
           "type": "formula",
           "as": "isOther",
           "expr": "datum.cumulativeRatio >= topRatioThreshold<=1"
+        },
+        {
+          "type": "formula",
+          "as": "labelText",
+          "expr": "labelField === 2 ? (datum.isOther ? 'Other: ' + datum['Total Sales Qty'] : datum['Category'] + ': ' + datum['Total Sales Qty']) : (labelField === 0 ? datum['Category'] : datum['Total Sales Qty'])"
         }
+
       ]
     },
     {
@@ -164,9 +170,7 @@
     "enter": {
       "x": { "field": "xmid" },
       "y": { "field": "ymid" },
-      "text": {
-        "signal": "labelField === 2 ? datum['Category'] + ': ' + datum['Total Sales Qty'] : (labelField === 0 ? datum['Category'] : datum['Total Sales Qty'])"
-      },
+      "text": { "field": "labelText" },
       "fill": { "signal": "labeltextcolor" },
       "fontSize": { "signal": "labelFontSize" },
       "align": { "value": "center" },
