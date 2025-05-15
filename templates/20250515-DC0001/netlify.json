@@ -125,7 +125,7 @@
            "x": {"signal": "width / 2"},
           "y": {"signal": "height / 2"},
           "tooltip": {
-            "signal": "{Category: datum['Category'], Value: datum['Total Sales Qty']}"
+            "signal": "{Category: datum['Category'], Value: datum['Total Sales Qty'],label:datum.labelField === 2 ? datum['Category']:datum['Total Sales Qty']}"
           }
         },
         "update": {
