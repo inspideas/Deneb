@@ -166,15 +166,15 @@
       "y": { "field": "ymid" },
       "text": [
         {
-          "test": "labelField === 2",
+          "test": "labelField === 'Both'",
           "signal": "datum['Category'] + ': ' + datum['Total Sales Qty']"
         },
         {
-          "test": "labelField === 0",
+          "test": "labelField === 'Category'",
           "signal": "datum['Category']"
         },
         {
-          "test": "labelField === 1",
+          "test": "labelField === 'Total Sales Qty'",
           "signal": "'' + datum['Total Sales Qty']"
         },
         {
