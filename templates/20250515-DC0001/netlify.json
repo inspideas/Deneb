@@ -29,7 +29,7 @@
       "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250513DC.csv",
       "format": {"type": "csv", "parse": "auto"}
     },
-    {
+     {
       "name": "transformed",
       "source": "dataset",
       "transform": [
@@ -88,10 +88,10 @@
           "expr": "datum.cumulativeRatio >= topRatioThreshold<=1"
         },
         {
-          "type": "formula",
-          "as": "labelFieldValue",
-          "expr": "labelField"
-        }
+  "type": "formula",
+  "as": "labelText",
+  "expr": "labelField === 0 ? datum.Category : labelField === 1 ? datum['Total Sales Qty'] : datum.Category + ' ' + datum['Total Sales Qty']"
+}
       ]
     },
     {
@@ -168,8 +168,7 @@
   "encode": {
     "enter": {
       "x": { "field": "xmid" },
-      "y": { "field": "ymid" },
-
+      "y": { "field": "ymid" },"text": {  "signal": "labelField"  },
       "fill": { "signal": "labeltextcolor" },
       "fontSize": { "signal": "labelFontSize" },
       "align": { "value": "center" },
@@ -179,27 +178,11 @@
       }
     },
     "update": {
-          "text": [
-    {
-      "test": "datum.labelFieldValue === 'Category'",
-      "signal": "datum['Category']"
-    },
-    {
-      "test": "datum.labelFieldValue === 'Total Sales Qty'",
-      "signal": "'' + datum['Total Sales Qty']"
-    },
-    {
-      "test": "datum.labelFieldValue === 'Both'",
-      "signal": "datum['Category'] + ' ' + datum['Total Sales Qty']"
-    },
-    {
-      "value": ""
-    }
-  ]
+        "text": { "field": "labelText" }
 }
   }
-}
 
+}
     
   ]
 }
