@@ -90,7 +90,7 @@
         {
   "type": "formula",
   "as": "labelText",
-  "expr": "labelField === 0 ? datum.Category : labelField === 1 ? datum['Total Sales Qty'] : datum.Category + ' ' + datum['Total Sales Qty']"
+  "expr": "labelField === '0' ? datum.Category : labelField === '1' ? datum['Total Sales Qty'] : datum.Category + ' ' + datum['Total Sales Qty']"
 }
       ]
     },
