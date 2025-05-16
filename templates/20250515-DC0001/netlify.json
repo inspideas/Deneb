@@ -36,62 +36,76 @@
         {
           "type": "pie",
           "field": "Total Sales Qty",
-          "startAngle": {"signal": "startAngle"},
-          "endAngle": {"signal": "endAngle"},
-          "sort":true
+          "startAngle": {
+            "signal": "startAngle"
+          },
+          "endAngle": {
+            "signal": "endAngle"
+          },
+          "sort": true
         },
         {
           "type": "collect",
-          "sort": { "field": "Total Sales Qty", "order": "ascending"}
+          "sort": {
+            "field": "Total Sales Qty",
+            "order": "ascending"
+          }
         },
-     {
-        "type": "window",
-        "ops": ["sum"],
-        "fields": ["Total Sales Qty"],
-        "as": ["totalSum"]
-      },
+        {
+          "type": "window",
+          "ops": [
+            "sum"
+          ],
+          "fields": [
+            "Total Sales Qty"
+          ],
+          "as": [
+            "totalSum"
+          ]
+        },
         {
           "type": "formula",
           "as": "cumulativeRatio",
           "expr": "datum['Total Sales Qty']/ datum.totalSum"
         },
-      {
-        "type": "window",
-        "ops": ["rank"], 
-        "sort": {"field": "Total Sales Qty", "order": "descending"},
-        "as": ["rank"]
-      },
-      
         {
-          "type": "formula",
-          "as": "colorIndex",
-          "expr": "datum.cumulativeRatio <= topRatioThreshold<=1 ? datum.rank -1 : -1"
+          "type": "window",
+          "ops": [
+            "rank"
+          ],
+          "sort": {
+            "field": "Total Sales Qty",
+            "order": "descending"
+          },
+          "as": [
+            "rank"
+          ]
         },
         {
           "type": "formula",
-          "as":"midAngle",
+          "as": "colorIndex",
+          "expr": "datum.cumulativeRatio <= topRatioThreshold ? datum.rank - 1 : -1"
+        },
+        {
+          "type": "formula",
+          "as": "midAngle",
           "expr": "(((datum.endAngle-datum.startAngle)/2)+datum.startAngle)-PI/2"
         },
         {
           "type": "formula",
-          "as":"xmid",
+          "as": "xmid",
           "expr": "(innerRadius + 20) * cos(datum.midAngle) + width / 2"
         },
         {
           "type": "formula",
-          "as":"ymid",
+          "as": "ymid",
           "expr": "(innerRadius + 20) * sin(datum.midAngle) + height / 2"
         },
         {
-          "type": "formula",
-          "as": "isOther",
-          "expr": "datum.cumulativeRatio >= topRatioThreshold<=1"
-        },
-        {
-  "type": "formula",
-  "as": "labelText",
-  "expr": "labelField === '0' ? datum.Category : labelField === '1' ? datum['Total Sales Qty'] : datum.Category + ' ' + datum['Total Sales Qty']"
-}
+        "type": "formula",
+        "as": "labelText",
+        "expr": "labelField === '0' ? datum.Category : labelField === '1' ? datum['Total Sales Qty'] : datum.Category + ' ' + datum['Total Sales Qty']"
+      }
       ]
     },
     {
@@ -100,89 +114,147 @@
       "transform": [
         {
           "type": "aggregate",
-          "fields": ["Total Sales Qty"],
-          "ops": ["sum"],
-          "as": ["total"]
+          "fields": [
+            "Total Sales Qty"
+          ],
+          "ops": [
+            "sum"
+          ],
+          "as": [
+            "total"
+          ]
         }
       ]
     }
-       
   ],
   "scales": [
-
-   {
-  "name": "highlightColor",
-  "type": "ordinal",
-  "domain": [0, 1, 2, 3, 4, 5],
-  "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"]
-}
+    {
+      "name": "highlightColor",
+      "type": "ordinal",
+      "domain": {
+        "data": "transformed",
+        "field": "colorIndex"
+      },
+      "range": [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728",
+        "#9467bd",
+        "#8c564b"
+      ]
+    }
   ],
-
   "marks": [
     {
       "type": "arc",
-      "from": {"data": "transformed"},
+      "from": {
+        "data": "transformed"
+      },
       "encode": {
         "enter": {
-         "fill": {
-          "signal": "datum.colorIndex >= 0 ? scale('highlightColor', datum.colorIndex) : OtherColor"
-        },
-           "x": {"signal": "width / 2"},
-          "y": {"signal": "height / 2"},
+          "fill": {
+            "signal": "isValid(scale('highlightColor', datum.colorIndex)) ? scale('highlightColor', datum.colorIndex) : OtherColor"
+          },
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          },
           "tooltip": {
-            "signal": "{Category: datum['Category'], Value: datum['Total Sales Qty'],label:labelField}"
+            "signal": "{Category: datum['Category'], Value: datum['Total Sales Qty']}"
           }
         },
         "update": {
-          "startAngle": {"field": "startAngle"},
-          "endAngle": {"field": "endAngle"},
-          "padAngle": {"signal": "padAngle"},
-          "innerRadius": {"signal": "innerRadius"},
-          "outerRadius": {"signal": "width / 2"},
-          "cornerRadius": {"signal": "cornerRadius"},
-          "stroke": {"signal": "SeparatorColor"},
-          "strokeWidth": {"signal": "separator"}
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "padAngle": {
+            "signal": "padAngle"
+          },
+          "innerRadius": {
+            "signal": "innerRadius"
+          },
+          "outerRadius": {
+            "signal": "width / 2"
+          },
+          "cornerRadius": {
+            "signal": "cornerRadius"
+          },
+          "stroke": {
+            "signal": "SeparatorColor"
+          },
+          "strokeWidth": {
+            "signal": "separator"
+          }
         }
       }
     },
     {
       "type": "text",
-      "from": {"data": "centerLabel"},
+      "from": {
+        "data": "centerLabel"
+      },
       "encode": {
         "enter": {
-          "x": {"signal": "width / 2"},
-          "y": {"signal": "height / 2"},
-          "text": {"field": "total"},
-          "fontSize": {"signal": "CenterTextSize"},
-          "align": {"value": "center"},
-          "baseline": {"value": "middle"},
-          "fill": {"signal": "CenterTextColor"}
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          },
+          "text": {
+            "field": "total"
+          },
+          "fontSize": {
+            "signal": "CenterTextSize"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fill": {
+            "signal": "CenterTextColor"
+          }
         }
       }
     },
-    
-
-{
-  "type": "text",
-  "from": { "data": "transformed" },
-  "encode": {
-    "enter": {
-      "x": { "field": "xmid" },
-      "y": { "field": "ymid" },"text": {  "signal": "labelField"  },
-      "fill": { "signal": "labeltextcolor" },
-      "fontSize": { "signal": "labelFontSize" },
-      "align": { "value": "center" },
-      "baseline": { "value": "middle" },
-            "opacity": {
-        "signal": "datum.isOther ? 0 : 1"
+    {
+      "type": "text",
+      "from": {
+        "data": "transformed"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "field": "xmid"
+          },
+          "y": {
+            "field": "ymid"
+          },
+          "text": {
+            "field": "labelText"
+          },
+          "fill": {
+            "signal": "labeltextcolor"
+          },
+          "fontSize": {
+            "signal": "labelFontSize"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          }
+        }
       }
-    },
-    "update": {
-        "text": { "field": "labelText" }
-}
-  }
-
-}
-    
+    }
   ]
 }
