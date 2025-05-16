@@ -164,9 +164,23 @@
     "enter": {
       "x": { "field": "xmid" },
       "y": { "field": "ymid" },
-      "text": {
-  "signal": "labelField.value == 0 ? datum['Category'] : (labelField.value == 1 ? datum['Total Sales Qty'] : datum['Category'] + ': ' + datum['Total Sales Qty'])"
-},
+      "text": [
+        {
+          "test": "labelField === 2",
+          "signal": "datum['Category'] + ': ' + datum['Total Sales Qty']"
+        },
+        {
+          "test": "labelField === 0",
+          "signal": "datum['Category']"
+        },
+        {
+          "test": "labelField === 1",
+          "signal": "'' + datum['Total Sales Qty']"
+        },
+        {
+          "value": ""  
+        }
+      ],
       "fill": { "signal": "labeltextcolor" },
       "fontSize": { "signal": "labelFontSize" },
       "align": { "value": "center" },
