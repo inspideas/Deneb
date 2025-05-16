@@ -16,10 +16,34 @@
     {"name": "labelFontSize", "value": 9, "bind": {"input": "range", "min": 5, "max": 20, "step": 1}},
     {"name": "topRatioThreshold", "value": 0.95, "bind": {"input": "range", "min": 0.3, "max": 1, "step": 0.01}},
     {"name": "labelField","value": "Category","bind": {"input": "select","options": ["Category", "Total Sales Qty","Both"]}},
-   {"name": "startAngle", "value": 6.283},
+    {"name": "startAngle", "value": 6.283},
     {"name": "endAngle", "value": 0},
     {"name": "padAngle", "value": 0.01},
-    {"name": "OtherColor", "value": "#cccccc", "bind": {"input": "color"}}
+    {"name": "OtherColor", "value": "#cccccc", "bind": {"input": "color"}},
+    {
+      "name": "pbiCrossFilterSelection",
+      "value": [],
+      "on": [
+        {
+          "events": {
+            "source": "scope",
+            "type": "mouseup",
+            "markname": "data-point"
+          },
+          "update": "pbiCrossFilterApply(event, \"datum['Category'] == _{Category}_\")"
+        },
+        {
+          "events": {
+            "source": "view",
+            "type": "mouseup",
+            "filter": [
+              "!event.item || event.item.mark.name != 'data-point'"
+            ]
+          },
+          "update": "pbiCrossFilterClear()"
+        }
+      ]
+    }
     
   ],
 
@@ -29,7 +53,7 @@
       "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250513DC.csv",
       "format": {"type": "csv", "parse": "auto"}
     },
-     {
+      {
       "name": "transformed",
       "source": "dataset",
       "transform": [
@@ -102,10 +126,10 @@
           "expr": "(innerRadius + 20) * sin(datum.midAngle) + height / 2"
         },
         {
-        "type": "formula",
-        "as": "labelText",
-        "expr": "labelField === '0' ? datum.Category : labelField === '1' ? datum['Total Sales Qty'] : datum.Category + '\\n ' + datum['Total Sales Qty']"
-      }
+          "type": "formula",
+          "as": "labelText",
+          "expr": "labelField === '0' ? datum['Category'] : labelField === '1' ? datum['Total Sales Qty'] : datum['Category'] + '\\n ' + datum['Total Sales Qty']"
+        }
       ]
     },
     {
@@ -190,7 +214,16 @@
           },
           "strokeWidth": {
             "signal": "separator"
-          }
+          },
+          "fillOpacity": [
+            {
+              "test": "datum['__selected__'] == 'on'",
+              "value": 1
+            },
+            {
+              "value": 0.3
+            }
+          ]
         }
       }
     },

@@ -2,12 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "usermeta": {
     "information": {
-      "uuid": "bf784c18-a8a7-42c0-955b-9c7973a3e11f",
-      "generated": "2025-05-16T04:21:52.234Z",
+      "uuid": "30b52b8f-267e-4e68-8d7e-84ecc7cca63b",
+      "generated": "2025-05-16T05:19:58.878Z",
       "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
-      "name": "[No Name Provided]",
+      "name": "Donut Chart",
       "description": "[No Description Provided]",
-      "author": "[No Author Details Provided]"
+      "author": "Datades-inspideas"
     },
     "deneb": {
       "build": "1.7.2.1",
@@ -19,7 +19,7 @@
       "tooltip": true,
       "contextMenu": true,
       "selection": true,
-      "selectionMode": "multiple",
+      "selectionMode": "simple",
       "highlight": false,
       "dataPointLimit": 50
     },
@@ -28,14 +28,14 @@
       {
         "key": "__0__",
         "name": "Category",
-        "description": "",
+        "description": "Any Categories or classification",
         "kind": "column",
         "type": "text"
       },
       {
         "key": "__1__",
         "name": "Total Sales Qty",
-        "description": "",
+        "description": "Total of any calculated measure. You can use filter if needed.",
         "kind": "measure",
         "type": "numeric"
       }
@@ -104,6 +104,30 @@
     {
       "name": "OtherColor",
       "value": "#cccccc"
+    },
+    {
+      "name": "pbiCrossFilterSelection",
+      "value": [],
+      "on": [
+        {
+          "events": {
+            "source": "scope",
+            "type": "mouseup",
+            "markname": "data-point"
+          },
+          "update": "pbiCrossFilterApply(event, \"datum['__0__'] == _{__0__}_\")"
+        },
+        {
+          "events": {
+            "source": "view",
+            "type": "mouseup",
+            "filter": [
+              "!event.item || event.item.mark.name != 'data-point'"
+            ]
+          },
+          "update": "pbiCrossFilterClear()"
+        }
+      ]
     }
   ],
   "data": [
@@ -185,7 +209,7 @@
         {
           "type": "formula",
           "as": "labelText",
-          "expr": "labelField === '0' ? datum[\\'__0__\\'] : labelField === '1' ? datum['__1__'] : datum[\\'__0__\\'] + '\\n ' + datum['__1__']"
+          "expr": "labelField === '0' ? datum['__0__'] : labelField === '1' ? datum['__1__'] : datum['__0__'] + '\\n ' + datum['__1__']"
         }
       ]
     },
@@ -271,7 +295,16 @@
           },
           "strokeWidth": {
             "signal": "separator"
-          }
+          },
+          "fillOpacity": [
+            {
+              "test": "datum['__selected__'] == 'on'",
+              "value": 1
+            },
+            {
+              "value": 0.3
+            }
+          ]
         }
       }
     },
@@ -302,12 +335,7 @@
           },
           "fill": {
             "signal": "CenterTextColor"
-          },
-          "fillOpacity": [
-            { "test": "datum['__selected__'] == 'on'", "value": 1 },
-            { "value": 0.3 }
-          ]
-
+          }
         }
       }
     },
