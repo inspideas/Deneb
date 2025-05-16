@@ -2,12 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "usermeta": {
     "information": {
-      "uuid": "f86da660-c31e-45a8-baf2-cc31d4536a4c",
-      "generated": "2025-05-14T20:34:39.243Z",
+      "uuid": "bf784c18-a8a7-42c0-955b-9c7973a3e11f",
+      "generated": "2025-05-16T04:21:52.234Z",
       "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
-      "name": "Donut Chart",
+      "name": "[No Name Provided]",
       "description": "[No Description Provided]",
-      "author": "DataDes-Inspidea"
+      "author": "[No Author Details Provided]"
     },
     "deneb": {
       "build": "1.7.2.1",
@@ -18,8 +18,8 @@
     "interactivity": {
       "tooltip": true,
       "contextMenu": true,
-      "selection": false,
-      "selectionMode": "simple",
+      "selection": true,
+      "selectionMode": "multiple",
       "highlight": false,
       "dataPointLimit": 50
     },
@@ -51,15 +51,15 @@
     },
     {
       "name": "cornerRadius",
-      "value": 0
+      "value": 23
     },
     {
       "name": "separator",
-      "value": 0
+      "value": 5.5
     },
     {
       "name": "SeparatorColor",
-      "value": "#f6f6f6"
+      "value": "#d34a4aff"
     },
     {
       "name": "labelOffsetRatio",
@@ -83,19 +83,19 @@
     },
     {
       "name": "topRatioThreshold",
-      "value": 0.8
+      "value": 0.95
     },
     {
       "name": "labelField",
-      "value": "__0__"
+      "value": "0"
     },
     {
       "name": "startAngle",
-      "value": 0
+      "value": 6.283
     },
     {
       "name": "endAngle",
-      "value": 6.283
+      "value": 0
     },
     {
       "name": "padAngle",
@@ -181,6 +181,11 @@
           "type": "formula",
           "as": "ymid",
           "expr": "(innerRadius + 20) * sin(datum.midAngle) + height / 2"
+        },
+        {
+          "type": "formula",
+          "as": "labelText",
+          "expr": "labelField === '0' ? datum[\\'__0__\\'] : labelField === '1' ? datum['__1__'] : datum[\\'__0__\\'] + '\\n ' + datum['__1__']"
         }
       ]
     },
@@ -297,7 +302,12 @@
           },
           "fill": {
             "signal": "CenterTextColor"
-          }
+          },
+          "fillOpacity": [
+            { "test": "datum['__selected__'] == 'on'", "value": 1 },
+            { "value": 0.3 }
+          ]
+
         }
       }
     },
@@ -315,7 +325,7 @@
             "field": "ymid"
           },
           "text": {
-            "signal": "labelField === 'Both' ? datum['__0__'] + ': ' + datum['__1__'] : datum[labelField]"
+            "field": "labelText"
           },
           "fill": {
             "signal": "labeltextcolor"
