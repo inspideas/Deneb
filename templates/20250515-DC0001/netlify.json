@@ -86,6 +86,11 @@
           "type": "formula",
           "as": "isOther",
           "expr": "datum.cumulativeRatio >= topRatioThreshold<=1"
+        },
+        {
+          "type": "formula",
+          "as": "labelFieldValue",
+          "expr": "labelField"
         }
       ]
     },
@@ -125,7 +130,7 @@
            "x": {"signal": "width / 2"},
           "y": {"signal": "height / 2"},
           "tooltip": {
-            "signal": "{Category: datum['Category'], Value: datum['Total Sales Qty'],label:'labelField'}"
+            "signal": "{Category: datum['Category'], Value: datum['Total Sales Qty'],label:labelField}"
           }
         },
         "update": {
@@ -164,23 +169,7 @@
     "enter": {
       "x": { "field": "xmid" },
       "y": { "field": "ymid" },
-      "text": [
-        {
-          "test": "labelField === 'Both'",
-          "signal": "datum['Category'] + ': ' + datum['Total Sales Qty']"
-        },
-        {
-          "test": "labelField === 'Category'",
-          "signal": "datum['Category']"
-        },
-        {
-          "test": "labelField === 'Total Sales Qty'",
-          "signal": "'' + datum['Total Sales Qty']"
-        },
-        {
-          "value": ""  
-        }
-      ],
+
       "fill": { "signal": "labeltextcolor" },
       "fontSize": { "signal": "labelFontSize" },
       "align": { "value": "center" },
@@ -188,7 +177,26 @@
             "opacity": {
         "signal": "datum.isOther ? 0 : 1"
       }
+    },
+    "update": {
+          "text": [
+    {
+      "test": "datum.labelFieldValue === 'Category'",
+      "signal": "datum['Category']"
+    },
+    {
+      "test": "datum.labelFieldValue === 'Total Sales Qty'",
+      "signal": "'' + datum['Total Sales Qty']"
+    },
+    {
+      "test": "datum.labelFieldValue === 'Both'",
+      "signal": "datum['Category'] + ' ' + datum['Total Sales Qty']"
+    },
+    {
+      "value": ""
     }
+  ]
+}
   }
 }
 
