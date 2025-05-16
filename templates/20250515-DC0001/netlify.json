@@ -19,31 +19,7 @@
     {"name": "startAngle", "value": 6.283},
     {"name": "endAngle", "value": 0},
     {"name": "padAngle", "value": 0.01},
-    {"name": "OtherColor", "value": "#cccccc", "bind": {"input": "color"}},
-    {
-      "name": "pbiCrossFilterSelection",
-      "value": [],
-      "on": [
-        {
-          "events": {
-            "source": "scope",
-            "type": "mouseup",
-            "markname": "data-point"
-          },
-          "update": "pbiCrossFilterApply(event, \"datum['Category'] == _{Category}_\")"
-        },
-        {
-          "events": {
-            "source": "view",
-            "type": "mouseup",
-            "filter": [
-              "!event.item || event.item.mark.name != 'data-point'"
-            ]
-          },
-          "update": "pbiCrossFilterClear()"
-        }
-      ]
-    }
+    {"name": "OtherColor", "value": "#cccccc", "bind": {"input": "color"}}
     
   ],
 
@@ -214,16 +190,7 @@
           },
           "strokeWidth": {
             "signal": "separator"
-          },
-          "fillOpacity": [
-            {
-              "test": "datum['__selected__'] == 'on'",
-              "value": 1
-            },
-            {
-              "value": 0.3
-            }
-          ]
+          }
         }
       }
     },
