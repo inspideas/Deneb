@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Template created for Deneb 1.9.0 / Vega 5.30.0 / Power BI Apr 2025",
   "usermeta": {
     "information": {
       "uuid": "d94f2cbb-0aed-43d0-ba8b-0579679e5ccb",

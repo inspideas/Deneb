@@ -1,0 +1,79 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 200,
+  "height": 200,
+  "background": "#f6f6f6",
+
+  "signals": [
+  
+    
+  ],
+
+"data": [
+    {
+      "name": "dataset",
+      "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/Real%20estate.csv",
+      "format": {"type": "csv", "parse": "auto"}
+    }
+   ],  
+   
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "linear",
+      "domain": {"data": "dataset", "field": "X2 house age"},
+      "range": "width"
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {"data": "dataset", "field": "X3 distance to the nearest MRT station"},
+      "range": "height"
+    },
+    {
+      "name": "sizeScale",
+      "type": "linear",
+      "domain": {"data": "dataset", "field": "Y house price of unit area"},
+      "range": [10, 2000]
+    },
+    {
+      "name": "colorScale",
+      "type": "linear",
+      "domain": {"data": "dataset", "field": "X4 number of convenience stores"},
+      "range": ["#f7fbff", "#08306b"],
+      "nice": true
+    }
+  ],
+
+  "axes": [
+    {"orient": "bottom", "scale": "xscale", "title": "House Age"},
+    {"orient": "left", "scale": "yscale", "title": "Distance to MRT"}
+  ],
+
+  "legends": [
+    {
+      "fill": "colorScale",
+      "title": "Number of Convenience Stores",
+      "orient": "right"
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {"data": "dataset"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale", "field": "X2 house age"},
+          "y": {"scale": "yscale", "field": "X3 distance to the nearest MRT station"},
+          "size": {"scale": "sizeScale", "field": "Y house price of unit area"},
+          "fill": {"scale": "colorScale", "field": "X4 number of convenience stores"},
+          "stroke": {"value": "#333"},
+          "strokeWidth": {"value": 0.5},
+          "opacity": {"value": 0.6},
+          "tooltip": {"signal": "'No: ' + datum.No"}
+        }
+      }
+    }
+  ]
+}

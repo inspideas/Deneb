@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Template created for Deneb 1.9.0 / Vega 5.30.0 / Power BI Apr 2025",
   "usermeta": {
     "information": {
       "uuid": "30b52b8f-267e-4e68-8d7e-84ecc7cca63b",
@@ -47,19 +48,19 @@
   "signals": [
     {
       "name": "innerRadius",
-      "value": 60
+      "value": 55
     },
     {
       "name": "cornerRadius",
-      "value": 23
+      "value": 8
     },
     {
       "name": "separator",
-      "value": 5.5
+      "value": 9
     },
     {
       "name": "SeparatorColor",
-      "value": "#d34a4aff"
+      "value": "#f6f6f6ff"
     },
     {
       "name": "labelOffsetRatio",
@@ -71,7 +72,7 @@
     },
     {
       "name": "CenterTextSize",
-      "value": 9
+      "value": 21
     },
     {
       "name": "labeltextcolor",
@@ -79,15 +80,15 @@
     },
     {
       "name": "labelFontSize",
-      "value": 9
+      "value": 6
     },
     {
       "name": "topRatioThreshold",
-      "value": 0.95
+      "value": 0.8
     },
     {
       "name": "labelField",
-      "value": "0"
+      "value": "1"
     },
     {
       "name": "startAngle",
@@ -241,12 +242,12 @@
         "field": "colorIndex"
       },
       "range": [
-        "#1f77b4",
-        "#ff7f0e",
-        "#2ca02c",
-        "#d62728",
-        "#9467bd",
-        "#8c564b"
+        "#071a40",
+        "#1f3473",
+        "#2450a6",
+        "#7937a6",
+        "#f085f2",
+        "#9a8fbf"
       ]
     }
   ],
@@ -302,7 +303,7 @@
               "value": 1
             },
             {
-              "value": 0.3
+              "value": 0.8
             }
           ]
         }

@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Template created for Deneb 1.9.0 / Vega 5.30.0 / Power BI Apr 2025",
   "usermeta": {
     "information": {
       "uuid": "9149563c-0148-4dfc-8dca-486be71dcaed",
@@ -18,7 +19,7 @@
     "interactivity": {
       "tooltip": true,
       "contextMenu": true,
-      "selection": false,
+      "selection": true,
       "selectionMode": "simple",
       "highlight": false,
       "dataPointLimit": 50
@@ -228,7 +229,16 @@
               },
               "fillOpacity": {
                 "value": 0.1
+              },
+              "strokeOpacity": [
+              {
+                "test": "datum['__selected__'] == 'on'",
+                "value": 1
+              },
+              {
+                "value": 0.8
               }
+            ]
             }
           }
         },

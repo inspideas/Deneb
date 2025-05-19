@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Template created for Deneb 1.9.0 / Vega 5.30.0 / Power BI Apr 2025",
   "usermeta": {
     "information": {
       "uuid": "bdee9a35-2e56-4d80-9744-acecf3de0106",
@@ -18,7 +19,7 @@
     "interactivity": {
       "tooltip": true,
       "contextMenu": true,
-      "selection": false,
+      "selection": true,
       "selectionMode": "simple",
       "highlight": false,
       "dataPointLimit": 50
@@ -157,6 +158,16 @@
         },
         "color": {
           "value": "#B0B0B0"
+        },
+        "opacity": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": 0.3
+          },
+          "value": 1
         }
       },
       "transform": [
@@ -204,6 +215,16 @@
         "y": {
           "field": "__0__",
           "type": "ordinal"
+        },
+        "opacity": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": 0.3
+          },
+          "value": 1
         }
       },
       "transform": [
@@ -230,6 +251,16 @@
         },
         "color": {
           "value": "#43D9BD"
+        },
+        "opacity": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": 0.3
+          },
+          "value": 1
         }
       },
       "transform": [
@@ -273,6 +304,16 @@
         },
         "color": {
           "value": "#43D9BD"
+        },
+        "opacity": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": 0.3
+          },
+          "value": 1
         }
       }
     }

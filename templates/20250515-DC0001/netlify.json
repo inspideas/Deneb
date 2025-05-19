@@ -9,12 +9,12 @@
     {"name": "cornerRadius", "value": 0, "bind": {"input": "range", "min": 0, "max": 10, "step": 0.5}},
     {"name": "separator", "value": 0, "bind": {"input": "range", "min": 0, "max": 10, "step": 0.5}},
     {"name": "SeparatorColor", "value": "#f6f6f6", "bind": {"input": "color"}},
-    {"name": "labelOffsetRatio", "value": 2, "bind": {"input": "range", "min": 0, "max": 3, "step": 0.05}},
+    {"name": "labelOffsetRatio", "value": 2},
     {"name": "CenterTextColor", "value": "#3f3f3f", "bind": {"input": "color"}},
     {"name": "CenterTextSize", "value": 9, "bind": {"input": "range", "min": 5, "max": 20, "step": 1}},
     {"name": "labeltextcolor", "value": "#f6f6f6", "bind": {"input": "color"}},
     {"name": "labelFontSize", "value": 9, "bind": {"input": "range", "min": 5, "max": 20, "step": 1}},
-    {"name": "topRatioThreshold", "value": 0.95, "bind": {"input": "range", "min": 0.3, "max": 1, "step": 0.01}},
+    {"name": "topRatioThreshold", "value": 0.95},
     {"name": "labelField","value": "Category","bind": {"input": "select","options": ["Category", "Total Sales Qty","Both"]}},
     {"name": "startAngle", "value": 6.283},
     {"name": "endAngle", "value": 0},
@@ -104,7 +104,7 @@
         {
           "type": "formula",
           "as": "labelText",
-          "expr": "labelField === '0' ? datum['Category'] : labelField === '1' ? datum['Total Sales Qty'] : datum['Category'] + '\\n ' + datum['Total Sales Qty']"
+          "expr": "labelField === '0' ? datum['Category'] : labelField === '1' ? datum['Total Sales Qty'] : datum['Category'] + ': ' + datum['Total Sales Qty']"
         }
       ]
     },

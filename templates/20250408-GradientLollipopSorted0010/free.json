@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Template created for Deneb 1.9.0 / Vega 5.30.0 / Power BI Apr 2025",
   "usermeta": {
     "information": {
       "uuid": "afa02d73-572e-4e75-bd3a-f1febf5bef31",
@@ -18,7 +19,7 @@
     "interactivity": {
       "tooltip": true,
       "contextMenu": true,
-      "selection": false,
+      "selection": true,
       "selectionMode": "simple",
       "highlight": false,
       "dataPointLimit": 50
@@ -160,7 +161,17 @@
         "y": {
           "field": "__0__",
           "type": "ordinal"
-        }
+        },
+          "opacity": {
+            "condition": {
+              "test": {
+                "field": "__selected__",
+                "equal": "off"
+              },
+              "value": 0.3
+            },
+            "value": 1
+          }
       }
     },
     { "description": "Mark",
@@ -170,6 +181,18 @@
         "fill": "white",
         "opacity": 1,
         "color": "#4E54BF"
+      },
+      "encoding": {
+          "opacity": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": 0.3
+          },
+          "value": 1
+        }
       }
     },
     { "description": "Text",
