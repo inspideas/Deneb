@@ -219,7 +219,19 @@
  "caution":"",
   "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250513DC.csv",
   "type": "vega"
- }
+ },
+  {
+  "name": "Plot Chart",
+  "file": "20250519-PC0001",
+  "image": "images/20250519-PC0001.png",
+  "category": "Other Chart",
+  "timestamp": "2025-05-19",
+  "subscription": "No",
+ "caution":"",
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/Real%20estate.csv",
+  "type": "vega"
+
+}
 
 ]
 

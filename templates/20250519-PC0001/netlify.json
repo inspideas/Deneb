@@ -1,12 +1,53 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "width": 200,
-  "height": 200,
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "width": 300,
+  "height": 600,
   "background": "#f6f6f6",
 
   "signals": [
-  
+    {
+      "name": "LabelC", "value": "#08306b", "bind": {"input": "color"}
+    },
+    {
+      "name": "axesC", "value": "#08306b", "bind": {"input": "color"}
+    },    
+    {
+      "name": "ShowTitle", "value": true,
+      "bind": {"input": "checkbox"}
+    },
+        {
+      "name": "ShowTick", "value": true,
+      "bind": {"input": "checkbox"}
+    },
+            {
+      "name": "ShowDomain", "value": true,
+      "bind": {"input": "checkbox"}
+    },
+           {
+      "name": "ShowLabel", "value": true,
+      "bind": {"input": "checkbox"}
+    },
+    {"name": "yTitle",
+    "value":"Enter Y Axis Title",
+    "bind":{"input": "text"}
+    },
     
+    {"name": "xTitle",
+    "value":"Enter X Axis Title",
+    "bind":{"input": "text"}
+    },
+     {"name": "legendTitle",
+    "value":"Enter Legend Axis Title",
+    "bind":{"input": "text"}
+    },
+           {
+      "name": "showLegendTitle", "value": true,
+      "bind": {"input": "checkbox"}
+    },
+               {
+      "name": "ShowLegendLabel", "value": true,
+      "bind": {"input": "checkbox"}
+    }
   ],
 
 "data": [
@@ -45,16 +86,33 @@
     }
   ],
 
+
+
   "axes": [
-    {"orient": "bottom", "scale": "xscale", "title": "House Age"},
-    {"orient": "left", "scale": "yscale", "title": "Distance to MRT"}
+    {"orient": "bottom", "scale": "xscale", "title": {"signal": "xTitle"},"labelColor":{"signal": "axesC"},
+    "titleColor":{"signal": "LabelC"},"domainColor":{"signal": "axesC"},"tickColor":{"signal": "axesC"},
+    "labelOpacity": {"signal": "ShowLabel ? 1 : 0"},
+    "tickOpacity": {"signal": "ShowTick ? 1 : 0"},
+    "domainOpacity": {"signal": "ShowDomain ? 1 : 0"},
+    "titleOpacity":{"signal": "ShowTitle ? 1 : 0"}},
+
+    {"orient": "left", "scale": "yscale", "title": {"signal": "yTitle"},"labelColor":{"signal": "axesC"},
+    "titleColor":{"signal": "LabelC"},"domainColor":{"signal": "axesC"},"tickColor":{"signal": "axesC"},
+    "labelOpacity": {"signal": "ShowLabel ? 1 : 0"},
+    "tickOpacity": {"signal": "ShowTick ? 1 : 0"},
+    "domainOpacity": {"signal": "ShowDomain ? 1 : 0"},
+       "titleOpacity":{"signal": "ShowTitle ? 1 : 0"}}
   ],
 
   "legends": [
     {
       "fill": "colorScale",
-      "title": "Number of Convenience Stores",
-      "orient": "right"
+      "title": {"signal": "legendTitle"},
+      "orient": "right",
+      "labelColor":{"signal": "axesC"},
+      "titleColor":{"signal": "LabelC"},
+      "titleOpacity":{"signal": "showLegendTitle ? 1 : 0"},
+      "labelOpacity":{"signal": "ShowLegendLabel ? 1: 0"}
     }
   ],
 
@@ -77,4 +135,3 @@
     }
   ]
 }
-
