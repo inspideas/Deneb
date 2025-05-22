@@ -35,6 +35,18 @@
     {"name": "xTitle",
     "value":"Enter X Axis Title",
     "bind":{"input": "text"}
+    },
+     {"name": "legendTitle",
+    "value":"Enter Legend Axis Title",
+    "bind":{"input": "text"}
+    },
+           {
+      "name": "showLegendTitle", "value": true,
+      "bind": {"input": "checkbox"}
+    },
+               {
+      "name": "ShowLegendLabel", "value": true,
+      "bind": {"input": "checkbox"}
     }
   ],
 
@@ -82,23 +94,25 @@
     "labelOpacity": {"signal": "ShowLabel ? 1 : 0"},
     "tickOpacity": {"signal": "ShowTick ? 1 : 0"},
     "domainOpacity": {"signal": "ShowDomain ? 1 : 0"},
-    "titleOpacity":{"signal": "ShowTitle"}},
+    "titleOpacity":{"signal": "ShowTitle ? 1 : 0"}},
 
     {"orient": "left", "scale": "yscale", "title": {"signal": "yTitle"},"labelColor":{"signal": "axesC"},
     "titleColor":{"signal": "LabelC"},"domainColor":{"signal": "axesC"},"tickColor":{"signal": "axesC"},
     "labelOpacity": {"signal": "ShowLabel ? 1 : 0"},
     "tickOpacity": {"signal": "ShowTick ? 1 : 0"},
     "domainOpacity": {"signal": "ShowDomain ? 1 : 0"},
-    "titleOpacity":{"signal": "ShowTitle"}}
+       "titleOpacity":{"signal": "ShowTitle ? 1 : 0"}}
   ],
 
   "legends": [
     {
       "fill": "colorScale",
-      "title": "Number of Convenience Stores",
+      "title": {"signal": "legendTitle"},
       "orient": "right",
-      "titleColor":"#08306b",
-      "labelColor":"#08306b"
+      "labelColor":{"signal": "axesC"},
+      "titleColor":{"signal": "LabelC"},
+      "titleOpacity":{"signal": "showLegendTitle ? 1 : 0"},
+      "labelOpacity":{"signal": "ShowLegendLabel ? 1: 0"}
     }
   ],
 
