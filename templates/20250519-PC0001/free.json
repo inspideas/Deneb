@@ -1,0 +1,322 @@
+{
+  "usermeta": {
+    "information": {
+      "uuid": "e19bbda4-42e5-4665-ae69-3bb59e87e5c2",
+      "generated": "2025-05-22T05:57:55.647Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "4 Variable Chart",
+      "description": "[No Description Provided]",
+      "author": "DataDes-inspidea"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vega",
+      "providerVersion": "5.30.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{\n  \"autosize\": {\n    \"contains\": \"padding\",\n    \"type\": \"fit\"\n  }\n}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "No",
+        "description": "",
+        "kind": "column",
+        "type": "numeric"
+      },
+      {
+        "key": "__1__",
+        "name": "X2 house age",
+        "description": "",
+        "kind": "column",
+        "type": "numeric"
+      },
+      {
+        "key": "__3__",
+        "name": "Y house price of unit area",
+        "description": "",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__4__",
+        "name": "X4 number of convenience stores",
+        "description": "",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__2__",
+        "name": "X3 distance to the nearest MRT station",
+        "description": "",
+        "kind": "column",
+        "type": "numeric"
+      }
+    ]
+  },
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 300,
+  "height": 600,
+  "background": "#f6f6f6",
+  "signals": [
+    {
+      "name": "LabelC",
+      "value": "#08306b",
+      "bind": {
+        "input": "color"
+      }
+    },
+    {
+      "name": "axesC",
+      "value": "#08306b",
+      "bind": {
+        "input": "color"
+      }
+    },
+    {
+      "name": "ShowTitle",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "ShowTick",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "ShowDomain",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "ShowLabel",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "yTitle",
+      "value": "Enter Y Axis Title",
+      "bind": {
+        "input": "text"
+      }
+    },
+    {
+      "name": "xTitle",
+      "value": "Enter X Axis Title",
+      "bind": {
+        "input": "text"
+      }
+    },
+    {
+      "name": "legendTitle",
+      "value": "Enter Legend Axis Title",
+      "bind": {
+        "input": "text"
+      }
+    },
+    {
+      "name": "showLegendTitle",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    },
+    {
+      "name": "ShowLegendLabel",
+      "value": true,
+      "bind": {
+        "input": "checkbox"
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "dataset"
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "field": "__1__"
+      },
+      "range": "width"
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "field": "__2__"
+      },
+      "range": "height"
+    },
+    {
+      "name": "sizeScale",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "field": "Y house price of unit area"
+      },
+      "range": [
+        1,
+        2000
+      ]
+    },
+    {
+      "name": "colorScale",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "field": "X4 number of convenience stores"
+      },
+      "range": [
+        "#f7fbff",
+        "#08306b"
+      ],
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": {
+        "signal": "xTitle"
+      },
+      "labelColor": {
+        "signal": "axesC"
+      },
+      "titleColor": {
+        "signal": "LabelC"
+      },
+      "domainColor": {
+        "signal": "axesC"
+      },
+      "tickColor": {
+        "signal": "axesC"
+      },
+      "labelOpacity": {
+        "signal": "ShowLabel ? 1 : 0"
+      },
+      "tickOpacity": {
+        "signal": "ShowTick ? 1 : 0"
+      },
+      "domainOpacity": {
+        "signal": "ShowDomain ? 1 : 0"
+      },
+      "titleOpacity": {
+        "signal": "ShowTitle ? 1 : 0"
+      }
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": {
+        "signal": "yTitle"
+      },
+      "labelColor": {
+        "signal": "axesC"
+      },
+      "titleColor": {
+        "signal": "LabelC"
+      },
+      "domainColor": {
+        "signal": "axesC"
+      },
+      "tickColor": {
+        "signal": "axesC"
+      },
+      "labelOpacity": {
+        "signal": "ShowLabel ? 1 : 0"
+      },
+      "tickOpacity": {
+        "signal": "ShowTick ? 1 : 0"
+      },
+      "domainOpacity": {
+        "signal": "ShowDomain ? 1 : 0"
+      },
+      "titleOpacity": {
+        "signal": "ShowTitle ? 1 : 0"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "colorScale",
+      "title": {
+        "signal": "legendTitle"
+      },
+      "orient": "right",
+      "labelColor": {
+        "signal": "axesC"
+      },
+      "titleColor": {
+        "signal": "LabelC"
+      },
+      "titleOpacity": {
+        "signal": "showLegendTitle ? 1 : 0"
+      },
+      "labelOpacity": {
+        "signal": "ShowLegendLabel ? 1: 0"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "__1__"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "__2__"
+          },
+          "size": {
+            "scale": "sizeScale",
+            "field": "Y house price of unit area"
+          },
+          "fill": {
+            "scale": "colorScale",
+            "field": "X4 number of convenience stores"
+          },
+          "stroke": {
+            "value": "#333"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          },
+          "opacity": {
+            "value": 0.6
+          },
+          "tooltip": {
+            "signal": "'No: ' + datum['__0__']"
+          }
+        }
+      }
+    }
+  ]
+}
