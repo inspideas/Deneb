@@ -54,7 +54,7 @@
       },
       {
         "key": "__4__",
-        "name": "X-Axis",
+        "name": "Y-Axis",
         "description": "Attribute to for Y-Axis",
         "kind": "column",
         "type": "numeric"
@@ -68,80 +68,47 @@
   "signals": [
     {
       "name": "LabelC",
-      "value": "#08306b",
-      "bind": {
-        "input": "color"
-      }
+      "value": "#08306b"
     },
     {
       "name": "axesC",
-      "value": "#08306b",
-      "bind": {
-        "input": "color"
-      }
+      "value": "#08306b"
     },
     {
       "name": "ShowTitle",
-      "value": true,
-      "bind": {
-        "input": "checkbox"
-      }
+      "value": true
     },
     {
       "name": "ShowTick",
-      "value": true,
-      "bind": {
-        "input": "checkbox"
-      }
+      "value": true
     },
     {
       "name": "ShowDomain",
-      "value": true,
-      "bind": {
-        "input": "checkbox"
-      }
+      "value": true
     },
     {
       "name": "ShowLabel",
-      "value": true,
-      "bind": {
-        "input": "checkbox"
-      }
+      "value": true
     },
     {
       "name": "yTitle",
-      "value": "Enter Y Axis Title",
-      "bind": {
-        "input": "text"
-      }
+      "value": "Enter Y Axis Title"
     },
     {
       "name": "xTitle",
-      "value": "Enter X Axis Title",
-      "bind": {
-        "input": "text"
-      }
+      "value": "Enter X Axis Title"
     },
     {
       "name": "legendTitle",
-      "value": "Enter Legend Axis Title",
-      "bind": {
-        "input": "text"
-      }
+      "value": "Enter Legend Axis Title"
     },
     {
       "name": "showLegendTitle",
-      "value": true,
-      "bind": {
-        "input": "checkbox"
-      }
+      "value": true
     },
     {
       "name": "ShowLegendLabel",
-      "value": true,
-      "bind": {
-        "input": "checkbox"
-      }
+      "value": true
     }
   ],
   "data": [
