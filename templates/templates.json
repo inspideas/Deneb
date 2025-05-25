@@ -239,7 +239,7 @@
   "category": "Bar Chart",
   "timestamp": "2025-05-25",
   "subscription": "No",
- "caution":"⚠️ Image Display Notice\nPower BI only supports Base64-encoded images.\nExternal image URLs will not be displayed.\nTo convert your image, use:\n🔗 https://www.base64-image.de/",
+ "caution":"",
   "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250523-Country%20GDP%20(SVG).csv",
   "type": "vega"
 
