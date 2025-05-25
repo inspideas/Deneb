@@ -212,6 +212,15 @@
           "fill": {
             "signal": "GradColor"
           },
+          "opacity": [
+          {
+            "test": "datum['__selected__'] == 'off'",
+            "value": 0.4
+          },
+          {
+            "value": 1
+          }
+        ],
           "cornerRadiusBottomLeft": {
             "signal": "cornerRadiusBottomLeft"
           },
