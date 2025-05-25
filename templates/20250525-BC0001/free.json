@@ -1,0 +1,345 @@
+{
+  "description": "Template created for Deneb 1.9.0 / Vega 5.30.0 / Power BI Apr 2025",
+  "usermeta": {
+    "information": {
+      "uuid": "2d43b9b7-1fc9-4321-a686-3e013433fe0b",
+      "generated": "2025-05-25T20:01:54.602Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "[No Name Provided]",
+      "description": "[No Description Provided]",
+      "author": "[No Author Details Provided]"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vega",
+      "providerVersion": "5.30.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{\n  \"autosize\": {\n    \"contains\": \"padding\",\n    \"type\": \"fit\"\n  }\n}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Country",
+        "description": "Class/Categories",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__2__",
+        "name": "Amount",
+        "description": "Measurable Amount",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__1__",
+        "name": "SVG",
+        "description": "SVG Images (has to be base64)",
+        "kind": "column",
+        "type": "text"
+      }
+    ]
+  },
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 450,
+  "height": {
+    "signal": "step * length(data('dataset'))"
+  },
+  "padding": 5,
+  "signals": [
+    {
+      "name": "step",
+      "value": 40
+    },
+    {
+      "name": "startColor",
+      "value": "#D8B5FF"
+    },
+    {
+      "name": "midColor",
+      "value": "#73AAC4"
+    },
+    {
+      "name": "endColor",
+      "value": "#1EAE98"
+    },
+    {
+      "name": "GradColor",
+      "update": "{gradient: 'linear', stops: [{offset: 0, color: startColor}, {offset: 0.5, color: midColor},{offset: 1, color: endColor}]}"
+    },
+    {
+      "name": "bandWidth",
+      "value": 1
+    },
+    {
+      "name": "cornerRadiusTopLeft",
+      "value": 1
+    },
+    {
+      "name": "cornerRadiusTopRight",
+      "value": 8
+    },
+    {
+      "name": "cornerRadiusBottomLeft",
+      "value": 1
+    },
+    {
+      "name": "cornerRadiusBottomRight",
+      "value": 8
+    },
+    {
+      "name": "imagePlacement",
+      "value": 8
+    },
+    {
+      "name": "imageHeight",
+      "value": 18
+    },
+    {
+      "name": "imageWidth",
+      "value": 24
+    },
+    {
+      "name": "labelPlacement",
+      "value": 17
+    },
+    {
+      "name": "nameLabelColor",
+      "value": "#f6f6f6"
+    },
+    {
+      "name": "nameLabel",
+      "value": true
+    },
+    {
+      "name": "nameLabelSize",
+      "value": 12
+    },
+    {
+      "name": "nameLabelBold",
+      "value": true
+    },
+    {
+      "name": "numberLabelColor",
+      "value": "#485563"
+    },
+    {
+      "name": "numberLabel",
+      "value": true
+    },
+    {
+      "name": "numberLabelSize",
+      "value": 12
+    },
+    {
+      "name": "numberLabelBold",
+      "value": true
+    }
+  ],
+  "data": [
+    {
+      "name": "dataset",
+      "transform": [
+        {
+          "type": "collect",
+          "sort": {
+            "field": "__2__",
+            "order": "descending"
+          }
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "yscale",
+      "type": "band",
+      "domain": {
+        "data": "dataset",
+        "field": "__0__",
+        "sort": {
+          "field": "__2__",
+          "op": "max",
+          "order": "descending"
+        }
+      },
+      "range": "height",
+      "padding": 0.1
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "field": "__2__"
+      },
+      "range": "width"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "y": {
+            "scale": "yscale",
+            "field": "__0__"
+          },
+          "height": {
+            "scale": "yscale",
+            "band": {
+              "signal": "bandWidth"
+            }
+          },
+          "x": {
+            "scale": "xscale",
+            "value": 0
+          },
+          "x2": {
+            "scale": "xscale",
+            "field": "__2__"
+          },
+          "fill": {
+            "signal": "GradColor"
+          },
+          "cornerRadiusBottomLeft": {
+            "signal": "cornerRadiusBottomLeft"
+          },
+          "cornerRadiusBottomRight": {
+            "signal": "cornerRadiusBottomRight"
+          },
+          "cornerRadiusTopLeft": {
+            "signal": "cornerRadiusTopLeft"
+          },
+          "cornerRadiusTopRight": {
+            "signal": "cornerRadiusTopRight"
+          }
+        }
+      }
+    },
+    {
+      "type": "image",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "y": {
+            "scale": "yscale",
+            "field": "__0__",
+            "offset": {
+              "signal": "imagePlacement"
+            }
+          },
+          "x": {
+            "value": 5
+          },
+          "width": {
+            "signal": "imageWidth"
+          },
+          "height": {
+            "signal": "imageHeight"
+          },
+          "url": {
+            "field": "__1__"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "y": {
+            "scale": "yscale",
+            "field": "__0__",
+            "offset": {
+              "signal": "labelPlacement"
+            }
+          },
+          "x": {
+            "scale": "xscale",
+            "field": "__2__",
+            "offset": -25
+          },
+          "text": {
+            "field": "__2__"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fill": {
+            "signal": "numberLabelColor"
+          },
+          "fontSize": {
+            "signal": "numberLabelSize"
+          },
+          "fontWeight": {
+            "signal": "numberLabelBold ? 'bold' : 'normal'"
+          },
+          "opacity": {
+            "signal": "numberLabel ? 1 : 0"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "y": {
+            "scale": "yscale",
+            "field": "__0__",
+            "offset": {
+              "signal": "labelPlacement"
+            }
+          },
+          "x": {
+            "value": 30
+          },
+          "text": {
+            "field": "__0__"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fill": {
+            "signal": "nameLabelColor"
+          },
+          "fontSize": {
+            "signal": "nameLabelSize"
+          },
+          "fontWeight": {
+            "signal": "nameLabelBold ? 'bold' : 'normal'"
+          },
+          "opacity": {
+            "signal": "nameLabel ? 1 : 0"
+          }
+        }
+      }
+    }
+  ]
+}

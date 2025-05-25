@@ -231,6 +231,18 @@
   "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/Real%20estate.csv",
   "type": "vega"
 
+},
+{
+  "name": "Gradient Bar Chart with Image",
+  "file": "20250525-BC0001",
+  "image": "images/20250525-BC0001.png",
+  "category": "Other Chart",
+  "timestamp": "2025-05-25",
+  "subscription": "No",
+ "caution":"⚠️ Image Display Notice\nPower BI only supports Base64-encoded images.\nExternal image URLs will not be displayed.\nTo convert your image, use:\n🔗 https://www.base64-image.de/",
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250523-Country%20GDP%20(SVG).csv",
+  "type": "vega"
+
 }
 
 ]

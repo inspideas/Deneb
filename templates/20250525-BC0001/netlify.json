@@ -1,0 +1,140 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 450,
+  "height": {"signal": "step * length(data('dataset'))"},
+  "padding": 5,
+  "signals": [
+    { "name": "step", "value": 40,   "bind": {"input": "range","min": 20,"max": 100,"step": 5} },
+    {"name": "startColor","value": "#D8B5FF","bind": {"input": "color"}},
+    {"name": "midColor","value": "#73AAC4","bind": {"input": "color"}},
+    {"name": "endColor","value": "#1EAE98","bind": {"input": "color"}},
+  {
+    "name": "GradColor",
+    "update": "{gradient: 'linear', stops: [{offset: 0, color: startColor}, {offset: 0.5, color: midColor},{offset: 1, color: endColor}]}"
+  },
+  {"name": "bandWidth", "value": 1, "bind": {"input": "range", "min": 0, "max": 1, "step": 0.1}},
+  {"name": "cornerRadiusTopLeft", "value": 1, "bind": {"input": "range", "min": 0, "max": 50, "step": 1}},
+  {"name": "cornerRadiusTopRight", "value": 8, "bind": {"input": "range", "min": 0, "max": 50, "step": 1}},  
+  {"name": "cornerRadiusBottomLeft", "value": 1, "bind": {"input": "range", "min": 0, "max": 50, "step": 1}},
+    {"name": "cornerRadiusBottomRight", "value": 8, "bind": {"input": "range", "min": 0, "max": 50, "step": 1}},
+  {"name": "imagePlacement", "value": 8, "bind": {"input": "range", "min": 0, "max": 1, "step": 1}},
+  {"name": "imageHeight", "value": 18, "bind": {"input": "range", "min": 0, "max": 100, "step": 1}},
+  {"name": "imageWidth", "value": 24, "bind": {"input": "range", "min": 0, "max": 100, "step": 1}},
+  {"name": "labelPlacement", "value": 17, "bind": {"input": "range", "min": 0, "max": 50, "step": 1}},
+
+  {"name": "nameLabelColor","value": "#f6f6f6","bind": {"input": "color"}},
+  {"name": "nameLabel", "value": true,"bind": {"input": "checkbox"}},
+  {"name": "nameLabelSize", "value": 12, "bind": {"input": "range", "min": 0, "max": 50, "step": 1}},
+  {"name": "nameLabelBold","value": true,"bind": { "input": "checkbox" }},
+  {"name": "numberLabelColor","value": "#485563","bind": {"input": "color"}},
+  {"name": "numberLabel", "value": true,"bind": {"input": "checkbox"}},
+  {"name": "numberLabelSize", "value": 12, "bind": {"input": "range", "min": 0, "max": 50, "step": 1}},
+  {"name": "numberLabelBold","value":true,"bind": { "input": "checkbox" }}
+
+  ],
+  "data": [
+    {
+      "name": "dataset",
+      "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/20250523-Country%20GDP%20(SVG).csv",
+      "format": {"type": "csv",     "parse": {
+      "Int$": "number"
+    }},
+          "transform": [
+      {
+        "type": "collect",
+        "sort": {
+          "field": "Int$",
+          "order": "descending"
+        }
+      }
+    ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "yscale",
+      "type": "band",
+      "domain": {"data": "dataset", "field": "Country", "sort":{"field": "Int$","op":"max", "order":"descending"}},
+      "range": "height",
+      "padding": 0.1
+      
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "domain": {"data": "dataset", "field": "Int$"},
+      "range": "width"
+    }
+  ],
+  "marks": [
+
+    {
+      "type": "rect",
+      "from": {"data": "dataset"},
+      "encode": {
+        "enter": {
+          "y": {"scale": "yscale", "field": "Country"},
+          "height": {"scale": "yscale", "band": {"signal":"bandWidth"}},
+          "x": {"scale": "xscale", "value": 0},
+          "x2": {"scale": "xscale", "field": "Int$"},
+          "fill": {"signal": "GradColor"},
+          "cornerRadiusBottomLeft":{"signal": "cornerRadiusBottomLeft"},
+          "cornerRadiusBottomRight":{"signal": "cornerRadiusBottomRight"},
+          "cornerRadiusTopLeft":{"signal": "cornerRadiusTopLeft"},
+          "cornerRadiusTopRight":{"signal": "cornerRadiusTopRight"}
+        }
+      }
+    },
+        {
+      "type": "image",
+      "from": {"data": "dataset"},
+      "encode": {
+        "enter": {
+          "y": {"scale": "yscale", "field": "Country", "offset": {"signal": "imagePlacement"}},
+          "x": {"value": 5},
+          "width": {"signal": "imageWidth"},
+          "height": {"signal": "imageHeight"},
+          "url": {"field": "SVG"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "dataset"},
+      "encode": {
+        "enter": {
+          "y": {"scale": "yscale", "field": "Country", "offset": {"signal": "labelPlacement"}},
+          "x": {"scale": "xscale", "field": "Int$", "offset": -25},
+          "text": {"field": "Int$"},
+          "align": {"value": "left"},
+          "baseline": {"value": "middle"},
+          "fill": {"signal": "numberLabelColor"},
+          "fontSize":{"signal": "numberLabelSize"},
+          "fontWeight": {
+        "signal": "numberLabelBold ? 'bold' : 'normal'"
+      },
+          "opacity":{"signal": "numberLabel ? 1 : 0"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "dataset"},
+      "encode": {
+        "enter": {
+          "y": {"scale": "yscale", "field": "Country", "offset":  {"signal": "labelPlacement"}},
+          "x": {"value": 30},
+          "text": {"field": "Country"},
+          "align": {"value": "left"},
+          "baseline": {"value": "middle"},
+          "fill": {"signal": "nameLabelColor"},
+          "fontSize":{"signal": "nameLabelSize"},
+          "fontWeight": {
+        "signal": "nameLabelBold ? 'bold' : 'normal'"
+      },
+          "opacity":{"signal": "nameLabel ? 1 : 0"}
+        }
+      }
+    }
+  ]
+}
