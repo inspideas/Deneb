@@ -1,13 +1,12 @@
 {
-  "description": "Template created for Deneb 1.9.0 / Vega 5.30.0 / Power BI Apr 2025",
   "usermeta": {
     "information": {
       "uuid": "2d43b9b7-1fc9-4321-a686-3e013433fe0b",
       "generated": "2025-05-25T20:01:54.602Z",
       "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
-      "name": "[No Name Provided]",
+      "name": "Gradient Bar Chart with Images",
       "description": "[No Description Provided]",
-      "author": "[No Author Details Provided]"
+      "author": "DataDes-inspidea"
     },
     "deneb": {
       "build": "1.7.2.1",
@@ -28,7 +27,14 @@
       {
         "key": "__0__",
         "name": "Country",
-        "description": "Class/Categories",
+        "description": "Class and Categories",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__1__",
+        "name": "SVG",
+        "description": "Images (needs to be Base64 Type)",
         "kind": "column",
         "type": "text"
       },
@@ -36,15 +42,8 @@
         "key": "__2__",
         "name": "Amount",
         "description": "Measurable Amount",
-        "kind": "measure",
-        "type": "numeric"
-      },
-      {
-        "key": "__1__",
-        "name": "SVG",
-        "description": "SVG Images (has to be base64)",
         "kind": "column",
-        "type": "text"
+        "type": "numeric"
       }
     ]
   },
