@@ -24,10 +24,12 @@
 
   {"name": "nameLabelColor","value": "#f6f6f6","bind": {"input": "color"}},
   {"name": "nameLabel", "value": true,"bind": {"input": "checkbox"}},
+  {"name": "nameLabelStarts", "value": 35, "bind": {"input": "range", "min": 0, "max": 100, "step": 1}},
   {"name": "nameLabelSize", "value": 12, "bind": {"input": "range", "min": 0, "max": 50, "step": 1}},
   {"name": "nameLabelBold","value": true,"bind": { "input": "checkbox" }},
   {"name": "numberLabelColor","value": "#485563","bind": {"input": "color"}},
   {"name": "numberLabel", "value": true,"bind": {"input": "checkbox"}},
+  {"name": "numberLabelOffset", "value": -25, "bind": {"input": "range", "min": -200, "max": 50, "step": 1}},
   {"name": "numberLabelSize", "value": 12, "bind": {"input": "range", "min": 0, "max": 50, "step": 1}},
   {"name": "numberLabelBold","value":true,"bind": { "input": "checkbox" }}
 
@@ -104,7 +106,7 @@
       "encode": {
         "enter": {
           "y": {"scale": "yscale", "field": "Country", "offset": {"signal": "labelPlacement"}},
-          "x": {"scale": "xscale", "field": "Int$", "offset": -25},
+          "x": {"scale": "xscale", "field": "Int$", "offset": {"signal": "numberLabelOffset"}},
           "text": {"field": "Int$"},
           "align": {"value": "left"},
           "baseline": {"value": "middle"},
@@ -123,7 +125,7 @@
       "encode": {
         "enter": {
           "y": {"scale": "yscale", "field": "Country", "offset":  {"signal": "labelPlacement"}},
-          "x": {"value": 30},
+          "x": {"signal": "nameLabelStarts"},
           "text": {"field": "Country"},
           "align": {"value": "left"},
           "baseline": {"value": "middle"},

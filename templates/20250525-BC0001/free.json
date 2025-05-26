@@ -118,6 +118,7 @@
       "name": "nameLabel",
       "value": true
     },
+    {"name": "nameLabelStarts", "value": 35},
     {
       "name": "nameLabelSize",
       "value": 12
@@ -134,10 +135,12 @@
       "name": "numberLabel",
       "value": true
     },
+     {"name": "numberLabelOffset", "value": -25},
     {
       "name": "numberLabelSize",
       "value": 12
     },
+
     {
       "name": "numberLabelBold",
       "value": true
@@ -282,7 +285,7 @@
           "x": {
             "scale": "xscale",
             "field": "__2__",
-            "offset": -25
+            "offset": {"signal": "numberLabelOffset"}
           },
           "text": {
             "field": "__2__"
@@ -322,9 +325,7 @@
               "signal": "labelPlacement"
             }
           },
-          "x": {
-            "value": 30
-          },
+          "x": {"signal": "nameLabelStarts"},
           "text": {
             "field": "__0__"
           },
