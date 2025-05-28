@@ -184,7 +184,8 @@
       "tickOpacity":{"signal": "showTick ? 1:0"},
       "domainOpacity":{"signal": "showAxis ? 1: 0"},
       "titleOpacity":{"signal": "showTitle? 1:0"},
-      "labelColor":{"signal": "labelFontColor"}
+      "labelColor":{"signal": "labelFontColor"},
+      "titleColor":{"signal": "titleColor"}
 
     },
     {
@@ -196,7 +197,8 @@
       "tickOpacity":{"signal": "showTick ? 1:0"},
       "titleOpacity":{"signal": "showTitle? 1:0"},
       "domainOpacity":{"signal": "showAxis ? 1: 0"},
-      "labelColor":{"signal": "labelFontColor"}
+      "labelColor":{"signal": "labelFontColor"},
+      "titleColor":{"signal": "titleColor"}
     }
   ],
   "marks": [

@@ -340,7 +340,8 @@
       },
       "labelColor": {
         "signal": "labelFontColor"
-      }
+      },
+      "titleColor":{"signal": "titleColor"}
     },
     {
       "orient": "left",
@@ -368,7 +369,8 @@
       },
       "labelColor": {
         "signal": "labelFontColor"
-      }
+      },
+      "titleColor":{"signal": "titleColor"}
     }
   ],
   "marks": [
