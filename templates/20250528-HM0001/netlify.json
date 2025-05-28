@@ -1,0 +1,277 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 300,
+  "height": 300,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "scale_map",
+      "value": {
+        "Employees": "color_emp",
+        "Revenue": "color_rev",
+        "R&D Expenses": "color_rnd",
+        "Operating Income": "color_OPI",
+        "Net Income": "color_NetI",
+        "Free Cash Flow": "color_FCF",
+        "EPS": "color_EPS",
+        "EBITDA": "color_EBIT"
+      }
+    },
+    {"name": "axisColor","value": "#1EAE98","bind": {"input": "color"}},
+    {"name": "showTick", "value": false,"bind": {"input": "checkbox"}},
+    {"name": "showAxis", "value": false,"bind": {"input": "checkbox"}},
+    {"name": "showTitle", "value": false,"bind": {"input": "checkbox"}},
+    {"name": "yTitle","value":"Index","bind":{"input": "text"}},
+    {"name": "xTitle","value":"Company","bind":{"input": "text"}},
+    {"name": "titleColor","value": "#1EAE98","bind": {"input": "color"}},
+    {"name": "showLabelY", "value": true,"bind": {"input": "checkbox"}},
+    {"name": "showLabelX", "value": false,"bind": {"input": "checkbox"}},
+    {"name": "labelFontSize", "value": 12, "bind": {"input": "range", "min": 0, "max": 50, "step": 1}},
+    {"name": "labelFontColor","value": "#273A73","bind": {"input": "color"}},
+    {"name": "showImage", "value": true,"bind": {"input": "checkbox"}},
+    {"name": "imageWidth", "value": 70, "bind": {"input": "range", "min": 0, "max": 100, "step": 1}},
+    {"name": "imageHeight", "value": 40, "bind": {"input": "range", "min": 0, "max": 200, "step": 1}},
+    {"name": "imagePlacementX", "value": -30, "bind": {"input": "range", "min": -50, "max": 50, "step": 1}},
+    {"name": "imagePlacementY", "value": -40, "bind": {"input": "range", "min": -100, "max": 100, "step": 1}},
+    {"name": "bottomColor","value": "#F2F2F2","bind": {"input": "color"}},
+    {"name": "topColor1","value": "#273A73","bind": {"input": "color"}},
+    {"name": "topColor2","value": "#273A73","bind": {"input": "color"}},
+    {"name": "topColor3","value": "#273A73","bind": {"input": "color"}},
+    {"name": "topColor4","value": "#273A73","bind": {"input": "color"}},
+    {"name": "topColor5","value": "#273A73","bind": {"input": "color"}},
+    {"name": "topColor6","value": "#273A73","bind": {"input": "color"}},
+    {"name": "topColor7","value": "#273A73","bind": {"input": "color"}},
+    {"name": "topColor8","value": "#273A73","bind": {"input": "color"}}
+    
+  ],
+  "data": [
+    {
+      "name": "dataset",
+      "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/GAFA_2023_KPIEdit.csv",
+      "format": {
+        "type": "csv"
+      },
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "Employees",
+            "Revenue",
+            "R&D Expenses",
+            "Operating Income",
+            "Net Income",
+            "Free Cash Flow",
+            "EPS",
+            "EBITDA"
+          ],
+          "as": [
+            "KPI",
+            "Value"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": {
+        "data": "dataset",
+        "field": "Company"
+      },
+      "range": "width",
+      "padding": 0.05
+    },
+    {
+      "name": "y",
+      "type": "band",
+      "domain": {
+        "data": "dataset",
+        "field": "KPI"
+      },
+      "range": "height",
+      "padding": 0.05
+    },
+    {
+      "name": "color_emp",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "field": "Employees",
+        "filter": "datum.KPI === 'Employees'"
+      },
+      "range": [{"signal": "bottomColor"},{"signal": "topColor1"}
+      ]
+    },
+    {
+      "name": "color_rev",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "field": "Revenue",
+        "filter": "datum.KPI === 'Revenue'"
+      },
+      "range": [{"signal": "bottomColor"},{"signal": "topColor2"}
+      ]
+    },
+    {
+      "name": "color_rnd",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "field": "R&D Expenses",
+        "filter": "datum.KPI === 'R&D Expenses'"
+      },
+      "range": [{"signal": "bottomColor"},{"signal": "topColor3"}
+      ]
+    },
+    {
+      "name": "color_OPI",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "field": "Operating Income",
+        "filter": "datum.KPI === 'Operating Income'"
+      },
+     "range": [{"signal": "bottomColor"},{"signal": "topColor4"}
+      ]
+    },
+    {
+      "name": "color_NetI",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "field": "Net Income",
+        "filter": "datum.KPI === 'Net Income'"
+      },
+   "range": [{"signal": "bottomColor"},{"signal": "topColor5"}
+      ]
+    },
+    {
+      "name": "color_FCF",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "field": "Free Cash Flow",
+        "filter": "datum.KPI === 'Free Cash Flow'"
+      },
+    "range": [{"signal": "bottomColor"},{"signal": "topColor6"}
+      ]
+    },
+    {
+      "name": "color_EPS",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "field": "EPS",
+        "filter": "datum.KPI === 'EPS'"
+      },
+   "range": [{"signal": "bottomColor"},{"signal": "topColor7"}
+      ]
+    },
+    {
+      "name": "color_EBIT",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "field": "EBITDA",
+        "filter": "datum.KPI === 'EBITDA'"
+      },
+    "range": [{"signal": "bottomColor"},{"signal": "topColor8"}
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": {"signal": "xTitle"},
+      "labelFontSize": {"signal": "labelFontSize"},
+      "domainColor":{"signal": "axisColor"},
+      "labelOpacity":{"signal": "showLabelX ? 1:0"},
+      "tickOpacity":{"signal": "showTick ? 1:0"},
+      "domainOpacity":{"signal": "showAxis ? 1: 0"},
+      "titleOpacity":{"signal": "showTitle? 1:0"},
+      "labelColor":{"signal": "labelFontColor"}
+
+    },
+    {
+      "orient": "left",
+      "scale": "y","title": {"signal": "yTitle"},
+      "labelFontSize": {"signal": "labelFontSize"},
+      "domainColor":{"signal": "axisColor"},
+      "labelOpacity":{"signal": "showLabelY ? 1:0"},
+      "tickOpacity":{"signal": "showTick ? 1:0"},
+      "titleOpacity":{"signal": "showTitle? 1:0"},
+      "domainOpacity":{"signal": "showAxis ? 1: 0"},
+      "labelColor":{"signal": "labelFontColor"}
+    }
+  ],
+  "marks": [
+    {
+      "type": "image",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "y": {"signal": "imagePlacementY"
+          },
+          "x": {
+            "scale": "x",
+            "field": "Company",
+            "band": 0.5,
+            "offset": {"signal": "imagePlacementX"}
+          },
+          "width": {"signal": "imageWidth"
+          },
+          "height": {"signal": "imageHeight"
+          },
+          "opacity":{"signal": "showImage ? 1:0"},
+          "url": {
+            "field": "Logo"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "x",
+            "field": "Company"
+          },
+          "y": {
+            "scale": "y",
+            "field": "KPI"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1,
+            "offset": -1
+          },
+          "height": {
+            "scale": "y",
+            "band": 1,
+            "offset": -1
+          },
+          "cornerRadius": {
+            "value": 2
+          },
+          "fill": {
+            "signal": "scale(scale_map[datum.KPI], datum.Value)"
+          },
+          "tooltip": {
+            "signal": "{'Company': datum['Company'], 'KPI': datum.KPI, 'Value': datum.Value}"
+          }
+
+        }
+      }
+    }
+  ]
+}
