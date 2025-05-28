@@ -177,42 +177,6 @@
     {
       "name": "imagePlacementY",
       "value": -40
-    },
-    {
-      "name": "bottomColor",
-      "value": "#F2F2F2"
-    },
-    {
-      "name": "topColor1",
-      "value": "#273A73"
-    },
-    {
-      "name": "topColor2",
-      "value": "#273A73"
-    },
-    {
-      "name": "topColor3",
-      "value": "#273A73"
-    },
-    {
-      "name": "topColor4",
-      "value": "#273A73"
-    },
-    {
-      "name": "topColor5",
-      "value": "#273A73"
-    },
-    {
-      "name": "topColor6",
-      "value": "#273A73"
-    },
-    {
-      "name": "topColor7",
-      "value": "#273A73"
-    },
-    {
-      "name": "topColor8",
-      "value": "#273A73"
     }
   ],
   "data": [
@@ -268,13 +232,7 @@
         "field": "__1__",
         "filter": "datum.KPI === 'Employees'"
       },
-      "range": [
-        {
-          "signal": "bottomColor"
-        },
-        {
-          "signal": "topColor1"
-        }
+      "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -285,13 +243,7 @@
         "field": "__2__",
         "filter": "datum.KPI === 'Revenue'"
       },
-      "range": [
-        {
-          "signal": "bottomColor"
-        },
-        {
-          "signal": "topColor2"
-        }
+      "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -302,13 +254,7 @@
         "field": "__3__",
         "filter": "datum.KPI === 'R&D Expenses'"
       },
-      "range": [
-        {
-          "signal": "bottomColor"
-        },
-        {
-          "signal": "topColor3"
-        }
+      "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -319,13 +265,7 @@
         "field": "__4__",
         "filter": "datum.KPI === 'Operating Income'"
       },
-      "range": [
-        {
-          "signal": "bottomColor"
-        },
-        {
-          "signal": "topColor4"
-        }
+      "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -336,13 +276,7 @@
         "field": "__5__",
         "filter": "datum.KPI === 'Net Income'"
       },
-      "range": [
-        {
-          "signal": "bottomColor"
-        },
-        {
-          "signal": "topColor5"
-        }
+      "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -353,13 +287,7 @@
         "field": "__6__",
         "filter": "datum.KPI === 'Free Cash Flow'"
       },
-      "range": [
-        {
-          "signal": "bottomColor"
-        },
-        {
-          "signal": "topColor6"
-        }
+      "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -370,13 +298,7 @@
         "field": "__7__",
         "filter": "datum.KPI === 'EPS'"
       },
-      "range": [
-        {
-          "signal": "bottomColor"
-        },
-        {
-          "signal": "topColor7"
-        }
+      "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -387,13 +309,7 @@
         "field": "__8__",
         "filter": "datum.KPI === 'EBITDA'"
       },
-      "range": [
-        {
-          "signal": "bottomColor"
-        },
-        {
-          "signal": "topColor8"
-        }
+      "range": ["#F2F2F2","#273A73"
       ]
     }
   ],

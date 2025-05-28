@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "width": 300,
-  "height": 300,
+  "width": 500,
+  "height": 500,
   "padding": 5,
   "signals": [
     {
@@ -32,16 +32,7 @@
     {"name": "imageWidth", "value": 70, "bind": {"input": "range", "min": 0, "max": 100, "step": 1}},
     {"name": "imageHeight", "value": 40, "bind": {"input": "range", "min": 0, "max": 200, "step": 1}},
     {"name": "imagePlacementX", "value": -30, "bind": {"input": "range", "min": -50, "max": 50, "step": 1}},
-    {"name": "imagePlacementY", "value": -40, "bind": {"input": "range", "min": -100, "max": 100, "step": 1}},
-    {"name": "bottomColor","value": "#F2F2F2","bind": {"input": "color"}},
-    {"name": "topColor1","value": "#273A73","bind": {"input": "color"}},
-    {"name": "topColor2","value": "#273A73","bind": {"input": "color"}},
-    {"name": "topColor3","value": "#273A73","bind": {"input": "color"}},
-    {"name": "topColor4","value": "#273A73","bind": {"input": "color"}},
-    {"name": "topColor5","value": "#273A73","bind": {"input": "color"}},
-    {"name": "topColor6","value": "#273A73","bind": {"input": "color"}},
-    {"name": "topColor7","value": "#273A73","bind": {"input": "color"}},
-    {"name": "topColor8","value": "#273A73","bind": {"input": "color"}}
+    {"name": "imagePlacementY", "value": -40, "bind": {"input": "range", "min": -100, "max": 100, "step": 1}}
     
   ],
   "data": [
@@ -101,7 +92,7 @@
         "field": "Employees",
         "filter": "datum.KPI === 'Employees'"
       },
-      "range": [{"signal": "bottomColor"},{"signal": "topColor1"}
+      "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -112,7 +103,7 @@
         "field": "Revenue",
         "filter": "datum.KPI === 'Revenue'"
       },
-      "range": [{"signal": "bottomColor"},{"signal": "topColor2"}
+      "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -123,7 +114,7 @@
         "field": "R&D Expenses",
         "filter": "datum.KPI === 'R&D Expenses'"
       },
-      "range": [{"signal": "bottomColor"},{"signal": "topColor3"}
+      "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -134,7 +125,7 @@
         "field": "Operating Income",
         "filter": "datum.KPI === 'Operating Income'"
       },
-     "range": [{"signal": "bottomColor"},{"signal": "topColor4"}
+     "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -145,7 +136,7 @@
         "field": "Net Income",
         "filter": "datum.KPI === 'Net Income'"
       },
-   "range": [{"signal": "bottomColor"},{"signal": "topColor5"}
+   "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -156,7 +147,7 @@
         "field": "Free Cash Flow",
         "filter": "datum.KPI === 'Free Cash Flow'"
       },
-    "range": [{"signal": "bottomColor"},{"signal": "topColor6"}
+    "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -167,7 +158,7 @@
         "field": "EPS",
         "filter": "datum.KPI === 'EPS'"
       },
-   "range": [{"signal": "bottomColor"},{"signal": "topColor7"}
+   "range": ["#F2F2F2","#273A73"
       ]
     },
     {
@@ -178,7 +169,7 @@
         "field": "EBITDA",
         "filter": "datum.KPI === 'EBITDA'"
       },
-    "range": [{"signal": "bottomColor"},{"signal": "topColor8"}
+    "range": ["#F2F2F2","#273A73"
       ]
     }
   ],
