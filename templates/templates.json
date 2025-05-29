@@ -255,6 +255,18 @@
   "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/GAFA_2023_KPIEdit.csv",
   "type": "vega"
 
+},
+{
+  "name": "WordCloud",
+  "file": "20250529-OC0001",
+  "image": "images/20250529-OC0001.png",
+  "category": "Other Chart",
+  "timestamp": "2025-05-29",
+  "subscription": "No",
+ "caution":"The “stopWords” section allows you to exclude unnecessary words from the visualization by listing them separated with the “|” character.  \n Built using the word cloud example from the Vega gallery: https://vega.github.io/vega/examples/word-cloud/",
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/Power%20BI%20Search%20Result.csv",
+  "type": "vega"
+
 }
 
 ]

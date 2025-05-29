@@ -1,0 +1,105 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 500,
+  "height": 500,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "wordAngle",
+      "value": 90,
+      "bind": {"input": "range", "min":0, "max": 90, "step": 1}
+    },
+    {
+      "name": "highlightText",
+      "value": "Power",
+      "bind": {"input": "text", "name": "Highlight Word"}
+    },
+    {"name": "color1","value": "#0378A6","bind": {"input": "color"}},
+    {"name": "color2","value": "#0568A6","bind": {"input": "color"}},
+    {"name": "color3","value": "#F28D9F","bind": {"input": "color"}},
+    {"name": "color4","value": "#D97762","bind": {"input": "color"}},
+    {"name": "color5","value": "#D93B58","bind": {"input": "color"}},
+    {
+      "name": "minFontSize",
+      "value": 12,
+      "bind": {"input": "range", "min": 6, "max": 30, "step": 1}
+    },
+    {
+      "name": "maxFontSize",
+      "value": 60,
+      "bind": {"input": "range", "min": 30, "max": 120, "step": 1}
+    },
+    {
+      "name": "stopWords",
+      "value": "azule|pivot",
+      "bind": {"input": "text", "name": "Stopwords"}
+    }
+  ],
+  "data": [
+    {
+      "name": "dataset",
+      "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/Power%20BI%20Search%20Result.csv",
+      "format": {"type": "csv"},
+      "transform": [
+        {
+          "type": "countpattern",
+          "field": "Keyword",
+          "case": "upper",
+          "pattern": "[\\w']{3,}",
+          "stopwords": {"signal": "stopWords"}
+        },
+        {
+          "type": "formula",
+          "as": "angle",
+          "expr": "[-wordAngle, 0, wordAngle][~~(random() * 5)]"
+        },
+        {
+          "type": "formula",
+          "as": "weight",
+          "expr": "if(datum.text == highlightText, 600, 300)"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {"data": "dataset", "field": "text"},
+      "range": [{"signal": "color1"},{"signal": "color2"},{"signal": "color3"},{"signal": "color4"},{"signal": "color5"}]
+    }
+  ],
+  "marks": [
+    {
+      "type": "text",
+      "from": {"data": "dataset"},
+      "encode": {
+        "enter": {
+          "text": {"field": "text"},
+          "align": {"value": "center"},
+          "baseline": {"value": "alphabetic"},
+          "fill": {"scale": "color", "field": "text"}
+        },
+        "update": {
+          "fillOpacity": {"value": 1}
+        },
+        "hover": {
+          "fillOpacity": {"value": 0.5}
+        }
+      },
+      "transform": [
+        {
+          "type": "wordcloud",
+          "size": [800, 400],
+          "text": {"field": "text"},
+          "rotate": {"field": "datum.angle"},
+          "font": "Helvetica Neue, Arial",
+          "fontSize": {"field": "datum.count"},
+          "fontWeight": {"field": "datum.weight"},
+          "fontSizeRange": [{"signal": "minFontSize"}, {"signal": "maxFontSize"}],
+          "padding": 2
+        }
+      ]
+    }
+  ]
+}
