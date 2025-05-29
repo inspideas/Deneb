@@ -47,23 +47,23 @@
       "value": "Power"
     },
     {
-      "name": "color1",
+      "name": "col1",
       "value": "#0378A6"
     },
     {
-      "name": "color2",
+      "name": "col2",
       "value": "#0568A6"
     },
     {
-      "name": "color3",
+      "name": "col3",
       "value": "#F28D9F"
     },
     {
-      "name": "color4",
+      "name": "col4",
       "value": "#D97762"
     },
     {
-      "name": "color5",
+      "name": "col5",
       "value": "#D93B58"
     },
     {
@@ -115,19 +115,19 @@
       },
       "range": [
         {
-          "signal": "color1"
+          "signal": "col1"
         },
         {
-          "signal": "color2"
+          "signal": "col2"
         },
         {
-          "signal": "color3"
+          "signal": "col3"
         },
         {
-          "signal": "color4"
+          "signal": "col4"
         },
         {
-          "signal": "color5"
+          "signal": "col5"
         }
       ]
     }
