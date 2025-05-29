@@ -1,0 +1,201 @@
+{
+  "usermeta": {
+    "information": {
+      "uuid": "c10a55da-4f80-4553-9a96-a1f4034e1756",
+      "generated": "2025-05-29T02:00:51.694Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "PowerBI Word Cloud",
+      "description": "[No Description Provided]",
+      "author": "DataDes"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vega",
+      "providerVersion": "5.30.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{\n  \"autosize\": {\n    \"contains\": \"padding\",\n    \"type\": \"fit\"\n  }\n}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Keyword",
+        "description": "",
+        "kind": "column",
+        "type": "text"
+      }
+    ]
+  },
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 500,
+  "height": 500,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "wordAngle",
+      "value": 90
+    },
+    {
+      "name": "highlightText",
+      "value": "Power"
+    },
+    {
+      "name": "color1",
+      "value": "#0378A6"
+    },
+    {
+      "name": "color2",
+      "value": "#0568A6"
+    },
+    {
+      "name": "color3",
+      "value": "#F28D9F"
+    },
+    {
+      "name": "color4",
+      "value": "#D97762"
+    },
+    {
+      "name": "color5",
+      "value": "#D93B58"
+    },
+    {
+      "name": "minFontSize",
+      "value": 12
+    },
+    {
+      "name": "maxFontSize",
+      "value": 60
+    },
+    {
+      "name": "stopWords",
+      "value": "azule|pivot"
+    }
+  ],
+  "data": [
+    {
+      "name": "dataset",
+      "transform": [
+        {
+          "type": "countpattern",
+          "field": "__0__",
+          "case": "upper",
+          "pattern": "[\\w']{3,}",
+          "stopwords": {
+            "signal": "stopWords"
+          }
+        },
+        {
+          "type": "formula",
+          "as": "angle",
+          "expr": "[-wordAngle, 0, wordAngle][~~(random() * 5)]"
+        },
+        {
+          "type": "formula",
+          "as": "weight",
+          "expr": "if(datum.text == highlightText, 600, 300)"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "dataset",
+        "field": "text"
+      },
+      "range": [
+        {
+          "signal": "color1"
+        },
+        {
+          "signal": "color2"
+        },
+        {
+          "signal": "color3"
+        },
+        {
+          "signal": "color4"
+        },
+        {
+          "signal": "color5"
+        }
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "text",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "text": {
+            "field": "text"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "alphabetic"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "text"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.5
+          }
+        }
+      },
+      "transform": [
+        {
+          "type": "wordcloud",
+          "size": [
+            800,
+            400
+          ],
+          "text": {
+            "field": "text"
+          },
+          "rotate": {
+            "field": "datum.angle"
+          },
+          "font": "Helvetica Neue, Arial",
+          "fontSize": {
+            "field": "datum.count"
+          },
+          "fontWeight": {
+            "field": "datum.weight"
+          },
+          "fontSizeRange": [
+            {
+              "signal": "minFontSize"
+            },
+            {
+              "signal": "maxFontSize"
+            }
+          ],
+          "padding": 2
+        }
+      ]
+    }
+  ]
+}
