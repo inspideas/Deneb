@@ -14,11 +14,11 @@
       "value": "Power",
       "bind": {"input": "text", "name": "Highlight Word"}
     },
-    {"name": "color1","value": "#0378A6","bind": {"input": "color"}},
-    {"name": "color2","value": "#0568A6","bind": {"input": "color"}},
-    {"name": "color3","value": "#F28D9F","bind": {"input": "color"}},
-    {"name": "color4","value": "#D97762","bind": {"input": "color"}},
-    {"name": "color5","value": "#D93B58","bind": {"input": "color"}},
+    {"name": "col1","value": "#0378A6","bind": {"input": "color"}},
+    {"name": "col2","value": "#0568A6","bind": {"input": "color"}},
+    {"name": "col3","value": "#F28D9F","bind": {"input": "color"}},
+    {"name": "col4","value": "#D97762","bind": {"input": "color"}},
+    {"name": "col5","value": "#D93B58","bind": {"input": "color"}},
     {
       "name": "minFontSize",
       "value": 12,
@@ -66,7 +66,7 @@
       "name": "color",
       "type": "ordinal",
       "domain": {"data": "dataset", "field": "text"},
-      "range": [{"signal": "color1"},{"signal": "color2"},{"signal": "color3"},{"signal": "color4"},{"signal": "color5"}]
+      "range": [{"signal": "col1"},{"signal": "col2"},{"signal": "col3"},{"signal": "col4"},{"signal": "col5"}]
     }
   ],
   "marks": [
