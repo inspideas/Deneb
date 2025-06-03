@@ -267,6 +267,18 @@
   "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/Power%20BI%20Search%20Result.csv",
   "type": "vega"
 
+},
+{
+  "name": "Spine Bar- 2Layers",
+  "file": "20250603-BC0002",
+  "image": "images/20250603-BC0002",
+  "category": "Bar Chart",
+  "timestamp": "2025-06-03",
+  "subscription": "No",
+ "caution":"",
+  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/exportimport_tradebalance.csv",
+  "type": "vega"
+
 }
 
 ]

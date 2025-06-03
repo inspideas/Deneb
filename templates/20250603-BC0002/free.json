@@ -1,12 +1,12 @@
 {
   "usermeta": {
     "information": {
-      "uuid": "5723c447-3dd0-4fd7-a121-bc212b650a0f",
-      "generated": "2025-06-03T03:47:27.582Z",
+      "uuid": "e6eb6ffe-56b9-4fb9-b7bd-2b97baf8cb73",
+      "generated": "2025-06-03T04:53:31.911Z",
       "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
-      "name": "Spine Chart",
+      "name": "[No Name Provided]",
       "description": "[No Description Provided]",
-      "author": "DataDes-inspidea"
+      "author": "[No Author Details Provided]"
     },
     "deneb": {
       "build": "1.7.2.1",
@@ -26,36 +26,36 @@
     "dataset": [
       {
         "key": "__0__",
-        "name": "Country",
-        "description": "",
+        "name": "Categories",
+        "description": "Any Categories and Classification",
         "kind": "column",
         "type": "text"
       },
       {
         "key": "__1__",
-        "name": "Export Value",
-        "description": "",
-        "kind": "measure",
-        "type": "numeric"
-      },
-      {
-        "key": "__4__",
-        "name": "Import Value (D)",
-        "description": "",
+        "name": "Positive Value",
+        "description": "Measure shown on the right side of the chart",
         "kind": "measure",
         "type": "numeric"
       },
       {
         "key": "__2__",
-        "name": "Trade Balance",
-        "description": "",
+        "name": "Negative Value",
+        "description": "Measure shown on the left side of the chart",
         "kind": "measure",
         "type": "numeric"
       },
       {
         "key": "__3__",
-        "name": "Import Value",
-        "description": "",
+        "name": "Variance",
+        "description": "Measure for the wider bar shown either on positive or negative ",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__4__",
+        "name": "Negative Value Label",
+        "description": "Same figure as Negative value which has translated to positive for tooltip",
         "kind": "measure",
         "type": "numeric"
       }
@@ -73,6 +73,7 @@
     {
       "name": "chartWidth",
       "value": 300
+      
     },
     {
       "name": "chartPad",
@@ -176,7 +177,7 @@
     },
     {
       "name": "Title",
-      "value": "__2__"
+      "value": "__3__"
     },
     {
       "name": "showTitle",
@@ -197,13 +198,8 @@
       "transform": [
         {
           "type": "formula",
-          "as": "NegImport",
-          "expr": "-datum['__3__']"
-        },
-        {
-          "type": "formula",
           "as": "TotalValue",
-          "expr": "datum['__1__'] + datum['__3__']"
+          "expr": "datum['__1__'] + datum['__4__']"
         }
       ]
     },
@@ -221,12 +217,12 @@
         {
           "type": "formula",
           "as": "TradeOffset",
-          "expr": "datum['__2__'] >= 0 ? textOffset : -textOffset"
+          "expr": "datum['__3__'] >= 0 ? textOffset : -textOffset"
         },
         {
           "type": "formula",
           "as": "InnerColor",
-          "expr": "datum['__2__'] >= 0 ? PositiveInnerColor : NegativeInnerColor"
+          "expr": "datum['__3__'] >= 0 ? PositiveInnerColor : NegativeInnerColor"
         }
       ]
     }
@@ -248,7 +244,7 @@
       "domain": {
         "data": "sorted",
         "fields": [
-          "NegImport",
+          "__2__",
           "__1__"
         ]
       },
@@ -351,7 +347,7 @@
           },
           "x": {
             "scale": "x",
-            "field": "NegImport",
+            "field": "__2__",
             "offset": {
               "signal": "-textOffset"
             }
@@ -367,7 +363,7 @@
             "signal": "NegativeColor"
           },
           "tooltip": {
-            "signal": "'Country: ' + datum[\\'__0__\\'] +', '+ datum['__3__']"
+            "signal": "'Country: ' + datum['__0__']+', '+ 'Value:'+ datum['__4__']"
           },
           "opacity": [
             {
@@ -397,7 +393,9 @@
           },
           "height": {
             "scale": "y",
-            "band":{"signal":"outerBand"}
+            "band": {
+              "signal": "outerBand"
+            }
           },
           "x": {
             "scale": "x",
@@ -417,7 +415,7 @@
             "signal": "PositiveColor"
           },
           "tooltip": {
-            "signal": "'Country: ' + datum[\\'__0__\\'] +', '+ datum['__1__']"
+            "signal": "'Country: ' + datum['__0__']+', '+ 'Value:'+ datum['__1__']"
           },
           "opacity": [
             {
@@ -454,21 +452,7 @@
             "value": 0,
             "offset": {
               "field": "TradeOffset"
-            }
-          },
-          "x2": {
-            "scale": "x",
-            "field": "__2__",
-            "offset": {
-              "field": "TradeOffset"
-            }
-          },
-          "fill": {
-            "signal": "datum.InnerColor"
-          },
-          "tooltip": {
-            "signal": "'Country: ' + datum[\\'__0__\\'] +', '+ datum['__2__']"
-          },
+            },
           "opacity": [
             {
               "test": "datum['__selected__'] == 'off'",
@@ -478,6 +462,20 @@
               "value": 1
             }
           ]
+          },
+          "x2": {
+            "scale": "x",
+            "field": "__3__",
+            "offset": {
+              "field": "TradeOffset"
+            }
+          },
+          "fill": {
+            "signal": "datum.InnerColor"
+          },
+          "tooltip": {
+            "signal": "'Country: ' + datum['__0__']+', '+ 'Value:'+ datum['__3__']"
+          }
         }
       }
     }
