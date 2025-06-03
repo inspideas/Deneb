@@ -1,0 +1,204 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "height": {"signal": "step * length(data('dataset'))"},
+    "signals": [
+      { "name": "step", "value": 10,   "bind": {"input": "range","min": 20,"max": 100,"step": 1} },
+    { "name": "chartWidth", "value": 300,"bind":{"input": "range","min": 20,"max": 100,"step": 1}  },
+    { "name": "chartPad", "value": 20 ,"bind":{"input": "range","min": 20,"max": 100,"step": 1} },
+    { "name": "width", "update": "2 * chartWidth + chartPad" },
+    { "name": "textOffset", "value": 25,
+      "bind": {"input": "range", "min": 0, "max": 100, "step": 1} },
+    { "name": "outerBand", "value": 0.6,
+      "bind": {"input": "range", "min": 0.1, "max": 1, "step": 0.1} },
+   { "name": "innerBand", "value": 0.9,
+      "bind": {"input": "range", "min": 0.1, "max": 1, "step": 0.1} },
+    { "name": "offsetBar", "value": 1,
+      "bind": {"input": "range", "min": 0, "max": 10, "step": 0.1} },
+    {"name": "positiveStartColor","value": "#DEF0EE","bind": {"input": "color"}},
+    {"name": "positiveMidColor","value": "#DEF0EE","bind": {"input": "color"}},
+    {"name": "positiveEndColor","value": "#C0F0CD","bind": {"input": "color"}},
+  {
+    "name": "PositiveColor",
+    "update": "{gradient: 'linear', stops: [{offset: 0, color: positiveStartColor}, {offset: 0.5, color: positiveMidColor},{offset: 1, color: positiveEndColor}]}"
+  },
+  {"name": "negativeStartColor","value": "#D1C1FF","bind": {"input": "color"}},
+    {"name": "negativeMidColor","value": "#C0CCF0","bind": {"input": "color"}},
+    {"name": "negativeEndColor",  "value": "#E6DDF2","bind": {"input": "color"}},
+  {
+    "name": "NegativeColor",
+    "update": "{gradient: 'linear', stops: [{offset: 0, color: negativeStartColor}, {offset: 0.5, color: negativeMidColor},{offset: 1, color: negativeEndColor}]}"
+  },
+  {"name": "PositiveInStartColor","value": "#B4E8FF","bind": {"input": "color"}},
+    {"name": "PositiveInMidColor","value": "#ACF1FA","bind": {"input": "color"}},
+    {"name": "PositiveInEndColor",  "value": "#31E8FF","bind": {"input": "color"}},
+  {
+    "name": "PositiveInnerColor",
+    "update": "{gradient: 'linear', stops: [{offset: 0, color: PositiveInStartColor}, {offset: 0.5, color: PositiveInMidColor},{offset: 1, color: PositiveInEndColor}]}"
+  },
+  
+  {"name": "NegativeInStartColor","value": "#AC99F0","bind": {"input": "color"}},
+    {"name": "NegativeInMidColor","value": "#C899F0","bind": {"input": "color"}},
+    {"name": "NegativeInEndColor",  "value": "#CFC6F0","bind": {"input": "color"}},
+  {
+    "name": "NegativeInnerColor",
+    "update": "{gradient: 'linear', stops: [{offset: 0, color: NegativeInStartColor}, {offset: 0.5, color: NegativeInMidColor},{offset: 1, color: NegativeInEndColor}]}"
+  },
+  {"name": "textColor",  "value": "#BBB8D1","bind": {"input": "color"}},
+    { "name": "textsize", "value": 8,
+      "bind": {"input": "range", "min": 5, "max": 50, "step": 1} },
+  {"name": "titleColor",  "value": "#555466","bind": {"input": "color"}},
+  {"name": "Title","value":"Trade Balance","bind":{"input": "text"}},
+  {"name": "showTitle","value":true,"bind": { "input": "checkbox" }},
+  {"name": "axesColor",  "value": "#555466","bind": {"input": "color"}},
+  {"name": "showAxes","value":true,"bind": { "input": "checkbox" }}
+  ],
+
+
+  "data": [
+    {
+      "name": "dataset",
+      "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/exportimport_tradebalance.csv",
+      "format": { "type": "csv" ,"parse": {
+      "Export Value": "number","Import Value":"number","Trade Balance": "number"
+    }},
+       "transform": [
+
+        {
+          "type": "formula",
+          "as": "TotalValue",
+          "expr": "datum['Export Value'] + datum['Import Value']"
+        }
+      ]
+    },
+    {
+      "name": "sorted",
+      "source": "dataset",
+      "transform": [
+        {
+          "type": "collect",
+          "sort": { "field": "TotalValue", "order": "descending" }
+        },
+        {
+          "type": "formula",
+          "as": "TradeOffset",
+          "expr": "datum['Trade Balance'] >= 0 ? textOffset : -textOffset"
+        }
+        ,
+        {
+          "type": "formula",
+          "as": "InnerColor",
+          "expr": "datum['Trade Balance'] >= 0 ? PositiveInnerColor : NegativeInnerColor"
+        }
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "y",
+      "type": "band",
+      "domain": { "data": "sorted", "field": "Country" },
+      "range": "height",
+      "padding": 0.15
+    },
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": {
+        "data": "sorted",
+        "fields": ["Import Value (D)", "Export Value"]
+      },
+      "nice": true,
+      "range": "width"
+    }
+  ],
+
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": {"signal": "Title"},
+      "titleColor":{"signal": "titleColor"},
+      "domainColor":{"signal": "axesColor"},
+      "tickColor":{"signal": "axesColor"},
+      "gridColor":{"signal": "axesColor"},
+      "labelColor":{"signal": "axesColor"},
+      "labelOpacity":{"signal": "showTitle?  1:0"},
+      "tickOpacity":{"signal": "showAxes ? 1:0"},
+      "domainOpacity":{"signal": "showAxes ? 1: 0"},
+      "titleOpacity":{"signal": "showTitle? 1:0"}
+    }
+  ],
+
+
+  "marks": [
+    
+    {
+      "type": "text",
+      "from": { "data": "sorted" },
+      "encode": {
+        "enter": {
+          "x": { "signal": "width / 2" },
+          "y": { "scale": "y", "field": "Country", "band": 0.5 },
+          "align": { "value": "center" },
+          "baseline": { "value": "middle" },
+          "text": { "field": "Country" },
+          "fill": { "signal": "textColor" },
+          "fontSize": {"signal": "textsize"},
+          "fontWeight": { "value": "bold" }
+        }
+      }
+    },
+
+    {
+      "type": "rect",
+      "from": { "data": "sorted" },
+      "encode": {
+        "enter": {
+          "y": { "scale": "y", "field": "Country" ,"offset":{"signal": "offsetBar"}},
+          "height": { "scale": "y", "band": {"signal":"outerBand"}},
+          "x": { "scale": "x", "field": "Import Value (D)", "offset":{"signal": "-textOffset"} },
+          "x2": { "scale": "x", "value": 0,  "offset":{"signal": "-textOffset"}},
+          "fill": { "signal": "NegativeColor" },
+          "tooltip": {
+          "signal": "'Country: ' + datum['Country']+', '+ 'Value:'+ datum['Import Value']"
+        }
+
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": { "data": "sorted" },
+      "encode": {
+        "enter": {
+          "y": { "scale": "y", "field": "Country","offset":{"signal": "offsetBar"}},
+          "height": { "scale": "y", "band": {"signal":"outerBand"} },
+          "x": { "scale": "x", "value": 0,"offset":{"signal": "textOffset"} },
+          "x2": { "scale": "x", "field": "Export Value","offset":{"signal": "textOffset"} },
+          "fill": { "signal": "PositiveColor"},
+          "tooltip": {
+          "signal": "'Country: ' + datum['Country']+', '+ 'Value:'+ datum['Export Value']"
+        }
+        }
+      }
+    },
+     {
+      "type": "rect",
+      "from": { "data": "sorted" },
+      "encode": {
+        "enter": {
+          "y": { "scale": "y", "field": "Country","offset":0},
+          "height": { "scale": "y", "band": {"signal":"innerBand"}},
+          "x": { "scale": "x", "value": 0,"offset":{"field": "TradeOffset"}},
+          "x2": { "scale": "x", "field": "Trade Balance","offset":{"field": "TradeOffset"} },
+          "fill": {"signal": "datum.InnerColor"},
+          "tooltip": {
+          "signal": "'Country: ' + datum['Country']+', '+ 'Value:'+ datum['Trade Balance']"
+        }
+        
+        }
+      }
+    }
+  ]
+}
