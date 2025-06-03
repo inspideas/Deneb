@@ -182,23 +182,6 @@
         }
         }
       }
-    },
-     {
-      "type": "rect",
-      "from": { "data": "sorted" },
-      "encode": {
-        "enter": {
-          "y": { "scale": "y", "field": "Country","offset":0},
-          "height": { "scale": "y", "band": {"signal":"innerBand"}},
-          "x": { "scale": "x", "value": 0,"offset":{"field": "TradeOffset"}},
-          "x2": { "scale": "x", "field": "Trade Balance","offset":{"field": "TradeOffset"} },
-          "fill": {"signal": "datum.InnerColor"},
-          "tooltip": {
-          "signal": "'Country: ' + datum['Country']+', '+ 'Value:'+ datum['Trade Balance']"
-        }
-        
-        }
-      }
     }
-  ]
+   ]
 }
