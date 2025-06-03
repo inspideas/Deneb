@@ -1,0 +1,435 @@
+{
+  "usermeta": {
+    "information": {
+      "uuid": "5723c447-3dd0-4fd7-a121-bc212b650a0f",
+      "generated": "2025-06-03T03:47:27.582Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "Spine Chart",
+      "description": "[No Description Provided]",
+      "author": "DataDes-inspidea"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vega",
+      "providerVersion": "5.30.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{\n  \"autosize\": {\n    \"contains\": \"padding\",\n    \"type\": \"fit\"\n  }\n}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Country",
+        "description": "",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__1__",
+        "name": "Export Value",
+        "description": "",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__4__",
+        "name": "Import Value (D)",
+        "description": "",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__2__",
+        "name": "Trade Balance",
+        "description": "",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__3__",
+        "name": "Import Value",
+        "description": "",
+        "kind": "measure",
+        "type": "numeric"
+      }
+    ]
+  },
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "height": {
+    "signal": "step * length(data('dataset'))"
+  },
+  "signals": [
+    {
+      "name": "step",
+      "value": 10
+    },
+    {
+      "name": "chartWidth",
+      "value": 300
+    },
+    {
+      "name": "chartPad",
+      "value": 20
+    },
+    {
+      "name": "width",
+      "update": "2 * chartWidth + chartPad"
+    },
+    {
+      "name": "textOffset",
+      "value": 25
+    },
+    {
+      "name": "outerBand",
+      "value": 0.6
+    },
+    {
+      "name": "innerBand",
+      "value": 0.9
+    },
+    {
+      "name": "offsetBar",
+      "value": 1
+    },
+    {
+      "name": "positiveStartColor",
+      "value": "#DEF0EE"
+    },
+    {
+      "name": "positiveMidColor",
+      "value": "#DEF0EE"
+    },
+    {
+      "name": "positiveEndColor",
+      "value": "#C0F0CD"
+    },
+    {
+      "name": "PositiveColor",
+      "update": "{gradient: 'linear', stops: [{offset: 0, color: positiveStartColor}, {offset: 0.5, color: positiveMidColor},{offset: 1, color: positiveEndColor}]}"
+    },
+    {
+      "name": "negativeStartColor",
+      "value": "#D1C1FF"
+    },
+    {
+      "name": "negativeMidColor",
+      "value": "#C0CCF0"
+    },
+    {
+      "name": "negativeEndColor",
+      "value": "#E6DDF2"
+    },
+    {
+      "name": "NegativeColor",
+      "update": "{gradient: 'linear', stops: [{offset: 0, color: negativeStartColor}, {offset: 0.5, color: negativeMidColor},{offset: 1, color: negativeEndColor}]}"
+    },
+    {
+      "name": "PositiveInStartColor",
+      "value": "#B4E8FF"
+    },
+    {
+      "name": "PositiveInMidColor",
+      "value": "#ACF1FA"
+    },
+    {
+      "name": "PositiveInEndColor",
+      "value": "#31E8FF"
+    },
+    {
+      "name": "PositiveInnerColor",
+      "update": "{gradient: 'linear', stops: [{offset: 0, color: PositiveInStartColor}, {offset: 0.5, color: PositiveInMidColor},{offset: 1, color: PositiveInEndColor}]}"
+    },
+    {
+      "name": "NegativeInStartColor",
+      "value": "#AC99F0"
+    },
+    {
+      "name": "NegativeInMidColor",
+      "value": "#C899F0"
+    },
+    {
+      "name": "NegativeInEndColor",
+      "value": "#CFC6F0"
+    },
+    {
+      "name": "NegativeInnerColor",
+      "update": "{gradient: 'linear', stops: [{offset: 0, color: NegativeInStartColor}, {offset: 0.5, color: NegativeInMidColor},{offset: 1, color: NegativeInEndColor}]}"
+    },
+    {
+      "name": "textColor",
+      "value": "#BBB8D1"
+    },
+    {
+      "name": "textsize",
+      "value": 8
+    },
+    {
+      "name": "titleColor",
+      "value": "#555466"
+    },
+    {
+      "name": "Title",
+      "value": "__2__"
+    },
+    {
+      "name": "showTitle",
+      "value": true
+    },
+    {
+      "name": "axesColor",
+      "value": "#555466"
+    },
+    {
+      "name": "showAxes",
+      "value": true
+    }
+  ],
+  "data": [
+    {
+      "name": "dataset",
+      "transform": [
+        {
+          "type": "formula",
+          "as": "NegImport",
+          "expr": "-datum['__3__']"
+        },
+        {
+          "type": "formula",
+          "as": "TotalValue",
+          "expr": "datum['__1__'] + datum['__3__']"
+        }
+      ]
+    },
+    {
+      "name": "sorted",
+      "source": "dataset",
+      "transform": [
+        {
+          "type": "collect",
+          "sort": {
+            "field": "TotalValue",
+            "order": "descending"
+          }
+        },
+        {
+          "type": "formula",
+          "as": "TradeOffset",
+          "expr": "datum['__2__'] >= 0 ? textOffset : -textOffset"
+        },
+        {
+          "type": "formula",
+          "as": "InnerColor",
+          "expr": "datum['__2__'] >= 0 ? PositiveInnerColor : NegativeInnerColor"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "y",
+      "type": "band",
+      "domain": {
+        "data": "sorted",
+        "field": "__0__"
+      },
+      "range": "height",
+      "padding": 0.15
+    },
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": {
+        "data": "sorted",
+        "fields": [
+          "NegImport",
+          "__1__"
+        ]
+      },
+      "nice": true,
+      "range": "width"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": {
+        "signal": "Title"
+      },
+      "titleColor": {
+        "signal": "titleColor"
+      },
+      "domainColor": {
+        "signal": "axesColor"
+      },
+      "tickColor": {
+        "signal": "axesColor"
+      },
+      "gridColor": {
+        "signal": "axesColor"
+      },
+      "labelColor": {
+        "signal": "axesColor"
+      },
+      "labelOpacity": {
+        "signal": "showTitle?  1:0"
+      },
+      "tickOpacity": {
+        "signal": "showAxes ? 1:0"
+      },
+      "domainOpacity": {
+        "signal": "showAxes ? 1: 0"
+      },
+      "titleOpacity": {
+        "signal": "showTitle? 1:0"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "text",
+      "from": {
+        "data": "sorted"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "scale": "y",
+            "field": "__0__",
+            "band": 0.5
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "text": {
+            "field": "__0__"
+          },
+          "fill": {
+            "signal": "textColor"
+          },
+          "fontSize": {
+            "signal": "textsize"
+          },
+          "fontWeight": {
+            "value": "bold"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "sorted"
+      },
+      "encode": {
+        "enter": {
+          "y": {
+            "scale": "y",
+            "field": "__0__",
+            "offset": {
+              "signal": "offsetBar"
+            }
+          },
+          "height": {
+            "scale": "y",
+            "band": {
+              "signal": "outerBand"
+            }
+          },
+          "x": {
+            "scale": "x",
+            "field": "NegImport",
+            "offset": {
+              "signal": "-textOffset"
+            }
+          },
+          "x2": {
+            "scale": "x",
+            "value": 0,
+            "offset": {
+              "signal": "-textOffset"
+            }
+          },
+          "fill": {
+            "signal": "NegativeColor"
+          },
+          "tooltip": {
+            "signal": "'Country: ' + datum[\\'__0__\\'] +', '+ datum['__3__']"
+          },
+          "opacity": [
+            {
+              "test": "datum['__selected__'] == 'off'",
+              "value": 0.4
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "sorted"
+      },
+      "encode": {
+        "enter": {
+          "y": {
+            "scale": "y",
+            "field": "__0__",
+            "offset": {
+              "signal": "offsetBar"
+            }
+          },
+          "height": {
+            "scale": "y",
+            "band": 0.8
+          },
+          "x": {
+            "scale": "x",
+            "value": 0,
+            "offset": {
+              "signal": "textOffset"
+            }
+          },
+          "x2": {
+            "scale": "x",
+            "field": "__1__",
+            "offset": {
+              "signal": "textOffset"
+            }
+          },
+          "fill": {
+            "signal": "PositiveColor"
+          },
+          "tooltip": {
+            "signal": "'Country: ' + datum[\\'__0__\\'] +', '+ datum['__1__']"
+          },
+          "opacity": [
+            {
+              "test": "datum['__selected__'] == 'off'",
+              "value": 0.4
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
