@@ -367,57 +367,7 @@
             "signal": "NegativeColor"
           },
           "tooltip": {
-            "signal": "'Country: ' + datum[\\'__0__\\'] +', '+ datum['__3__']"
-          },
-          "opacity": [
-            {
-              "test": "datum['__selected__'] == 'off'",
-              "value": 0.4
-            },
-            {
-              "value": 1
-            }
-          ]
-        }
-      }
-    },
-    {
-      "type": "rect",
-      "from": {
-        "data": "sorted"
-      },
-      "encode": {
-        "enter": {
-          "y": {
-            "scale": "y",
-            "field": "__0__",
-            "offset": {
-              "signal": "offsetBar"
-            }
-          },
-          "height": {
-            "scale": "y",
-            "band": {"signal":"outerBand"}
-          },
-          "x": {
-            "scale": "x",
-            "value": 0,
-            "offset": {
-              "signal": "textOffset"
-            }
-          },
-          "x2": {
-            "scale": "x",
-            "field": "__1__",
-            "offset": {
-              "signal": "textOffset"
-            }
-          },
-          "fill": {
-            "signal": "PositiveColor"
-          },
-          "tooltip": {
-            "signal": "'Country: ' + datum[\\'__0__\\'] +', '+ datum['__1__']"
+            "signal": "'Country: ' + datum['__0__'] +', '+ datum['__3__']"
           },
           "opacity": [
             {

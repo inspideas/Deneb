@@ -61,12 +61,8 @@
       "format": { "type": "csv" ,"parse": {
       "Export Value": "number","Import Value":"number","Trade Balance": "number"
     }},
-      "transform": [
-        {
-          "type": "formula",
-          "as": "NegImport",
-          "expr": "-datum['Import Value']"
-        },
+       "transform": [
+
         {
           "type": "formula",
           "as": "TotalValue",
@@ -110,7 +106,7 @@
       "type": "linear",
       "domain": {
         "data": "sorted",
-        "fields": ["NegImport", "Export Value"]
+        "fields": ["Import Value (D)", "Export Value"]
       },
       "nice": true,
       "range": "width"
@@ -161,11 +157,11 @@
         "enter": {
           "y": { "scale": "y", "field": "Country" ,"offset":{"signal": "offsetBar"}},
           "height": { "scale": "y", "band": {"signal":"outerBand"}},
-          "x": { "scale": "x", "field": "NegImport", "offset":{"signal": "-textOffset"} },
+          "x": { "scale": "x", "field": "Import Value (D)", "offset":{"signal": "-textOffset"} },
           "x2": { "scale": "x", "value": 0,  "offset":{"signal": "-textOffset"}},
           "fill": { "signal": "NegativeColor" },
           "tooltip": {
-          "signal": "'Country: ' + datum.Country +', '+ datum['Import Value']"
+          "signal": "'Country: ' + datum['Country']+', '+ 'Value:'+ datum['Import Value']"
         }
 
         }
@@ -177,16 +173,32 @@
       "encode": {
         "enter": {
           "y": { "scale": "y", "field": "Country","offset":{"signal": "offsetBar"}},
-          "height": { "scale": "y", "band":{"signal":"outerBand"} },
+          "height": { "scale": "y", "band": {"signal":"outerBand"} },
           "x": { "scale": "x", "value": 0,"offset":{"signal": "textOffset"} },
           "x2": { "scale": "x", "field": "Export Value","offset":{"signal": "textOffset"} },
           "fill": { "signal": "PositiveColor"},
           "tooltip": {
-          "signal": "'Country: ' + datum.Country +', '+ datum['Export Value']"
+          "signal": "'Country: ' + datum['Country']+', '+ 'Value:'+ datum['Export Value']"
         }
         }
       }
+    },
+     {
+      "type": "rect",
+      "from": { "data": "sorted" },
+      "encode": {
+        "enter": {
+          "y": { "scale": "y", "field": "Country","offset":0},
+          "height": { "scale": "y", "band": {"signal":"innerBand"}},
+          "x": { "scale": "x", "value": 0,"offset":{"field": "TradeOffset"}},
+          "x2": { "scale": "x", "field": "Trade Balance","offset":{"field": "TradeOffset"} },
+          "fill": {"signal": "datum.InnerColor"},
+          "tooltip": {
+          "signal": "'Country: ' + datum['Country']+', '+ 'Value:'+ datum['Trade Balance']"
+        }
+        
+        }
+      }
     }
-    
   ]
 }
