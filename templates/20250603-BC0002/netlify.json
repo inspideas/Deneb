@@ -177,7 +177,7 @@
       "encode": {
         "enter": {
           "y": { "scale": "y", "field": "Country","offset":{"signal": "offsetBar"}},
-          "height": { "scale": "y", "band": 0.8 },
+          "height": { "scale": "y", "band": {"signal":"outerBand"} },
           "x": { "scale": "x", "value": 0,"offset":{"signal": "textOffset"} },
           "x2": { "scale": "x", "field": "Export Value","offset":{"signal": "textOffset"} },
           "fill": { "signal": "PositiveColor"},

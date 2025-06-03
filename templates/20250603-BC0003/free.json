@@ -397,7 +397,7 @@
           },
           "height": {
             "scale": "y",
-            "band": 0.8
+            "band": {"signal":"outerBand"}
           },
           "x": {
             "scale": "x",
