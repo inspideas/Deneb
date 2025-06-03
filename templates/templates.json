@@ -267,30 +267,6 @@
   "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/Power%20BI%20Search%20Result.csv",
   "type": "vega"
 
-},
-{
-  "name": "Spine Chart- 2 Layer",
-  "file": "20250603-BC0002",
-  "image": "images/20250603-BC0002.png",
-  "category": "Bar Chart",
-  "timestamp": "2025-06-03",
-  "subscription": "No",
- "caution":"",
-  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/exportimport_tradebalance.csv",
-  "type": "vega"
-
-},
-{
-  "name": "Spine Chart- 1 Layer",
-  "file": "20250603-BC0003",
-  "image": "images/20250603-BC0003.png",
-  "category": "Bar Chart",
-  "timestamp": "2025-06-03",
-  "subscription": "No",
- "caution":"",
-  "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/exportimport_tradebalance.csv",
-  "type": "vega"
-
 }
 
 ]
