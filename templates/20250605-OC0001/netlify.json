@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 400,
+  "height": 300,
+  "padding": {"left": 20, "right": 20, "top": 20, "bottom": 20},
+  "background":"#FFFFFF",
+
+  "signals": [
+    {"name": "cx", "update": "width / 2"},
+    {"name": "cy", "update": "height / 2"},
+    {
+      "name": "hoverDatum",
+      "value": null,
+      "on": [
+        {"events": "@image:mouseover", "update": "datum"},
+        {"events": "@image:mouseout", "update": "null"}
+      ]
+    },
+    { "name": "collideStrength", "value": 0.05,"bind": {"input": "range", "min": 0.05, "max": 3, "step": 0.05} },
+    { "name": "imageSizeMinimum", "value": 25,"bind": {"input": "range", "min": 0, "max": 500, "step": 5} },
+    { "name": "imageSizeMax", "value": 250,"bind": {"input": "range", "min": 0, "max": 1000, "step": 5} },
+    {"name": "tooltipUnit","value": "B","bind": {"input": "select","options": ["None", "K", "M", "B"],"labels": ["No Unit", "Thousand", "Million", "Billion"]}},
+    {"name": "textColor","value": "#000000","bind": {"input": "color"}},
+    {"name": "tooltip","value":true,"bind": { "input": "checkbox" }}
+  ],
+
+  "data": [
+    {
+      "name": "dataset",
+      "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/Import%20from%20China%20to%20US%202023.csv",
+      "format": { "type": "csv", "parse": { "Trade Value": "number" } }
+    },
+    {
+      "name": "positioned",
+      "source": "dataset",
+      "transform": [
+        {
+          "type": "formula",
+          "as": "scaledSize",
+          "expr": "scale('size', datum['Trade Value'])"
+        },
+        {
+          "type": "formula",
+          "as": "radius",
+          "expr": "datum.scaledSize / 2"
+        },
+        {
+          "type": "force",
+          "static": true,
+          "iterations": 300,
+          "forces": [
+            {"force": "center", "x": {"signal": "cx"}, "y": {"signal": "cy"}},
+            {
+              "force": "collide",
+              "radius": { "field": "radius" },
+              "strength": {"signal": "collideStrength"},
+              "iterations": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "size",
+      "domain": { "data": "dataset", "field": "Trade Value" },
+      "range": [{"signal": "imageSizeMinimum"}, {"signal": "imageSizeMax"}]
+    }
+  ],
+
+  "marks": [
+    {
+      "name": "image",
+      "type": "image",
+      "from": { "data": "positioned" },
+      "encode": {
+        "enter": {
+          "url": { "field": "Image" },
+          "tooltip": {
+            "signal": "datum.Category + ': ' + (tooltipUnit === 'B' ? format(datum['Trade Value'] / 1e9, '.1f') + 'B' : (tooltipUnit === 'M' ? format(datum['Trade Value'] / 1e6, '.1f') + 'M' : (tooltipUnit === 'K' ? format(datum['Trade Value'] / 1e3, '.1f') + 'K' : format(datum['Trade Value'], ','))))"
+          }
+
+        },
+        "update": {
+          "xc": { "field": "x" },
+          "yc": { "field": "y" },
+          "width": {
+            "signal": "hoverDatum && datum === hoverDatum ? datum.scaledSize * 1.4 : datum.scaledSize"
+          },
+          "height": {
+            "signal": "hoverDatum && datum === hoverDatum ? datum.scaledSize * 1.4 : datum.scaledSize"
+          },
+          "opacity": {
+            "signal": "!hoverDatum || datum === hoverDatum ? 1 : 0.4"
+          },
+          "zindex": {
+            "signal": "hoverDatum && datum === hoverDatum ? 100 : 0"
+          }
+        }
+      }
+    },
+    {
+  "type": "text",
+  "from": { "data": "positioned" },
+  "encode": {
+    "enter": {
+      "align": { "value": "center" },
+      "baseline": { "value": "middle" },
+      "fill": { "signal": "textColor" },
+      "fontWeight": { "value": "bold" }
+    },
+    "update": {
+      "x": { "field": "x" },
+      "y": { "field": "y" },
+      "text": {
+        "signal": "tooltipUnit === 'B' ? format(datum['Trade Value'] / 1e9, '.1f') + 'B' : (tooltipUnit === 'M' ? format(datum['Trade Value'] / 1e6, '.1f') + 'M' : (tooltipUnit === 'K' ? format(datum['Trade Value'] / 1e3, '.1f') + 'K' : format(datum['Trade Value'], ',')))"
+      },
+      "fontSize": {
+        "signal": "clamp(datum.scaledSize * 0.25, 8, 50)" 
+      },
+      "opacity": {
+        "signal": "!hoverDatum || datum === hoverDatum ? 1 : 0.3"
+      },
+      "zindex": {
+        "signal": "hoverDatum && datum === hoverDatum ? 101 : 1"
+      }
+    }
+  }
+}
+
+  ]
+}
