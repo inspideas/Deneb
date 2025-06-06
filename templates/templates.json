@@ -271,7 +271,7 @@
 {
   "name": "Spine Bar- 2Layers",
   "file": "20250603-BC0002",
-  "image": "images/20250603-BC0002",
+  "image": "images/20250603-BC0002.png",
   "category": "Bar Chart",
   "timestamp": "2025-06-03",
   "subscription": "No",
@@ -283,7 +283,7 @@
 {
   "name": "Proportional Bubble Chart",
   "file": "20250605-OC0001",
-  "image": "images/20250605-OC0001",
+  "image": "images/20250605-OC0001.png",
   "category": "Other Chart",
   "timestamp": "2025-06-05",
   "subscription": "No",
@@ -295,7 +295,7 @@
 {
   "name": "Radial Plot Chart",
   "file": "20250606-OC0002",
-  "image": "images/20250606-OC0002",
+  "image": "images/20250606-OC0002.png",
   "category": "Other Chart",
   "timestamp": "2025-06-06",
   "subscription": "No",
