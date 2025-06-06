@@ -1,0 +1,428 @@
+{
+  "usermeta": {
+    "information": {
+      "uuid": "6cd500b1-cd7b-430e-a2bb-8e223422de20",
+      "generated": "2025-06-06T07:25:40.040Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "Radial Plot Chart",
+      "description": "[No Description Provided]",
+      "author": "DataDes-inspidea"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vega",
+      "providerVersion": "5.30.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{\n  \"autosize\": {\n    \"contains\": \"padding\",\n    \"type\": \"fit\"\n  }\n}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Category",
+        "description": "",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__1__",
+        "name": "Image",
+        "description": "",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__2__",
+        "name": "Value",
+        "description": "",
+        "kind": "measure",
+        "type": "numeric"
+      }
+    ]
+  },
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 600,
+  "height": 600,
+  "padding":{"top": 20,"bottom": 20,"right": 20,"left": 20},
+  "background": "#f6f6f6",
+  "signals": [
+    {
+      "name": "sliceSizeMax",
+      "value": 300
+    },
+    {
+      "name": "sliceSizeMin",
+      "value": 100
+    },
+    {
+      "name": "sliceColor",
+      "value": "#ccc"
+    },
+    {
+      "name": "hoverColor",
+      "value": "#ED6FA0"
+    },
+    {
+      "name": "cutoutRatio",
+      "value": 0.1
+    },
+    {
+      "name": "innerRadius",
+      "value": 100
+    },
+    {
+      "name": "cornerRadius",
+      "value": 10
+    },
+    {
+      "name": "separator",
+      "value": 2
+    },
+    {
+      "name": "SeparatorColor",
+      "value": "#ffffff"
+    },
+    {
+      "name": "labelOffset",
+      "value": 35
+    },
+    {
+      "name": "textColor",
+      "value": "#3f3f3f"
+    },
+    {
+      "name": "textSize",
+      "value": 9
+    },
+    {
+      "name": "textBoxColor",
+      "value": "#f6f6f6"
+    },
+    {
+      "name": "textBoxStroke",
+      "value": "#ddd"
+    },
+    {
+      "name": "textBoxWidth",
+      "value": 36
+    },
+    {
+      "name": "textBoxHeight",
+      "value": 16
+    },
+    {
+      "name": "textCorner",
+      "value": 20
+    },
+    {
+      "name": "labelUnit",
+      "value": "M"
+    },
+    {
+      "name": "imageSizeMin",
+      "value": 1
+    },
+    {
+      "name": "imageSizeMax",
+      "value": 100
+    },
+    {
+      "name": "padAngle",
+      "value": 0.01
+    },
+    {
+      "name": "OtherColor",
+      "value": "#cccccc"
+    }
+  ],
+  "data": [
+    {
+      "name": "dataset",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum['__2__'] != null && datum['__2__'] > 0"
+        },
+        {
+          "type": "collect",
+          "sort": {
+            "field": "__2__",
+            "order": "descending"
+          }
+        },
+        {
+          "type": "joinaggregate",
+          "fields": [
+            "__2__"
+          ],
+          "ops": [
+            "sum"
+          ],
+          "as": [
+            "TotalExport"
+          ]
+        },
+        {
+          "type": "window",
+          "ops": [
+            "sum"
+          ],
+          "fields": [
+            "__2__"
+          ],
+          "as": [
+            "CumulativeExport"
+          ],
+          "sort": {
+            "field": "__2__",
+            "order": "descending"
+          }
+        },
+        {
+          "type": "formula",
+          "as": "startAngle",
+          "expr": "2 * PI * (datum.CumulativeExport - datum['__2__']) / datum.TotalExport"
+        },
+        {
+          "type": "formula",
+          "as": "endAngle",
+          "expr": "2 * PI * datum.CumulativeExport / datum.TotalExport"
+        },
+        {
+          "type": "filter",
+          "expr": "(datum.endAngle - datum.startAngle) > cutoutRatio"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "r",
+      "type": "sqrt",
+      "domain": {
+        "data": "dataset",
+        "field": "__2__"
+      },
+      "zero": true,
+      "range": [
+        {
+          "signal": "sliceSizeMin"
+        },
+        {
+          "signal": "sliceSizeMax"
+        }
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "field": {
+              "group": "width"
+            },
+            "mult": 0.5
+          },
+          "y": {
+            "field": {
+              "group": "height"
+            },
+            "mult": 0.5
+          },
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
+          "innerRadius": {
+            "value": 100
+          },
+          "outerRadius": {
+            "scale": "r",
+            "field": "__2__"
+          },
+          "stroke": {
+            "signal": "SeparatorColor"
+          },
+          "tooltip": {
+            "signal": "datum['__0__'] + ': ' + (labelUnit === 'B' ? format(datum['__2__'] / 1e9, '.1f') + 'B' : (labelUnit === 'M' ? format(datum['__2__'] / 1e6, '.1f') + 'M' : (labelUnit === 'K' ? format(datum['__2__'] / 1e3, '.1f') + 'K' : format(datum['__2__'], ','))))"
+          },
+           "opacity": [
+            {
+              "test": "datum['__selected__'] == 'off'",
+              "value": 0.4
+            },
+            {
+              "value": 1
+            }
+          ]
+        },
+        "update": {
+          "fill": {
+            "signal": "sliceColor"
+          },
+          "strokeWidth": {
+            "signal": "separator"
+          },
+          "cornerRadius": {
+            "signal": "cornerRadius"
+          }
+        },
+        "hover": {
+          "fill": {
+            "signal": "hoverColor"
+          }
+        }
+      }
+    },
+    {
+      "type": "image",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "width/2 + (scale('r', datum['__2__'])) * cos(1.5708 - (datum.startAngle + datum.endAngle)/2)"
+          },
+          "y": {
+            "signal": "height/2 - (scale('r', datum['__2__']) ) * sin(1.5708 - (datum.startAngle + datum.endAngle)/2)"
+          },
+          "url": {
+            "field": "__1__"
+          },
+          "width": {
+            "signal": "clamp(scale('r', datum['__2__']) * 0.1, imageSizeMin, imageSizeMax)"
+          },
+          "height": {
+            "signal": "clamp(scale('r', datum['__2__']) * 0.1, imageSizeMin, imageSizeMax)"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+           "opacity": [
+            {
+              "test": "datum['__selected__'] == 'off'",
+              "value": 0.4
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "width/2 + (scale('r', datum['__2__']) - labelOffset) * cos(1.5708 - ((datum.startAngle + datum.endAngle)/2)) - 18"
+          },
+          "y": {
+            "signal": "height/2 - (scale('r', datum['__2__']) - labelOffset) * sin(1.5708 - ((datum.startAngle + datum.endAngle)/2)) - 8"
+          },
+          "width": {
+            "signal": "textBoxWidth"
+          },
+          "height": {
+            "signal": "textBoxHeight"
+          },
+          "cornerRadius": {
+            "signal": "textCorner"
+          },
+          "fill": {
+            "signal": "textBoxColor"
+          },
+          "stroke": {
+            "signal": "textBoxStroke"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          },
+           "opacity": [
+            {
+              "test": "datum['__selected__'] == 'off'",
+              "value": 0.4
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "width / 2"
+          },
+          "y": {
+            "signal": "height / 2"
+          },
+          "radius": {
+            "scale": "r",
+            "field": "__2__",
+            "offset": {
+              "signal": "-labelOffset"
+            }
+          },
+          "theta": {
+            "signal": "(datum.startAngle + datum.endAngle) / 2"
+          },
+          "angle": {
+            "signal": "(datum.startAngle + datum.endAngle) / 2 * 0 / PI"
+          },
+          "text": {
+            "signal": "(labelUnit === 'B' ? format(datum['__2__'] / 1e9, '.0f') + 'B' : (labelUnit === 'M' ? format(datum['__2__'] / 1e6, '.0f') + 'M' : (labelUnit === 'K' ? format(datum['__2__'] / 1e3, '.0f') + 'K' : format(datum['__2__'], ','))))"
+          },
+          "fill": {
+            "signal": "textColor"
+          },
+          "fontSize": {
+            "signal": "textSize"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          }, 
+          "opacity": [
+            {
+              "test": "datum['__selected__'] == 'off'",
+              "value": 0.4
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

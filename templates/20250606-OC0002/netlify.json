@@ -1,0 +1,198 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 600,
+  "height": 600,
+  "padding":{"top": 20,"bottom": 20,"right": 20,"left": 20},
+  "background": "#f6f6f6",
+
+  "signals": [
+    {"name": "sliceSizeMax", "value": 300, "bind": {"input": "range", "min": 0, "max": 1000, "step": 10}},
+    {"name": "sliceSizeMin", "value": 100, "bind": {"input": "range", "min": 0, "max": 1000, "step": 10}},
+    {"name": "sliceColor", "value": "#ccc", "bind": {"input": "color"}},
+    {"name": "hoverColor", "value": "#ED6FA0", "bind": {"input": "color"}},
+     {"name": "cutoutRatio", "value": 0.1, "bind": {"input": "range", "min": 0, "max": 1, "step": 0.05}},
+    {"name": "innerRadius", "value": 100, "bind": {"input": "range", "min": 0, "max": 150, "step": 1}},
+    {"name": "cornerRadius", "value": 10, "bind": {"input": "range", "min": 0, "max": 10, "step": 0.5}},
+    {"name": "separator", "value": 2, "bind": {"input": "range", "min": 0, "max": 10, "step": 0.5}},
+    {"name": "SeparatorColor", "value": "#ffffff", "bind": {"input": "color"}},
+    {"name": "labelOffset", "value": 35, "bind": {"input": "range", "min": 0, "max": 150, "step": 1}},
+    {"name": "textColor", "value": "#3f3f3f", "bind": {"input": "color"}},
+    {"name": "textSize", "value": 9, "bind": {"input": "range", "min": 5, "max": 20, "step": 1}},
+    {"name": "textBoxColor", "value": "#f6f6f6", "bind": {"input": "color"}},
+    {"name": "textBoxStroke", "value": "#ddd", "bind": {"input": "color"}},
+    {"name": "textBoxWidth", "value": 36, "bind": {"input": "range", "min": 0, "max": 150, "step": 1}},
+    {"name": "textBoxHeight", "value": 16, "bind": {"input": "range", "min": 0, "max": 150, "step": 1}},
+    {"name": "textCorner", "value": 20, "bind": {"input": "range", "min": 0, "max": 150, "step": 1}},
+    {"name": "labelUnit","value": "M","bind": {"input": "select","options": ["None", "K", "M", "B"],"labels": ["No Unit", "Thousand", "Million", "Billion"]}},
+    {"name": "imageSizeMin", "value": 1, "bind": {"input": "range", "min": 0, "max": 150, "step": 1}},
+    {"name": "imageSizeMax", "value": 100, "bind": {"input": "range", "min": 0, "max": 150, "step": 1}},
+    {"name": "padAngle", "value": 0.01},
+    {"name": "OtherColor", "value": "#cccccc", "bind": {"input": "color"}}
+    
+  ],
+"data": [
+  {
+    "name": "dataset",
+    "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/exportimport_tradebalance.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Export Value": "number"
+      }
+    },
+    "transform": [
+      {"type": "filter", "expr": "datum['Export Value'] != null && datum['Export Value'] > 0"},
+      {"type": "collect", "sort": {"field": "Export Value", "order": "descending"}},
+
+  
+      {
+        "type": "joinaggregate",
+        "fields": ["Export Value"],
+        "ops": ["sum"],
+        "as": ["TotalExport"]
+      },
+
+     
+      {
+        "type": "window",
+        "ops": ["sum"],
+        "fields": ["Export Value"],
+        "as": ["CumulativeExport"],
+        "sort": {"field": "Export Value", "order": "descending"}
+      },
+
+      {
+        "type": "formula",
+        "as": "startAngle",
+        "expr": "2 * PI * (datum.CumulativeExport - datum['Export Value']) / datum.TotalExport"
+      },
+
+      {
+        "type": "formula",
+        "as": "endAngle",
+        "expr": "2 * PI * datum.CumulativeExport / datum.TotalExport"
+      },
+          {
+      "type": "filter",
+      "expr": "(datum.endAngle - datum.startAngle) > cutoutRatio"
+    }
+    ]
+  }
+]
+,
+"scales": [
+    {
+      "name": "r",
+      "type": "sqrt",
+      "domain": {"data": "dataset", "field": "Export Value"},
+      "zero": true,
+      "range": [{"signal": "sliceSizeMin"},{"signal": "sliceSizeMax"} ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {"data": "dataset"},
+      "encode": {
+        "enter": {
+          "x": {"field": {"group": "width"}, "mult": 0.5},
+          "y": {"field": {"group": "height"}, "mult": 0.5},
+          "startAngle": {"field": "startAngle"},
+          "endAngle": {"field": "endAngle"},
+          "innerRadius": {"value": 100},
+          "outerRadius": {"scale": "r", "field": "Export Value"},
+          "stroke": {"signal": "SeparatorColor"},
+          "tooltip": {
+   "signal": "datum.Country + ': ' + (labelUnit === 'B' ? format(datum['Export Value'] / 1e9, '.1f') + 'B' : (labelUnit === 'M' ? format(datum['Export Value'] / 1e6, '.1f') + 'M' : (labelUnit === 'K' ? format(datum['Export Value'] / 1e3, '.1f') + 'K' : format(datum['Export Value'], ','))))"
+}
+
+        },
+        "update": {
+          "fill": {"signal": "sliceColor"},
+          "strokeWidth": {"signal": "separator"},
+          "cornerRadius":{"signal":"cornerRadius"}
+  
+        },
+        "hover": {
+          "fill": {"signal": "hoverColor"}
+        }
+      }
+    },
+  {
+  "type": "image",
+  "from": {"data": "dataset"},
+  "encode": {
+    "enter": {
+"x": {
+  "signal": "width/2 + (scale('r', datum['Export Value'])) * cos(1.5708 - (datum.startAngle + datum.endAngle)/2)"
+},
+"y": {
+  "signal": "height/2 - (scale('r', datum['Export Value']) ) * sin(1.5708 - (datum.startAngle + datum.endAngle)/2)"
+},
+
+
+      "url": {"field": "FlagBase64"},
+      "width": {
+        "signal": "clamp(scale('r', datum['Export Value']) * 0.1, imageSizeMin, imageSizeMax)"
+      },
+      "height": {
+        "signal": "clamp(scale('r', datum['Export Value']) * 0.1, imageSizeMin, imageSizeMax)"
+      },
+      "align": {"value": "center"},
+      "baseline": {"value": "middle"}
+    }
+  }
+},
+{
+  "type": "rect",
+  "from": {"data": "dataset"},
+  "encode": {
+    "enter": {
+      "x": {
+        "signal": "width/2 + (scale('r', datum['Export Value']) - labelOffset) * cos(1.5708 - ((datum.startAngle + datum.endAngle)/2)) - 18"
+      },
+      "y": {
+        "signal": "height/2 - (scale('r', datum['Export Value']) - labelOffset) * sin(1.5708 - ((datum.startAngle + datum.endAngle)/2)) - 8"
+      },
+      "width": {"signal": "textBoxWidth"},
+      "height": {"signal": "textBoxHeight"},
+      "cornerRadius": {"signal": "textCorner"},
+      "fill": {"signal": "textBoxColor"},
+      "stroke": {"signal": "textBoxStroke"},
+      "strokeWidth": {"value": 0.5}
+    }
+  }
+}
+
+,
+{
+  "type": "text",
+  "from": {"data": "dataset"},
+  "encode": {
+    "enter": {
+      "x": {"signal": "width / 2"},
+      "y": {"signal": "height / 2"},
+      "radius": {
+        "scale": "r",
+        "field": "Export Value",
+        "offset": {"signal": "-labelOffset"}
+      },
+      "theta": {
+        "signal": "(datum.startAngle + datum.endAngle) / 2"
+      },
+      "angle": {
+        "signal": "(datum.startAngle + datum.endAngle) / 2 * 0 / PI"
+      },
+      "text": {
+   "signal": "(labelUnit === 'B' ? format(datum['Export Value'] / 1e9, '.0f') + 'B' : (labelUnit === 'M' ? format(datum['Export Value'] / 1e6, '.0f') + 'M' : (labelUnit === 'K' ? format(datum['Export Value'] / 1e3, '.0f') + 'K' : format(datum['Export Value'], ','))))"},
+      "fill": {"signal": "textColor"},
+      "fontSize": {"signal": "textSize"},
+      "align": {"value": "center"},
+      "baseline": {"value": "middle"}
+    }
+  }
+}
+
+
+  ]
+}
