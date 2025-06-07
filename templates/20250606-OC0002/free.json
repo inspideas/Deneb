@@ -53,7 +53,8 @@
   "padding":{"top": 20,"bottom": 20,"right": 20,"left": 20},
   "background": "#f6f6f6",
   "signals": [
-   
+    {"name": "sliceSizeMax", "value": 300},
+    {"name": "sliceSizeMin", "value": 100},
     {
       "name": "sliceColor",
       "value": "#ccc"
@@ -206,8 +207,7 @@
         "field": "__2__"
       },
       "zero": true,
-      "range": [100,300
-      ]
+      "range": [{"signal": "sliceSizeMin"},{"signal": "sliceSizeMax"} ]
     }
   ],
   "marks": [

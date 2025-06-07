@@ -6,6 +6,8 @@
   "background": "#f6f6f6",
 
   "signals": [
+    {"name": "sliceSizeMax", "value": 300, "bind": {"input": "range", "min": 0, "max": 1000, "step": 10}},
+    {"name": "sliceSizeMin", "value": 100, "bind": {"input": "range", "min": 0, "max": 1000, "step": 10}},
     {"name": "sliceColor", "value": "#ccc", "bind": {"input": "color"}},
     {"name": "hoverColor", "value": "#ED6FA0", "bind": {"input": "color"}},
      {"name": "cutoutRatio", "value": 0.1, "bind": {"input": "range", "min": 0, "max": 1, "step": 0.05}},
@@ -86,7 +88,7 @@
       "type": "sqrt",
       "domain": {"data": "dataset", "field": "Export Value"},
       "zero": true,
-      "range": [100,300 ]
+      "range": [{"signal": "sliceSizeMin"},{"signal": "sliceSizeMax"} ]
     }
   ],
   "marks": [
