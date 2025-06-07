@@ -21,7 +21,7 @@
     {"name": "textBoxWidth", "value": 36, "bind": {"input": "range", "min": 0, "max": 150, "step": 1}},
     {"name": "textBoxHeight", "value": 16, "bind": {"input": "range", "min": 0, "max": 150, "step": 1}},
     {"name": "textCorner", "value": 20, "bind": {"input": "range", "min": 0, "max": 150, "step": 1}},
-    {"name": "labelUnit","value": "M","bind": {"input": "select","options": ["None", "K", "M", "B"],"labels": ["No Unit", "Thousand", "Million", "Billion"]}},
+    {"name": "labelUnit","value": 2,"bind": {"input": "select","options": ["None", "K", "M", "B"],"labels": ["No Unit", "Thousand", "Million", "Billion"]}},
     {"name": "labelOffsetX", "value": 18, "bind": {"input": "range", "min": -100, "max": 150, "step": 1}},
     {"name": "labelOffsetY", "value": 8, "bind": {"input": "range", "min": -100, "max": 150, "step": 1}},
     {"name": "imageSizeMin", "value": 1, "bind": {"input": "range", "min": 0, "max": 150, "step": 1}},

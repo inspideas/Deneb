@@ -116,7 +116,7 @@
     },
     {
       "name": "labelUnit",
-      "value": "M"
+      "value": 1
     },
     {"name": "labelOffsetX", "value": 18},
     {"name": "labelOffsetY", "value": 8},
