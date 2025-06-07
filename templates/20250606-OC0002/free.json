@@ -118,8 +118,8 @@
       "name": "labelUnit",
       "value": "M"
     },
-    {"name": "labelOffsetX", "value": -18},
-    {"name": "labelOffsetY", "value": -8},
+    {"name": "labelOffsetX", "value": 18},
+    {"name": "labelOffsetY", "value": 8},
     {
       "name": "imageSizeMin",
       "value": 1
