@@ -299,7 +299,7 @@
   "category": "Other Chart",
   "timestamp": "2025-06-06",
   "subscription": "No",
- "caution":"",
+ "caution":"When you want to make a chart smaller, make sure to adjust inner rudias before changing slice max and min!",
   "dataset_url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/exportimport_tradebalance.csv",
   "type": "vega"
 
