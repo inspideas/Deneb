@@ -245,7 +245,7 @@
             "signal": "SeparatorColor"
           },
           "tooltip": {
-            "signal": "datum['__0__'] + ': ' + (labelUnit === 'B' ? format(datum['__2__'] / 1e9, '.1f') + 'B' : (labelUnit === 'M' ? format(datum['__2__'] / 1e6, '.1f') + 'M' : (labelUnit === 'K' ? format(datum['__2__'] / 1e3, '.1f') + 'K' : format(datum['__2__'], ','))))"
+            "signal": "datum['__0__'] + ': ' + (labelUnit === '3' ? format(datum['__2__'] / 1e9, '.1f') + 'B' : (labelUnit === '2' ? format(datum['__2__'] / 1e6, '.1f') + 'M' : (labelUnit === '1' ? format(datum['__2__'] / 1e3, '.1f') + 'K' : format(datum['__2__'], ','))))"
           },
            "opacity": [
             {
@@ -385,7 +385,7 @@
             "signal": "(datum.startAngle + datum.endAngle) / 2 * 0 / PI"
           },
           "text": {
-            "signal": "(labelUnit === 'B' ? format(datum['__2__'] / 1e9, '.0f') + 'B' : (labelUnit === 'M' ? format(datum['__2__'] / 1e6, '.0f') + 'M' : (labelUnit === 'K' ? format(datum['__2__'] / 1e3, '.0f') + 'K' : format(datum['__2__'], ','))))"
+            "signal": "(labelUnit === '3' ? format(datum['__2__'] / 1e9, '.0f') + 'B' : (labelUnit === '2' ? format(datum['__2__'] / 1e6, '.0f') + 'M' : (labelUnit === '1' ? format(datum['__2__'] / 1e3, '.0f') + 'K' : format(datum['__2__'], ','))))"
           },
           "fill": {
             "signal": "textColor"

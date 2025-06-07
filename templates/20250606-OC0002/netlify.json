@@ -103,7 +103,7 @@
           "outerRadius": {"scale": "r", "field": "Export Value"},
           "stroke": {"signal": "SeparatorColor"},
           "tooltip": {
-   "signal": "datum.Country + ': ' + (labelUnit === 'B' ? format(datum['Export Value'] / 1e9, '.1f') + 'B' : (labelUnit === 'M' ? format(datum['Export Value'] / 1e6, '.1f') + 'M' : (labelUnit === 'K' ? format(datum['Export Value'] / 1e3, '.1f') + 'K' : format(datum['Export Value'], ','))))"
+   "signal": "datum.Country + ': ' + (labelUnit === '3' ? format(datum['Export Value'] / 1e9, '.1f') + 'B' : (labelUnit === '2' ? format(datum['Export Value'] / 1e6, '.1f') + 'M' : (labelUnit === '1' ? format(datum['Export Value'] / 1e3, '.1f') + 'K' : format(datum['Export Value'], ','))))"
 }
 
         },
@@ -184,7 +184,7 @@
         "signal": "(datum.startAngle + datum.endAngle) / 2 * 0 / PI"
       },
       "text": {
-   "signal": "(labelUnit === 'B' ? format(datum['Export Value'] / 1e9, '.0f') + 'B' : (labelUnit === 'M' ? format(datum['Export Value'] / 1e6, '.0f') + 'M' : (labelUnit === 'K' ? format(datum['Export Value'] / 1e3, '.0f') + 'K' : format(datum['Export Value'], ','))))"},
+   "signal": "(labelUnit === '3' ? format(datum['Export Value'] / 1e9, '.0f') + 'B' : (labelUnit === '2' ? format(datum['Export Value'] / 1e6, '.0f') + 'M' : (labelUnit === 'K' ? format(datum['Export Value'] / 1e3, '.0f') + 'K' : format(datum['Export Value'], ','))))"},
       "fill": {"signal": "textColor"},
       "fontSize": {"signal": "textSize"},
       "align": {"value": "center"},
