@@ -1,0 +1,140 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 600,
+  "height": 400,
+  "padding": 5,
+  "signals": [
+    {"name": "showTitleX","value":true,"bind": { "input": "checkbox" }},
+    {"name": "TitleX","value":"Time (minutes)","bind":{"input": "text"}},
+     {"name": "showTitleY","value":false,"bind": { "input": "checkbox" }},
+    {"name": "TitleY","value":"Categories","bind":{"input": "text"}},
+    {"name": "titleColor", "value": "#ccc", "bind": {"input": "color"}},
+    {"name": "showLabel","value":true,"bind": { "input": "checkbox" }},
+    {"name": "textColor", "value": "#ccc", "bind": {"input": "color"}},
+    {"name": "textSize", "value": 9, "bind": {"input": "range", "min": 5, "max": 20, "step": 1}},
+    { "name": "labelOffset", "value": 40,
+      "bind": {"input": "range", "min": -50, "max": 100, "step": 1} },
+    {"name": "showAxes","value":false,"bind": { "input": "checkbox" }},
+    {"name": "showTick","value":false,"bind": { "input": "checkbox" }},
+    {"name": "axesColor", "value": "#ccc", "bind": {"input": "color"}},
+    {"name": "imageWidth", "value": 30, "bind": {"input": "range", "min": 5, "max": 100, "step": 1}},
+    {"name": "imageHeight","value": 30, "bind": {"input": "range", "min": 5, "max": 100, "step": 1}},
+    {"name": "imageOffset", "value":-4, "bind": {"input": "range", "min": -50, "max": 100, "step": 1}},
+    {"name": "imageOpacity", "value": 0.8, "bind": {"input": "range", "min": 0, "max": 1, "step": 0.1}},
+    {"name": "bandWidth", "value": 0.8, "bind": {"input": "range", "min": 0, "max": 1, "step": 0.1}},
+    {"name": "bandColor", "value": "#fcb045", "bind": {"input": "color"}},
+    {"name": "bandOpacity", "value": 0.4, "bind": {"input": "range", "min": 0, "max": 1, "step": 0.1}},
+    {"name": "cornerRadius", "value": 10, "bind": {"input": "range", "min": 0, "max": 100, "step": 1}},
+    {"name": "markSize", "value": 50, "bind": {"input": "range", "min": 0, "max": 100, "step": 1}},
+    {"name": "markOffset", "value": -2, "bind": {"input": "range", "min": -50, "max": 100, "step": 1}},
+    {"name": "markBandWidth", "value": 0.5, "bind": {"input": "range", "min": 0, "max": 1, "step": 0.1}}
+
+  ],
+  "data": [
+    {
+      "name": "dataset",
+      "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/TimeUse_MinMax.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Average Time": "number",
+        "Minimum Time": "number",
+        "Max Time": "number"
+
+      }
+    }
+    }
+  ],
+  "scales": [
+    {
+      "name": "yscale",
+      "type": "band",
+      "range": "height",
+      "domain": {"data": "dataset", "field": "Category"},
+      "padding": 0.3
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "domain": {"data": "dataset", "fields": ["Minimum Time", "Max Time"]},
+      "range": "width",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {"orient": "bottom", 
+    "scale": "xscale",
+    "title": {"signal": "TitleX"},
+    "titleColor":{"signal": "titleColor"},
+    "domainColor":{"signal": "axesColor"},
+    "tickColor":{"signal": "axesColor"},
+    "gridColor":{"signal": "axesColor"},
+    "labelColor":{"signal": "textColor"},
+    "labelOpacity":{"signal": "showLabel?  1:0"},
+    "labelFontSize":{"signal": "textSize"},
+    "tickOpacity":{"signal": "showAxes ? 1:0"},
+    "domainOpacity":{"signal": "showAxes ? 1: 0"},
+    "titleOpacity":{"signal": "showTitleX? 1:0"}},
+    {"orient": "left", 
+    "scale": "yscale",
+    "labelPadding":{"signal": "labelOffset"},
+    "title": {"signal": "TitleY"},
+    "titleColor":{"signal": "titleColor"},
+    "domainColor":{"signal": "axesColor"},
+    "tickColor":{"signal": "axesColor"},
+    "gridColor":{"signal": "axesColor"},
+    "labelColor":{"signal": "textColor"},
+    "labelFontSize":{"signal": "textSize"},
+    "labelOpacity":{"signal": "showLabel?  1:0"},
+    "tickOpacity":{"signal": "showAxes ? 1:0"},
+    "domainOpacity":{"signal": "showAxes ? 1: 0"},
+    "titleOpacity":{"signal": "showTitleY? 1:0"}}
+  ],
+  "marks": [
+    {
+      "type": "image",
+      "from": {"data": "dataset"},
+      "encode": {
+        "enter": {
+          "y": {"scale": "yscale", "field": "Category", "offset":{"signal": "imageOffset"}},
+          "x": {"signal": "-labelOffset"},
+          "width": {"signal": "imageWidth"},
+          "height": {"signal": "imageHeight"},
+          "url": {"field": "Image"},
+          "opacity":{"signal": "imageOpacity"}
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {"data": "dataset"},
+      "encode": {
+        "enter": {
+          "y": {"scale": "yscale", "field": "Category"},
+          "height": {"scale": "yscale", "band":{"signal":"bandWidth"}},
+          "x": {"scale": "xscale", "field": "Minimum Time"},
+          "x2": {"scale": "xscale", "field": "Max Time"},
+          "fill": {"signal": "bandColor"},
+          "fillOpacity":{"signal": "bandOpacity"},
+          "cornerRadius":{"signal": "cornerRadius"},
+          "tooltip": {
+            "signal": "' Min: ' + datum['Minimum Time'] + ' (' + datum['MinCountryPerCategory'] + ')' + ' Max: ' + datum['Max Time'] + ' (' + datum['MaxCountryPerCategory'] + ')' + ' Average: ' + datum['Average Time']"
+          }
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "from": {"data": "dataset"},
+      "encode": {
+        "enter": {
+          "shape": {"value": "circle"},
+          "size": {"signal": "markSize"},
+          "fill": {"signal": "bandColor"},
+          "x": {"scale": "xscale", "field": "Average Time"},
+          "y": {"scale": "yscale", "field": "Category", "band": {"signal":"markBandWidth"},"offset":{"signal": "markOffset"}}
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,410 @@
+{
+  "usermeta": {
+    "information": {
+      "uuid": "5356415a-1bb3-4c35-b748-de28c63581a9",
+      "generated": "2025-06-11T01:55:07.110Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "Range Chart",
+      "description": "[No Description Provided]",
+      "author": "DataDes-inspidea"
+    },
+    "deneb": {
+      "build": "1.7.2.1",
+      "metaVersion": 1,
+      "provider": "vega",
+      "providerVersion": "5.30.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{\n  \"autosize\": {\n    \"contains\": \"padding\",\n    \"type\": \"fit\"\n  }\n}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Category",
+        "description": "",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__1__",
+        "name": "Image",
+        "description": "Needs to be base64 format",
+        "kind": "column",
+        "type": "text"
+      },
+      {
+        "key": "__2__",
+        "name": "Average",
+        "description": "Ave. Value to show circle mark",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__3__",
+        "name": "Minimum",
+        "description": "Min Value to Show Range",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__4__",
+        "name": "Maximum",
+        "description": "Max Value to show range",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__5__",
+        "name": "MaxCategory",
+        "description": "For Tooltip",
+        "kind": "measure",
+        "type": "text"
+      },
+      {
+        "key": "__6__",
+        "name": "MinCategory",
+        "description": "For tooltip",
+        "kind": "measure",
+        "type": "text"
+      }
+    ]
+  },
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 600,
+  "height": 400,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "showTitleX",
+      "value": true
+    },
+    {
+      "name": "TitleX",
+      "value": "Time (minutes)"
+    },
+    {
+      "name": "showTitleY",
+      "value": false
+    },
+    {
+      "name": "TitleY",
+      "value": "Categories"
+    },
+    {
+      "name": "titleColor",
+      "value": "#ccc"
+    },
+    {
+      "name": "showLabel",
+      "value": true
+    },
+    {
+      "name": "textColor",
+      "value": "#ccc"
+    },
+    {
+      "name": "textSize",
+      "value": 9
+    },
+    {
+      "name": "labelOffset",
+      "value": 40
+    },
+    {
+      "name": "showAxes",
+      "value": false
+    },
+    {
+      "name": "showTick",
+      "value": false
+    },
+    {
+      "name": "axesColor",
+      "value": "#ccc"
+    },
+    {
+      "name": "imageWidth",
+      "value": 25
+    },
+    {
+      "name": "imageHeight",
+      "value": 30
+    },
+    {
+      "name": "imageOffset",
+      "value": -2
+    },
+    {
+      "name": "imageOpacity",
+      "value": 0.8
+    },
+    {
+      "name": "bandWidth",
+      "value": 0.8
+    },
+    {
+      "name": "bandColor",
+      "value": "#fcb045"
+    },
+    {
+      "name": "bandOpacity",
+      "value": 0.4
+    },
+    {
+      "name": "cornerRadius",
+      "value": 10
+    },
+    {
+      "name": "markSize",
+      "value": 50
+    },
+    {
+      "name": "markOffset",
+      "value": -2
+    },
+    {
+      "name": "markBandWidth",
+      "value": 0.5
+    }
+  ],
+  "data": [
+    {
+      "name": "dataset"
+    }
+  ],
+  "scales": [
+    {
+      "name": "yscale",
+      "type": "band",
+      "range": "height",
+      "domain": {
+        "data": "dataset",
+        "field": "__0__"
+      },
+      "padding": 0.3
+    },
+    {
+      "name": "xscale",
+      "type": "linear",
+      "domain": {
+        "data": "dataset",
+        "fields": [
+          "__3__",
+          "__4__"
+        ]
+      },
+      "range": "width",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": {
+        "signal": "TitleX"
+      },
+      "titleColor": {
+        "signal": "titleColor"
+      },
+      "domainColor": {
+        "signal": "axesColor"
+      },
+      "tickColor": {
+        "signal": "axesColor"
+      },
+      "gridColor": {
+        "signal": "axesColor"
+      },
+      "labelColor": {
+        "signal": "textColor"
+      },
+      "labelOpacity": {
+        "signal": "showLabel?  1:0"
+      },
+      "labelFontSize": {
+        "signal": "textSize"
+      },
+      "tickOpacity": {
+        "signal": "showAxes ? 1:0"
+      },
+      "domainOpacity": {
+        "signal": "showAxes ? 1: 0"
+      },
+      "titleOpacity": {
+        "signal": "showTitleX? 1:0"
+      }
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "labelPadding": {
+        "signal": "labelOffset"
+      },
+      "title": {
+        "signal": "TitleY"
+      },
+      "titleColor": {
+        "signal": "titleColor"
+      },
+      "domainColor": {
+        "signal": "axesColor"
+      },
+      "tickColor": {
+        "signal": "axesColor"
+      },
+      "gridColor": {
+        "signal": "axesColor"
+      },
+      "labelColor": {
+        "signal": "textColor"
+      },
+      "labelFontSize": {
+        "signal": "textSize"
+      },
+      "labelOpacity": {
+        "signal": "showLabel?  1:0"
+      },
+      "tickOpacity": {
+        "signal": "showAxes ? 1:0"
+      },
+      "domainOpacity": {
+        "signal": "showAxes ? 1: 0"
+      },
+      "titleOpacity": {
+        "signal": "showTitleY? 1:0"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "image",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "y": {
+            "scale": "yscale",
+            "field": "__0__",
+            "offset": {
+              "signal": "imageOffset"
+            }
+          },
+          "x": {
+            "signal": "-labelOffset"
+          },
+          "width": {
+            "signal": "imageWidth"
+          },
+          "height": {
+            "signal": "imageHeight"
+          },
+          "url": {
+            "field": "__1__"
+          },
+          "opacity": {
+            "signal": "imageOpacity"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "y": {
+            "scale": "yscale",
+            "field": "__0__"
+          },
+          "height": {
+            "scale": "yscale",
+            "band": {
+              "signal": "bandWidth"
+            }
+          },
+          "x": {
+            "scale": "xscale",
+            "field": "__3__"
+          },
+          "x2": {
+            "scale": "xscale",
+            "field": "__4__"
+          },
+          "fill": {
+            "signal": "bandColor"
+          },
+          "fillOpacity": {
+            "signal": "bandOpacity"
+          },
+          "cornerRadius": {
+            "signal": "cornerRadius"
+          },
+          "tooltip": {
+            "signal": "' Min: ' + datum['__3__'] + ' (' + datum['__6__'] + ')' + ' Max: ' + datum['__4__'] + ' (' + datum['__5__'] + ')' + ' Average: ' + datum['__2__']"
+          },
+          "opacity": [
+            {
+              "test": "datum['__selected__'] == 'off'",
+              "value": 0.4
+            },
+            {
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "from": {
+        "data": "dataset"
+      },
+      "encode": {
+        "enter": {
+          "shape": {
+            "value": "circle"
+          },
+          "size": {
+            "signal": "markSize"
+          },
+          "fill": {
+            "signal": "bandColor"
+          },
+          "x": {
+            "scale": "xscale",
+            "field": "__2__"
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "__0__",
+            "band": {
+              "signal": "markBandWidth"
+            },
+            "offset": {
+              "signal": "markOffset"
+            },
+          "opacity": [
+            {
+              "test": "datum['__selected__'] == 'off'",
+              "value": 0.4
+            },
+            {
+              "value": 1
+            }
+          ]
+          }
+        }
+      }
+    }
+  ]
+}
