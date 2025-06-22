@@ -1,0 +1,265 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 500,
+  "height": 250,
+  "padding": 20,
+  "background":"#E4D5F200",
+
+  "signals": [
+    {
+      "name": "hoverYear",
+      "value": null,
+      "on": [
+        {
+          "events": "@hoverrect:mouseover",
+          "update": "datum['Year']"
+        },
+        {
+          "events": "@hoverrect:mouseout",
+          "update": "null"
+        }
+      ]
+    },
+ 
+    {"name": "showTitleX","value":true,"bind": { "input": "checkbox" }},
+    {"name": "TitleX","value":"Amount","bind":{"input": "text"}},
+    {"name": "showTitleY","value":false,"bind": { "input": "checkbox" }},
+    {"name": "TitleY","value":"Value","bind":{"input": "text"}},
+    {"name": "titleColor", "value": "#2C3F59", "bind": {"input": "color"}},
+    {"name": "axesColor", "value": "#2C3F59", "bind": {"input": "color"}},
+    {"name": "showLabel","value":true,"bind": { "input": "checkbox" }},
+    {"name": "labelOffsetX", "value": 3, "bind": {"input": "range", "min": 0, "max": 10, "step": 1}},
+    {"name": "showAxes","value":false,"bind": { "input": "checkbox" }},
+    {"name": "showTick","value":false,"bind": { "input": "checkbox" }},
+    {"name": "lineColor","value": "#D94F30","bind": {"input": "color"}},
+    {"name": "lineStroke", "value": 2, "bind": {"input": "range", "min": 1, "max": 10, "step": 1}},
+    {"name": "startColor","value": "#FFFFFF","bind": {"input": "color"}},
+    {"name": "endColor","value": "#6588A6","bind": {"input": "color"}},
+    {
+      "name": "GradColor",
+      "update": "{gradient: 'linear', x1: 0, y1: 1, x2: 0, y2: 0, stops: [ {offset: 0, color: startColor}, {offset: 1, color: endColor} ]}"
+    },
+    {"name": "bandSize", "value": 20, "bind": {"input": "range", "min": 5, "max": 100, "step": 1}},
+    {"name": "bandOffsetX", "value": -10, "bind": {"input": "range", "min": -50, "max": 100, "step": 1}},
+    {"name": "bandOffsetY", "value": 0, "bind": {"input": "range", "min": -50, "max": 100, "step": 1}},
+     {"name": "bandCorner", "value": 10, "bind": {"input": "range", "min": 0, "max": 100, "step": 1}},
+    {"name": "outerMarkColor","value": "#F2F2F2","bind": {"input": "color"}},
+    {"name": "outerMarkSize", "value": 700, "bind": {"input": "range", "min": 0, "max": 1000, "step": 5}},
+    {"name": "innerMarkColor","value": "#6588A6","bind": {"input": "color"}},
+    {"name": "innerMarkSize", "value": 100, "bind": {"input": "range", "min": 0, "max": 1000, "step": 5}},
+    {"name": "bubbleFill","value": "#F2F2F2","bind": {"input": "color"}},
+    {"name": "bubbleLine","value": "#FFFFFF","bind": {"input": "color"}},
+    {"name": "bubbleSize", "value": 9, "bind": {"input": "range", "min": 5, "max": 100, "step": 1}},
+    {"name": "showBubble","value":false,"bind": { "input": "checkbox" }},
+    {"name": "textColor", "value": "#2C3F59", "bind": {"input": "color"}},
+    {"name": "textSize", "value": 9, "bind": {"input": "range", "min": 5, "max": 20, "step": 1}},
+    {"name": "textOffsetY", "value": -40, "bind": {"input": "range", "min": -100, "max": 100, "step": 1}},
+    {"name": "textOffsetX", "value": -10, "bind": {"input": "range", "min": -100, "max": 100, "step": 1}}
+  ],
+
+  "data": [
+    {
+      "name": "dataset",
+      "url": "https://raw.githubusercontent.com/inspideas/BarChart/refs/heads/main/Import%20from%20China%20to%20US%20by%20Year_Selected%20Categories.csv",
+      "format": { "type": "csv",  "parse": {
+        "Trade Value": "number"
+      } },
+         "transform": [
+        {
+          "type": "collect",
+          "sort": { "field": "Year", "order": "ascending" }
+        }
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "domain": { "data": "dataset", "field": "Year" },
+      "range": "width",
+      "padding":{"signal": "labelOffsetX"}
+          },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": { "data": "dataset", "field": "Trade Value" },
+      "range": "height",
+      "nice": true
+    }
+  ],
+
+  "axes": [
+    { "orient": "bottom", 
+    "scale": "xscale", 
+    "title": {"signal": "TitleX"},
+    "titleColor":{"signal": "titleColor"},
+    "domainColor":{"signal": "axesColor"},
+    "tickColor":{"signal": "axesColor"},
+    "gridColor":{"signal": "axesColor"},
+    "labelColor":{"signal": "textColor"},
+    "labelOpacity":{"signal": "showLabel?  1:0"},
+    "labelFontSize":{"signal": "textSize"},
+    "tickOpacity":{"signal": "showAxes ? 1:0"},
+    "domainOpacity":{"signal": "showAxes ? 1: 0"},
+    "titleOpacity":{"signal": "showTitleX? 1:0"}},
+{
+  "orient": "left",
+  "scale": "yscale",
+  "title": {"signal": "TitleY"},
+  "titleColor":{"signal": "titleColor"},
+  "tickColor":{"signal": "axesColor"},
+  "gridColor":{"signal": "axesColor"},
+      "gridColor":{"signal": "axesColor"},
+    "labelColor":{"signal": "textColor"},
+    "labelOpacity":{"signal": "showLabel?  1:0"},
+    "labelFontSize":{"signal": "textSize"},
+    "tickOpacity":{"signal": "showAxes ? 1:0"},
+    "domainOpacity":{"signal": "showAxes ? 1: 0"},
+    "titleOpacity":{"signal": "showTitleX? 1:0"},
+  "encode": {
+    "labels": {
+      "update": {
+        "text": {
+         "signal": "format(datum.value / 1e9, '.0f') + 'B'"
+        }
+      }
+    } 
+  }
+}
+ ],
+
+  "marks": [
+    {
+      "type": "rect",
+      "name": "highlight",
+      "from": { "data": "dataset" },
+      "encode": {
+        "enter": {
+          "x": { "scale": "xscale", "field": "Year", "offset": {"signal": "bandOffsetX"} },
+          "width": {"signal": "bandSize" },
+          "y": {"scale": "yscale","field": "Trade Value","offset": {"signal": "bandOffsetY"} },
+          "y2": { "signal": "height" },
+          "fill": {"signal": "GradColor"}
+        },
+        "update": {
+          "opacity": {
+            "signal": "hoverYear === datum['Year'] ? 0.6 : 0"
+          },
+          "cornerRadiusTopLeft": { "signal": "bandCorner" },
+          "cornerRadiusTopRight": { "signal": "bandCorner"}
+
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": { "data": "dataset" },
+      "encode": {
+        "enter": {
+          "x": { "scale": "xscale", "field": "Year" },
+          "y": { "scale": "yscale", "field": "Trade Value" },
+          "stroke": {"signal": "lineColor" },
+          "strokeWidth": { "signal": "lineStroke"}
+        },
+        "update":{
+          "interpolate":{"value": "cardinal"}
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "name": "symbol",
+      "from": { "data": "dataset" },
+      "encode": {
+        "enter": {
+          "x": { "scale": "xscale", "field": "Year" },
+          "y": { "scale": "yscale", "field": "Trade Value" },
+          "size": { "signal": "outerMarkSize" },
+          "fill": { "signal": "outerMarkColor" },
+          "opacity": { "value": 0 }
+        },
+        "update": {
+          "opacity": {
+            "signal": "hoverYear === datum['Year'] ? 1 : 0"
+          }
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "name": "symboloverlay",
+      "from": { "data": "dataset" },
+      "encode": {
+        "enter": {
+          "x": { "scale": "xscale", "field": "Year" },
+          "y": { "scale": "yscale", "field": "Trade Value" },
+          "size": { "signal": "innerMarkSize"},
+          "fill": { "signal": "innerMarkColor"},
+          "opacity": { "value": 0 }
+        },
+        "update": {
+          "opacity": {
+            "signal": "hoverYear === datum['Year'] ? 1 : 0"
+          }
+        }
+      }
+    },
+    
+    {
+      "type": "rect",
+      "name": "hoverrect",
+      "from": { "data": "dataset" },
+      "encode": {
+        "enter": {
+          "x": { "scale": "xscale", "field": "Year", "offset":{"signal": "labelOffsetX"}},
+          "width": { "value": 30 },
+          "y": { "value": 0 },
+          "y2": { "signal": "height" },
+          "fill": { "value": "transparent" }
+        }
+      }
+    },  
+ 
+  {
+    "type": "symbol",
+    "from": {"data": "dataset"},
+    "encode": {
+      "update": {
+          "x": { "scale": "xscale", "field": "Year" },
+          "y": { "scale": "yscale", "field": "Trade Value" , "offset":-30},
+        "shape":{ "value": "M-24,-8 Q-24,-16 -16,-16 L16,-16 Q24,-16 24,-8 Q24,0 8,0 L4,6 L0,0 L-8,0 Q-24,0 -24,-8 Z"
+      },
+        "size":{"signal": "bubbleSize"},
+        "fill": {"signal": "bubbleFill"},
+        "stroke": {"signal": "bubbleLine"},
+          "opacity": {
+            "signal": "hoverYear === datum['Year'] ? 1 : 0"
+          }
+      }
+    }
+  },
+    {
+    "type": "text",
+    "from": {"data": "dataset"},
+
+    "encode": {
+      "update": {
+          "x": { "scale": "xscale", "field": "Year","offset":{"signal": "textOffsetX"} },
+          "y": { "scale": "yscale", "field": "Trade Value" , "offset":{"signal": "textOffsetY"}},
+      
+
+        "text": {
+         "signal":"format(datum['Trade Value'] / 1e9, '.0f') + 'B' "
+        },
+        "fill":{"signal": "textColor"},
+        "size":{"signal": "textSize"},
+          "opacity": {
+            "signal": "hoverYear === datum['Year'] ? 1 : 0"
+          }
+      }
+    }
+  }   
+  ]
+}
